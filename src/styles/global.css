@@ -13,11 +13,11 @@
 
 .nav-links {
     width: 100%;
-    top: 5rem;
-    left: 48px;
-    color: white;
-    display: none;
-    margin: 0;
+    height: 80px;
+    display: flex !important;
+    justify-content: flex-start;
+    align-items: center;
+    border-bottom: 1px solid rgb(229, 231, 235);
 }
 
 .nav-links a {

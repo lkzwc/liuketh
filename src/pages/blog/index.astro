@@ -5,6 +5,7 @@ const allPosts = await Astro.glob("./*.md");
 ---
 
 <Layout>
+    {console.log("llll", allPosts)}
     {
         allPosts.map((post) => (
             <li>
