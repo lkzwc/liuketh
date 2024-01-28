@@ -1,0 +1,25 @@
+---
+import Social from "./Social.astro";
+---
+
+<style>
+    footer {
+        display: flex;
+        gap: 1rem;
+        margin-top: 2rem;
+        position: fixed; /* 使用固定定位 */
+        bottom: 0; /* 设置元素距离底部为零 */
+        left: 0; /* 并且从左边缘开始 */
+        width: 100%; /* 宽度覆盖整个窗口宽度 */
+        height: 150px; /* 根据需要设置高度 */
+        background-color: #333; /* 添加背景颜色 */
+        color: #fff; /* 文本颜色 */
+        z-index: 999; /* 可能需要调整z-index确保其层级高于其他元素 */
+    }
+</style>
+
+<footer>
+    <Social platform="twitter" username="astrodotbuild" />
+    <Social platform="github" username="withastro" />
+    <Social platform="youtube" username="astrodotbuild" />
+</footer>
