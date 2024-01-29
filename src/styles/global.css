@@ -1,35 +1,10 @@
-@media screen and (max-width: 636px){
-    .hamburger {
-        padding-right: 20px;
-        cursor: pointer;
-    }
-    
-    .hamburger .line {
-        display: block;
-        width: 40px;
-        height: 5px;
-        margin-bottom: 10px;
-        background-color: #ff9776;
-    }
-    a:focus {
-        background-color: #63a5f1;
-    }
-    
-    .expanded {
-        display: unset;
-    }
-}
-
-@media screen and (min-width: 636px) {
-
-    .hamburger {
-        display: none;
-    }
-}
-
 html.dark {
     background-color: rgba(0, 0, 0, 0.8);
     color: #fff;
+}
+
+main {
+    min-height: 50vh;
 }
 
 .dark .nav-links a {

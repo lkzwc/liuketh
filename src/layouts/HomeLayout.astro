@@ -15,16 +15,15 @@ const pageTitle = "首页";
 	</head>
 	<body>
 		<Header />
-		<slot />
+		<main>
+			<slot />
+		</main>
 		<Footer />
 		<script>
-			document
-				.querySelector(".hamburger")
-				.addEventListener("click", () => {
-					document
-						.querySelector(".nav-links")
-						.classList.toggle("expanded");
-				});
+			document.getElementById("expend")?.addEventListener("click", () => {
+				console.log("run");
+				document.getElementById("menu")?.classList.toggle("hidden");
+			});
 		</script>
 	</body>
 </html>

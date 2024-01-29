@@ -4,13 +4,4 @@ import Layout from "../../layouts/HomeLayout.astro";
 const allPosts = await Astro.glob("./*.md");
 ---
 
-<Layout>
-    {console.log("llll", allPosts)}
-    {
-        allPosts.map((post) => (
-            <li>
-                <a href={post.url}>{post.frontmatter.title}</a>
-            </li>
-        ))
-    }
-</Layout>
+<Layout>12313</Layout>

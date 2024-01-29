@@ -16,9 +16,10 @@ const pageTitle = "首页";
 		<Header />
 		<slot />
 		<script>
-			document.getElementById("Expend")?.addEventListener('click',()=>{
-				document.getElementById('menu')?.classList.toggle('opacity-100')
-			})
+			document.getElementById("expend")?.addEventListener("click", () => {
+				console.log("run");
+				document.getElementById("menu")?.classList.toggle("hidden");
+			});
 		</script>
 	</body>
 </html>
