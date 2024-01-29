@@ -3,19 +3,42 @@ import "../styles/global.css";
 import ThemeIcon from "./ThemeIcon.astro";
 ---
 
-<div class="flex justify-between items-center h-20">
+
+<div class="flex items-center justify-between bg-gray-800 p-4 text-white">
     <img
-        class="w-60 h-14 visible max-sm:hidden"
+        class="h-14 w-60 max-sm:hidden"
         src="https://cn.bing.com/th?id=OVFT.fNTaJ_jlX5n5kXjSu4WWHC&w=186&h=88&c=7&rs=2&qlt=80&pid=PopNow"
+        alt="Logo"
     />
-    <div id="menu" class="flex text-xl space-x-3 basis-2/3 font-semibold max-sm:flex-col justify-center items-center mt-10 bg-slate-800 w-full border-b-neutral-400">
-        <a class="hover:bg-blue-500 rounded-lg shadow-2xl active:shadow-blue-500/50" href="/">流客科技</a>
-        <a class="hover:bg-blue-500" href="/flowcard">流量卡</a>
-        <a class="hover:bg-blue-500" href="/wifi">随身WiFi</a>
-        <a href="/product">流量卡</a>
-        <a href="/agent">团队代理</a>
-        <a href="/blog/">最新资讯</a>
-        <a href="/about">关于我们</a>
+
+    <!-- PC menu (hidden on small screens) -->
+    <div class="hidden space-x-3 text-xl font-semibold sm:flex">
+        <a class="hover:bg-blue-500" href="/">最新资讯</a>
+        <a class="hover:bg-blue-500" href="/flowcard">最新资讯</a>
+        <a class="hover:bg-blue-500" href="/wifi">最新资讯</a>
+        <a class="hover:bg-blue-500" href="/product">产品</a>
+        <a class="hover:bg-blue-500" href="/agent">最新资讯</a>
+        <a class="hover:bg-blue-500" href="/blog/">最新资讯1</a>
+        <a class="hover:bg-blue-500" href="/about">关于我们</a>
     </div>
-    <ThemeIcon />
+
+    <!-- Mobile menu (hidden initially) -->
+    <div
+        id="menu"
+        class="hidden flex-col space-y-3 text-xl font-semibold opacity-0 max-sm:flex"
+    >
+        <a class="hover:bg-blue-500" href="/">最新资讯</a>
+        <a class="hover:bg-blue-500" href="/flowcard">最新资讯</a>
+        <a class="hover:bg-blue-500" href="/wifi">最新资讯</a>
+        <a class="hover:bg-blue-500" href="/product">产品</a>
+        <a class="hover:bg-blue-500" href="/agent">最新资讯</a>
+        <a class="hover:bg-blue-500" href="/blog/">最新资讯1</a>
+        <a class="hover:bg-blue-500" href="/about">关于我们</a>
+    </div>
+
+    <!-- Expand button (visible on small screens) -->
+    <div id="Expend" class="visible cursor-pointer sm:hidden">
+        Expand
+    </div>
 </div>
+

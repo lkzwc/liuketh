@@ -16,11 +16,9 @@ const pageTitle = "首页";
 		<Header />
 		<slot />
 		<script>
-			document
-				.querySelector(".hamburger")
-				.addEventListener("click", () => {
-					document.getElementById('menu')[0].classList.toggle("expanded");
-				});
+			document.getElementById("Expend")?.addEventListener('click',()=>{
+				document.getElementById('menu')?.classList.toggle('opacity-100')
+			})
 		</script>
 	</body>
 </html>
