@@ -3,15 +3,15 @@ import "../styles/global.css";
 import ThemeIcon from "./ThemeIcon.astro";
 ---
 
-<div class="nav-links">
+<div class="flex justify-between items-center h-20">
     <img
-        class="w-60 h-14"
+        class="w-60 h-14 visible max-sm:hidden"
         src="https://cn.bing.com/th?id=OVFT.fNTaJ_jlX5n5kXjSu4WWHC&w=186&h=88&c=7&rs=2&qlt=80&pid=PopNow"
     />
-    <div class="flex-1">
-        <a href="/">流客科技</a>
-        <a href="/flowcard">流量卡</a>
-        <a href="/wifi">随身WiFi</a>
+    <div id="menu" class="flex text-xl space-x-3 basis-2/3 font-semibold max-sm:flex-col justify-center items-center mt-10 bg-slate-800 w-full border-b-neutral-400">
+        <a class="hover:bg-blue-500 rounded-lg shadow-2xl active:shadow-blue-500/50" href="/">流客科技</a>
+        <a class="hover:bg-blue-500" href="/flowcard">流量卡</a>
+        <a class="hover:bg-blue-500" href="/wifi">随身WiFi</a>
         <a href="/product">流量卡</a>
         <a href="/agent">团队代理</a>
         <a href="/blog/">最新资讯</a>
