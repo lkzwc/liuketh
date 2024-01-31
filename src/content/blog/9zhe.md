@@ -1,6 +1,6 @@
 ---
-title: 我的第二篇博客文章
-layout: ../../layouts/MD.astro
+title: 2024年
+slug: /9zhe
 author: Astro 学习者
 description: "学习了一些 Astro 后，我根本停不下来！"
 image:

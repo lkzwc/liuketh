@@ -2,7 +2,12 @@
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
 import "../styles/global.css";
-const pageTitle = "首页";
+const {pageTitle} = Astro.props;
+
+const makeTitle = pageTitle
+  ? pageTitle + " | " + "流客科技"
+  : "流客科技 - 万网之流，来者皆可客";
+
 ---
 
 <html lang="zh-cn">
