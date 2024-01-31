@@ -16,7 +16,6 @@ const { Content } = await entry.render();
 
 <Layout>
   <div class="mx-10 bg-slate-200">
-    <Content/>
     <h1 class="m-2 text-2xl font-bold">{entry.data.title}</h1>
     <div class="m-2">
         <p><em>{entry.data.description}</em></p>
@@ -29,7 +28,7 @@ const { Content } = await entry.render();
             width="100%"
             alt={entry.data.image.alt}
         />
-        <slot />
+        <Content/>
         <div class="tags">
             {
                 entry.data.tags.map((tag: unknown) => (

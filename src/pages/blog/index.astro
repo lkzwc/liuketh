@@ -1,9 +1,34 @@
 ---
+import { getCollection } from "astro:content";
 import Layout from "../../layouts/HomeLayout.astro";
+import { Image } from "astro:assets";
 
-const allPosts = await Astro.glob("./*.md");
+const allPosts = await getCollection("blog");
 ---
 
 <Layout>
-    {allPosts.map((item) => <a href={item.url}>{item.frontmatter.title}</a>)}
+    {
+        allPosts.map((item) => (
+            <div class="flex m-10">
+                <Image
+                    src={item.data.image.url}
+                    alt={item.data.image.alt}
+                    width={300}
+                    height={150}
+                />
+                <div class="grid">
+                    <a class="text-xl font-weight" href={item.slug}>
+                        {item.data.title}
+                    </a>
+                    <p>{item.data.description}</p>
+                    <p>{item.data.pubDate}</p>
+                    <div class="space-x-5">
+                        {item.data.tags.map((item) => (
+                            <span >{item}</span>
+                        ))}
+                    </div>
+                </div>
+            </div>
+        ))
+    }
 </Layout>
