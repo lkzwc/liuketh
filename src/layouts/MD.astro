@@ -4,25 +4,29 @@ import Layout from "./Layout.astro";
 ---
 
 <Layout>
-    <div class="m-20 bg-slate-100">
-        <h1>{frontmatter.title}</h1>
-        <p>{frontmatter.pubDate.slice(0, 10)}</p>
-        <p><em>{frontmatter.description}</em></p>
-        <p>Written by: {frontmatter.author}</p>
-        <img
-            src={frontmatter.image.url}
-            width="300"
-            alt={frontmatter.image.alt}
-        />
-        <slot />
-        <div class="tags">
-            {
-                frontmatter.tags.map((tag: unknown) => (
-                    <p class="tag">
-                        <a href={`/tags/${tag}`}>{tag}</a>
-                    </p>
-                ))
-            }
+    <div class="mx-10 bg-slate-200">
+        <h1 class="m-2 text-2xl font-bold">{frontmatter.title}</h1>
+        <div class="m-2">
+            <p><em>{frontmatter.description}</em></p>
+            <div class="flex justify-between">
+                <span>作者: {frontmatter.author}</span>
+                <span>更新日期：{frontmatter.pubDate.slice(0, 10)}</span>
+            </div>
+            <img
+                src={frontmatter.image.url}
+                width="100%"
+                alt={frontmatter.image.alt}
+            />
+            <slot />
+            <div class="tags">
+                {
+                    frontmatter.tags.map((tag: unknown) => (
+                        <a class="tag" href={`/tags/${tag}`}>
+                            {tag}
+                        </a>
+                    ))
+                }
+            </div>
         </div>
     </div>
 </Layout>
@@ -41,7 +45,7 @@ import Layout from "./Layout.astro";
         margin: 0.25em;
         border: dotted 1px #a1a1a1;
         border-radius: 0.5em;
-        padding: 0.5em 1em;
+        padding: 3px;
         font-size: 1.15em;
         background-color: #f8fcfd;
     }
