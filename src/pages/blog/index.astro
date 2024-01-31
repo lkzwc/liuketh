@@ -9,12 +9,13 @@ const allPosts = await getCollection("blog");
 <Layout>
     {
         allPosts.map((item) => (
-            <div class="flex m-10">
+            <div class="flex m-20 space-x-4">
                 <Image
                     src={item.data.image.url}
                     alt={item.data.image.alt}
                     width={300}
                     height={150}
+                    class="rounded-xl"
                 />
                 <div class="grid">
                     <a class="text-xl font-weight" href={item.slug}>
@@ -24,7 +25,7 @@ const allPosts = await getCollection("blog");
                     <p>{item.data.pubDate}</p>
                     <div class="space-x-5">
                         {item.data.tags.map((item) => (
-                            <span >{item}</span>
+                            <span>{item}</span>
                         ))}
                     </div>
                 </div>
