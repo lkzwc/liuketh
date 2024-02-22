@@ -1,6 +1,8 @@
 ---
+import { Image } from "astro:assets";
 import Card from "../components/Card.astro";
 import Layout from "../layouts/HomeLayout.astro";
+import flowcard from "../image/index/flowcard.jpg";
 ---
 
 <Layout>
@@ -67,6 +69,10 @@ import Layout from "../layouts/HomeLayout.astro";
 		</section>
 
 		<section>
+			<h3>合作公司</h3>
+		</section>
+
+		<section>
 			<!-- Container -->
 			<div class="mx-auto max-w-7xl px-5 py-10 md:px-10 md:py-10">
 				<!-- Heading Container -->
@@ -91,10 +97,6 @@ import Layout from "../layouts/HomeLayout.astro";
 						<!-- Price 1 Card -->
 
 						<div class="relative rounded-md p-10">
-							<img
-								src="https://store.storeimages.cdn-apple.com/8756/as-images.apple.com/is/iphone-15-pro-model-unselect-gallery-1-202309?wid=2560&hei=1440&fmt=p-jpg&qlt=80&.v=1693010533609"
-								class="absolute inset-0 h-60 opacity-0 transition duration-500 hover:opacity-100"
-							/>
 							<div
 								class="mb-4 w-fit rounded-[4px] bg-black px-4 py-1.5"
 							>
@@ -103,7 +105,7 @@ import Layout from "../layouts/HomeLayout.astro";
 							<h2
 								class="mb-5 text-3xl font-bold md:mb-6 md:text-5xl lg:mb-8"
 							>
-								¥0<span class="text-sm font-light">/一张</span>
+								¥0<span class="text-sm font-light">/年</span>
 							</h2>
 							<p
 								class="text-body mb-5 font-light text-[#626263] md:mb-6 lg:mb-8"
@@ -111,10 +113,18 @@ import Layout from "../layouts/HomeLayout.astro";
 								基础用户，每人可以免费领取一张流量卡
 							</p>
 							<a
-								href="https://tc.liuketh.cn"
+								href="http://tc.liuketh.cn"
+								target="_blank"
 								class="inline-block w-full rounded-md bg-blue-400 px-6 py-3 text-center font-semibold text-white"
-								>Get started</a
-							>
+								>Get started
+								<Image
+									src={flowcard}
+									width={350}
+									height={300}
+									alt="流量卡"
+									class="absolute inset-0 mx-5 opacity-0 transition duration-500 hover:opacity-100"
+								/>
+							</a>
 						</div>
 						<!-- Price 1 Descriptions -->
 						<div class="p-5 space-y-4">
@@ -172,6 +182,63 @@ import Layout from "../layouts/HomeLayout.astro";
 								<span class="text-body text-[#636262]">
 									<span class="font-bold text-black"
 										>套餐种类丰富
+									</span>
+								</span>
+							</div>
+							<div class="flex mx-16">
+								<span class="-mt-3 w-16">
+									<svg
+										xmlns="http://www.w3.org/2000/svg"
+										width="22"
+										height="32"
+										viewBox="0 0 24 8"
+									>
+										<path
+											d="M0 12.116l2.053-1.897c2.401 1.162 3.924 2.045 6.622 3.969 5.073-5.757 8.426-8.678 14.657-12.555l.668 1.536c-5.139 4.484-8.902 9.479-14.321 19.198-3.343-3.936-5.574-6.446-9.679-10.251z"
+										></path>
+									</svg>
+								</span>
+								<span class="text-body text-[#636262]">
+									<span class="font-bold text-black">
+										流量通用自助激活
+									</span>
+								</span>
+							</div>
+							<div class="flex mx-16">
+								<span class="-mt-3 w-16">
+									<svg
+										xmlns="http://www.w3.org/2000/svg"
+										width="22"
+										height="32"
+										viewBox="0 0 24 8"
+									>
+										<path
+											d="M0 12.116l2.053-1.897c2.401 1.162 3.924 2.045 6.622 3.969 5.073-5.757 8.426-8.678 14.657-12.555l.668 1.536c-5.139 4.484-8.902 9.479-14.321 19.198-3.343-3.936-5.574-6.446-9.679-10.251z"
+										></path>
+									</svg>
+								</span>
+								<span class="text-body text-[#636262]">
+									<span class="font-bold text-black"
+										>24h人工客服在线
+									</span>
+								</span>
+							</div>
+							<div class="flex mx-16">
+								<span class="-mt-3 w-16">
+									<!-- <svg
+										xmlns="http://www.w3.org/2000/svg"
+										width="22"
+										height="32"
+										viewBox="0 0 24 8"
+									>
+										<path
+											d="M0 12.116l2.053-1.897c2.401 1.162 3.924 2.045 6.622 3.969 5.073-5.757 8.426-8.678 14.657-12.555l.668 1.536c-5.139 4.484-8.902 9.479-14.321 19.198-3.343-3.936-5.574-6.446-9.679-10.251z"
+										></path>
+									</svg> -->
+								</span>
+								<span class="text-body text-[#636262]">
+									<span class="font-bold text-gary"
+										>包邮到家
 									</span>
 								</span>
 							</div>
@@ -235,7 +302,7 @@ import Layout from "../layouts/HomeLayout.astro";
 							<h2
 								class="mb-5 text-3xl font-bold md:mb-6 md:text-5xl lg:mb-8"
 							>
-								¥29<span class="text-sm font-light">/year</span>
+								¥29<span class="text-sm font-light">/年</span>
 							</h2>
 							<p
 								class="text-body mb-5 font-light text-[#636262] md:mb-6 lg:mb-8"
@@ -243,7 +310,8 @@ import Layout from "../layouts/HomeLayout.astro";
 								年费用户，每年可根据用户需求进行定制
 							</p>
 							<a
-								href="#"
+								href="https://work.weixin.qq.com/gm/a6484050538dc4716d3a98758f8e30ab"
+								target="_blank"
 								class="inline-block w-full rounded-md bg-blue-600 px-6 py-3 text-center font-semibold text-white"
 								>Get started</a
 							>
@@ -265,7 +333,26 @@ import Layout from "../layouts/HomeLayout.astro";
 								</span>
 								<span class="text-body text-[#636262]">
 									<span class="font-bold text-black"
-										>流量卡5张
+										>流量卡3张
+									</span>
+								</span>
+							</div>
+							<div class="flex mx-16">
+								<span class="-mt-3 w-16">
+									<svg
+										xmlns="http://www.w3.org/2000/svg"
+										width="22"
+										height="32"
+										viewBox="0 0 24 8"
+									>
+										<path
+											d="M0 12.116l2.053-1.897c2.401 1.162 3.924 2.045 6.622 3.969 5.073-5.757 8.426-8.678 14.657-12.555l.668 1.536c-5.139 4.484-8.902 9.479-14.321 19.198-3.343-3.936-5.574-6.446-9.679-10.251z"
+										></path>
+									</svg>
+								</span>
+								<span class="text-body text-[#636262]">
+									<span class="font-bold text-black"
+										>内部套餐卡不限
 									</span>
 								</span>
 							</div>
@@ -399,7 +486,7 @@ import Layout from "../layouts/HomeLayout.astro";
 							<h2
 								class="mb-5 text-3xl font-bold md:mb-6 md:text-5xl lg:mb-8"
 							>
-								¥99<span class="text-sm font-light">/year</span>
+								¥99<span class="text-sm font-light">/年</span>
 							</h2>
 							<p
 								class="text-body mb-5 font-light text-[#636262] md:mb-6 lg:mb-8"
@@ -448,6 +535,25 @@ import Layout from "../layouts/HomeLayout.astro";
 								</span>
 								<span class="text-body text-[#636262]">
 									<span class="font-bold text-black"
+										>内部套餐卡不限
+									</span>
+								</span>
+							</div>
+							<div class="flex mx-16">
+								<span class="-mt-3 w-16">
+									<svg
+										xmlns="http://www.w3.org/2000/svg"
+										width="22"
+										height="32"
+										viewBox="0 0 24 8"
+									>
+										<path
+											d="M0 12.116l2.053-1.897c2.401 1.162 3.924 2.045 6.622 3.969 5.073-5.757 8.426-8.678 14.657-12.555l.668 1.536c-5.139 4.484-8.902 9.479-14.321 19.198-3.343-3.936-5.574-6.446-9.679-10.251z"
+										></path>
+									</svg>
+								</span>
+								<span class="text-body text-[#636262]">
+									<span class="font-bold text-black"
 										>随声Wifi一台
 									</span>
 								</span>
@@ -468,6 +574,25 @@ import Layout from "../layouts/HomeLayout.astro";
 								<span class="text-body text-[#636262]">
 									<span class="font-bold text-black"
 										>手机靓号一个
+									</span>
+								</span>
+							</div>
+							<div class="flex mx-16">
+								<span class="-mt-3 w-16">
+									<svg
+										xmlns="http://www.w3.org/2000/svg"
+										width="22"
+										height="32"
+										viewBox="0 0 24 8"
+									>
+										<path
+											d="M0 12.116l2.053-1.897c2.401 1.162 3.924 2.045 6.622 3.969 5.073-5.757 8.426-8.678 14.657-12.555l.668 1.536c-5.139 4.484-8.902 9.479-14.321 19.198-3.343-3.936-5.574-6.446-9.679-10.251z"
+										></path>
+									</svg>
+								</span>
+								<span class="text-body text-[#636262]">
+									<span class="font-bold text-black"
+										>三年免费换卡
 									</span>
 								</span>
 							</div>
@@ -593,9 +718,9 @@ import Layout from "../layouts/HomeLayout.astro";
 
 		<section>
 			<!-- Container -->
-			<div class="mx-auto w-full max-w-7xl px-5 md:px-10 md:py-2">
+			<div class="mx-auto w-full max-w-7xl px-5 my-9 md:px-10 md:py-2">
 				<!-- Title -->
-				<h2 class="text-center text-3xl font-bold md:text-5xl">
+				<h2 class="text-center text-3xl font-bold py-5 md:text-5xl">
 					我们产生的真实数据
 				</h2>
 				<p
