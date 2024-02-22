@@ -1,6 +1,7 @@
 ---
 import { Image } from "astro:assets";
 import officialAccount from "../image/index/official.webp";
+import logo from "../image/index/logo_w.png";
 ---
 
 <footer>
@@ -13,10 +14,12 @@ import officialAccount from "../image/index/official.webp";
         <!-- LOGO DIV -->
         <div class="ml-20">
           <!-- LOGO -->
-          <a href="#" class="inline-block max-w-full">
-            <img
-              src="../../public/index/logo_w.png"
-              alt=""
+          <a href="/" class="inline-block max-w-full">
+            <Image
+              src={logo}
+              alt="logo"
+              width={170}
+              height={100}
               class="inline-block max-h-10 rounded-2xl"
             />
           </a>

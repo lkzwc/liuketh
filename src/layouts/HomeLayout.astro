@@ -2,12 +2,11 @@
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
 import "../styles/global.css";
-const {pageTitle} = Astro.props;
+const { pageTitle } = Astro.props;
 
 const makeTitle = pageTitle
-  ? pageTitle + " | " + "流客科技"
-  : "流客科技 - 万网之流，来者皆可客";
-
+	? pageTitle + " | " + "流客科技"
+	: "流客科技 - 万网之流，来者皆可客";
 ---
 
 <html lang="zh-cn">
@@ -16,7 +15,7 @@ const makeTitle = pageTitle
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="viewport" content="width=device-width" />
 		<meta name="generator" content={Astro.generator} />
-		<title>{pageTitle}</title>
+		<title>{makeTitle}</title>
 	</head>
 	<body>
 		<Header />
