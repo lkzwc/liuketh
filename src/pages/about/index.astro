@@ -1,6 +1,58 @@
 ---
 import Layout from "../../layouts/HomeLayout.astro";
-
+const data = [
+    {
+        time: "2017",
+        event: "流客科技成立于西安高新区,主营VPN、流量卡业务",
+    },
+    {
+        time: "2018",
+        event: "加入通讯产品随身WiFi、云路由等智能设备",
+    },
+    {
+        time: "2020",
+        event: "引入全新平台系统，对接通信服务商",
+    },
+    {
+        time: "2023.10",
+        event: "接入号卡平台系统，对接全部通信服务商",
+    },
+    {
+        time: "2023.10",
+        event: "接入号卡平台系统，对接全部通信服务商",
+    },
+    {
+        time: "2023.10",
+        event: "接入号卡平台系统，对接全部通信服务商",
+    },
+    {
+        time: "2023.10",
+        event: "接入号卡平台系统，对接全部通信服务商",
+    },
+    {
+        time: "2024",
+        event: "新的启航",
+    },
+];
 ---
 
-<Layout pageTitle="关于我们">关于我们</Layout>
+<Layout pageTitle="关于我们">
+    <div class="grid place-items-center">
+        <div class="flex">
+            {
+                data.map((item, index) => (
+                    <div class="grid grid-rows-6 outline outline-offset-2 outline-2 w-20 min-h-96 m-5 rounded-xl text-center rounded-lb-full justify-start">
+                        <div class="row-start-1 row-end-5">{item.event}</div>
+                        <div class="row-start-6">{item.time}</div>
+                    </div>
+                ))
+            }
+        </div>
+        <div class="m-10">
+            <img
+                class="rounded-md"
+                src="https://p6-tt.byteimg.com/origin/pgc-image/6bdd6fc6b671490a8628153a9c4b5b8f?from=pc"
+            />
+        </div>
+    </div>
+</Layout>

@@ -6,15 +6,15 @@ import { Image } from "astro:assets";
 const allPosts = await getCollection("blog");
 ---
 
-<Layout>
+<Layout pageTitle="最新资讯">
     {
         allPosts.map((item) => (
             <div class="flex m-20 space-x-4">
                 <Image
                     src={item.data.image.url}
                     alt={item.data.image.alt}
-                    width={300}
-                    height={150}
+                    width="300"
+                    height="150"
                     class="rounded-xl"
                 />
                 <div class="grid">

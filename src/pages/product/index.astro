@@ -1,49 +1,50 @@
 ---
 import { Image } from "astro:assets";
 import Layout from "../../layouts/HomeLayout.astro";
-import imageFree from "../../../public/product/free.webp";
-import imageNumber from "../../../public/product/number.webp";
-import imageNet from "../../../public/product/net.webp";
-import imageFlowcard from "../../../public/product/flowcard.webp";
-import imageNeibu from "../../../public/product/neibu.webp";
+
+import imageFree from "../../image/product/free.webp";
+import imageFlowcard from "../../image/product/flowcard.jpg";
+import imageNet from "../../image/product/net.webp";
+import imagePhoneNumber from "../../image/product/number.webp";
+import imageNeibu from "../../image/product/neibu.webp";
+
 const data = [
     {
         title: "免费手机靓号",
-        description: "手机靓号免费申请啦，套餐优惠，号码充足",
-        img: "../../../public/product/free.webp",
+        description: "免费的手机靓号",
+        img: imageFree,
         detail: "http://iot.liuketh.cn",
     },
     {
         title: "精选手机靓号",
-        description:
-            "精选手机靓号，各种号码定制、高级老板号等等，全国归属地任选",
-        img: "../../../public/product/number.webp",
+        description: "精选手机靓号，各种号码定制、老板号等等，全国归属地任选",
+        img: imagePhoneNumber,
         detail: "http://lh.liuketh.cn",
     },
     {
         title: "互联网卡",
         description:
-            "互联网卡包含腾讯王卡、阿里宝卡、哔哩哔哩卡、蚂蚁宝卡、天神卡等",
-        img: "../../../public/product/net.webp",
+            "腾讯王卡、阿里宝卡、哔哩哔哩卡、蚂蚁宝卡、天神卡等互联网卡",
+        img: imageNet,
         detail: "https://card.xuankaba.com/t/0.x5bgrv",
     },
     {
         title: "流量卡/物联卡/随身Wifi",
-        description:
-            "流量卡商城，具有电信移动联通流量卡，随身Wifi，套餐种类多多，0月租，充值即可使用，让你有网走天下",
-        img: "../../../public/product/flowcard.webp",
+        description: "无通讯功能，0月租，充值即可使用，让你有网走天下",
+        img: imageFlowcard,
         detail: "http://shop.liuketh.cn",
     },
     {
         title: "内部套餐卡",
-        description: "套餐9元到39元的大流量卡长期内部套餐卡，免费包邮到家",
-        img: "../../../public/product/neibu.webp",
+        description:
+            "套餐9元到39元的大流量卡长期内部套餐卡，可通讯，免费包邮到家",
+        img: imageNeibu,
         detail: "https://haokawx.lot-ml.com/Product/Index/103528",
     },
 ];
 ---
 
-<Layout pageTitle="产品界面">
+<Layout pageTitle="最新产品">
     <div class="flex space-x-10 m-6">
         {
             data.map((item) => (
@@ -62,12 +63,15 @@ const data = [
                         </h2>
                     </a>
                     <Image
-                        src={imageNeibu}
+                        class="mt-3"
+                        src={item.img}
                         alt={item.title}
-                        width={300}
-                        height={300}
+                        width="300"
+                        height="300"
                     />
-                    <span>{item?.description}</span>
+                    <div>
+                        <span class="text-center">{item?.description}</span>
+                    </div>
                 </div>
             ))
         }

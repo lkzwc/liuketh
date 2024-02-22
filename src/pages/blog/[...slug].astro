@@ -1,45 +1,58 @@
 ---
-import { getCollection } from 'astro:content';
+import { getCollection } from "astro:content";
 import Layout from "../../layouts/Layout.astro";
+import { Image } from "astro:assets";
 // 1. 为每个集合条目生成一个新路径
 export async function getStaticPaths() {
-  const blogEntries = await getCollection('blog');
-  return blogEntries.map(entry => ({
-    params: { slug: entry.slug }, props: { entry },
-  }));
+    const blogEntries = await getCollection("blog");
+    return blogEntries.map((entry) => ({
+        params: { slug: entry.slug },
+        props: { entry },
+    }));
 }
 // 2. 当渲染的时候，你可以直接从属性中得到条目
 const { entry } = Astro.props;
 const { Content } = await entry.render();
+const allPosts = await getCollection("blog");
 ---
 
-
 <Layout>
-  <div class="mx-10 bg-slate-200">
-    <h1 class="m-2 text-2xl font-bold">{entry.data.title}</h1>
-    <div class="m-2">
-        <p><em>{entry.data.description}</em></p>
-        <div class="flex justify-between">
-            <span>作者: {entry.data.author}</span>
-            <span>更新日期：{entry.data.pubDate.getFullYear()}</span>
+    <div class="m-10 bg-slate-200">
+        <h1 class="p-5 text-2xl font-bold">{entry.data.title}</h1>
+        <div class="m-2">
+            <p><em>{entry.data.description}</em></p>
+            <div class="flex justify-between">
+                <span>作者: {entry.data.author}</span>
+                <span>更新日期：{entry.data.pubDate.getFullYear()}</span>
+            </div>
+            <Image
+                src={entry.data.image.url}
+                width={100}
+                height={100}
+                alt={entry.data.image.alt}
+            />
+            <Content />
+            <div class="tags">
+                {
+                    entry.data.tags.map((tag: unknown) => (
+                        <a class="tag" href={`/tags/${tag}`}>
+                            {tag}
+                        </a>
+                    ))
+                }
+            </div>
         </div>
-        <img
-            src={entry.data.image.url}
-            width="100%"
-            alt={entry.data.image.alt}
-        />
-        <Content/>
-        <div class="tags">
-            {
-                entry.data.tags.map((tag: unknown) => (
-                    <a class="tag" href={`/tags/${tag}`}>
-                        {tag}
-                    </a>
+        <h2>你可能也喜欢：</h2>
+        {
+            allPosts
+                .filter((item) => item.id !== entry.id)
+                .map((p) => (
+                    <div>
+                        <a href={`/blog${p.slug}`}>{p.data.title}</a>
+                    </div>
                 ))
-            }
-        </div>
+        }
     </div>
-</div>
 </Layout>
 
 <style>

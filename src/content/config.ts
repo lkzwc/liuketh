@@ -7,6 +7,25 @@ const blogCollection = defineCollection({
       title: z.string(),
       pubDate: z.date(),
       description: z.string(),
+      cover: z.string(),
+      coverAlt: z.string(),
+      author: z.string(),
+      image: z.object({
+        url: z.string(),
+        alt: z.string()
+      }),
+      tags: z.array(z.string())
+    })
+ });
+
+ const hotCard = defineCollection({
+  type: 'content',
+    schema: z.object({
+      title: z.string(),
+      pubDate: z.date(),
+      description: z.string(),
+      cover: z.string(),
+      coverAlt: z.string(),
       author: z.string(),
       image: z.object({
         url: z.string(),
@@ -19,4 +38,5 @@ const blogCollection = defineCollection({
 //    这个键应该与 `src/content` 中的集合目录名匹配
 export const collections = {
   'blog': blogCollection,
+  'hotCard': hotCard
 };
