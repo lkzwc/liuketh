@@ -2,21 +2,33 @@
 import { Image } from "astro:assets";
 import Card from "../components/Card.astro";
 import Layout from "../layouts/HomeLayout.astro";
-import flowcard from "../image/index/flowcard.jpg";
+import flowcarddragon from "../image/product/dragon.jpg";
+import flowcardlt from "../image/product/flowcard.jpg";
+import flowcardgd from "../image/product/gd.jpg";
+import yl from "../image/product/yl.jpg";
+import neibu from "../image/product/neibu.jpg";
+import ai from "../image/index/ai.svg";
 ---
 
 <Layout>
 	<main>
 		<section>
 			<!-- Hero top -->
-			<div class="bg-[#e9e9ec]">
+			<div class="bg-[#e9e9ec] flex px-60">
 				<!-- Container -->
-				<div
-					class="mx-auto max-w-7xl px-5 py-16 md:px-10 md:py-24 lg:py-32"
-				>
+				<div>
+					<Image
+						src={ai}
+						alt=""
+						class="mt-40"
+						width={500}
+						height={500}
+					/>
+				</div>
+				<div class="h-[90vh] ml-40 my-20 md:px-10 md:py-24 lg:py-32">
 					<!-- Title -->
 					<h1
-						class="mb-6 max-w-3xl text-4xl font-bold md:mb-10 md:text-6xl lg:mb-12"
+						class="mb-6 max-w-4xl text-5xl font-bold md:mb-10 md:text-6xl lg:mb-12"
 					>
 						万物互联 畅想未来
 					</h1>
@@ -127,11 +139,37 @@ import flowcard from "../image/index/flowcard.jpg";
 
 		<section class="grid gap-4">
 			<div
-				class="columns-2 w-9/12 rounded-2xl mx-auto bg-[#f1f1f5] p-6 sm:py-12"
+				class="columns-3 w-9/12 rounded-[92px] mx-auto shadow-xl p-6 sm:py-12"
+			>
+				<Image
+					src={flowcarddragon}
+					alt=`${new Date().getFullYear()}移动流量卡`
+					width={400}
+					height={200}
+					class="rounded-br-3xl rounded-tl-3xl mx-auto"
+				/>
+				<Image
+					src={flowcardlt}
+					alt=`${new Date().getFullYear()}联通无限流量卡`
+					width={400}
+					height={200}
+					class="rounded-br-3xl rounded-tl-3xl mx-auto"
+				/>
+				<Image
+					src={flowcardgd}
+					alt=`${new Date().getFullYear()}广电流量卡`
+					width={400}
+					height={200}
+					class="rounded-br-3xl rounded-tl-3xl mx-auto"
+				/>
+			</div>
+
+			<div
+				class="columns-2 w-9/12 rounded-[92px] mx-auto shadow-xl p-6 sm:py-12"
 			>
 				<div>
 					<Image
-						src="https://pic.rmb.bdstatic.com/bjh/914b8c0f9814b14c5fedeec7ec6615df5813.jpeg"
+						src={flowcarddragon}
 						alt=""
 						width={400}
 						height={200}
@@ -139,29 +177,122 @@ import flowcard from "../image/index/flowcard.jpg";
 					/>
 				</div>
 
-				<div class="relative rounded-2xl group h-72 overflow-hidden">
+				<div class="relative rounded-2xl group h-96 overflow-hidden">
 					<div
-						class="absolute left-4 top-4 z-10 h-64 w-56 rounded-2xl group-hover:bg-cyan-200 group-hover:w-96 opacity-150 blur duration-500 [transform:rotate3d(1_,-1,_1,_30deg)] group-hover:blur-none group-hover:[transform:rotate3d(1_,-1,_1,_0deg)]"
+						class="opacity-150 absolute min-h-80 w-screen blur duration-1000 [transform:rotate3d(1_,-1,_1,_30deg)] group-hover:w-screen group-hover:bg-cyan-200 group-hover:blur-none group-hover:[transform:rotate3d(1_,-1,_1,_0deg)]"
 					>
 					</div>
 					<div
-						class="absolute left-4 -top-4 z-10 flex h-64 w-56 flex-col items-start justify-end gap-4 rounded-2xl p-3 group-hover:w-96 duration-500 [transform:rotate3d(1_,-1,_1,_30deg)] group-hover:[transform:rotate3d(1_,-1,_1,_0deg)]"
+						class="absolute flex min-h-80 flex-col gap-4 p-20 duration-1000 [transform:rotate3d(1_,-1,_1,_30deg)] group-hover:w-96 group-hover:[transform:rotate3d(1_,-1,_1,_0deg)]"
 					>
 						<span class="text-2xl font-extrabold text-red-800"
-							>流量卡</span
+							>手机靓号</span
 						>
-						<div class="pt-8 text-base font-semibold leading-7">
-							<p class="divide-y divide-dashed text-gray-900">
-								Want to dig deeper into Tailwind?
-							</p>
-							<div class="divide-y divide-x-2 divide-dashed">
+						<div class="text-base font-semibold leading-7">
+							<p class="text-gray-900">老板号码</p>
+							<p class="text-gray-900">情侣号码</p>
+							<p class="text-gray-900">豹子号码</p>
+							<p class="text-gray-900">各大运营商覆盖全面</p>
+							<div class="divide-x-2 divide-y divide-dashed">
 								<div></div>
 							</div>
 						</div>
-						<button
-							class="rounded-[32% 68% 86% 14% / 18% 91% 9% 82%] bg-gray-50 px-3 py-2 duration-300 group-hover:bg-sky-600"
-							>See more</button
+					</div>
+					<div class="absolute top-80">
+						<a href="http://lh.liuketh.cn" target="_blank">
+							<button
+								class="w-[36vw] py-2 opacity-0 group-hover:bg-sky-600 group-hover:opacity-100"
+								>点击领取</button
+							>
+						</a>
+					</div>
+				</div>
+			</div>
+
+			<div
+				class="columns-2 w-9/12 rounded-[92px] mx-auto shadow-xl p-6 sm:py-12"
+			>
+				<div class="relative rounded-2xl group h-96 overflow-hidden">
+					<div
+						class="opacity-150 absolute min-h-80 w-screen blur duration-1000 [transform:rotate3d(1_,-1,_1,_30deg)] group-hover:w-screen group-hover:bg-cyan-200 group-hover:blur-none group-hover:[transform:rotate3d(1_,-1,_1,_0deg)]"
+					>
+					</div>
+					<div
+						class="absolute flex min-h-80 flex-col gap-4 p-20 duration-1000 [transform:rotate3d(1_,-1,_1,_30deg)] group-hover:w-96 group-hover:[transform:rotate3d(1_,-1,_1,_0deg)]"
+					>
+						<span class="text-2xl font-extrabold text-red-800"
+							>内部套餐卡</span
 						>
+						<div class="text-base font-semibold leading-7">
+							<p class="text-gray-900">可通话可短信</p>
+							<p class="text-gray-900">
+								移动、联通、电信、广电全覆盖
+							</p>
+							<p class="text-gray-900">长期套餐、大流量包</p>
+							<p class="text-gray-900">更多互联网卡</p>
+							<div class="divide-x-2 divide-y divide-dashed">
+								<div></div>
+							</div>
+						</div>
+					</div>
+					<div class="absolute top-80">
+						<a href="http://lh.liuketh.cn" target="_blank">
+							<button
+								class="w-[36vw] py-2 opacity-0 group-hover:bg-sky-600 group-hover:opacity-100"
+								>点击领取</button
+							>
+						</a>
+					</div>
+				</div>
+				<div>
+					<Image
+						src={neibu}
+						alt=""
+						width={400}
+						height={200}
+						class="rounded-br-3xl rounded-tl-3xl mx-auto"
+					/>
+				</div>
+			</div>
+
+			<div
+				class="columns-2 w-9/12 rounded-[92px] mx-auto shadow-xl p-6 sm:py-12"
+			>
+				<div>
+					<Image
+						src={yl}
+						alt="银联聚合支付"
+						width={400}
+						height={200}
+						class="rounded-br-3xl rounded-tl-3xl mx-auto"
+					/>
+				</div>
+				<div class="relative rounded-2xl group h-96 overflow-hidden">
+					<div
+						class="opacity-150 absolute min-h-80 w-screen blur duration-1000 [transform:rotate3d(1_,-1,_1,_30deg)] group-hover:w-screen group-hover:bg-cyan-200 group-hover:blur-none group-hover:[transform:rotate3d(1_,-1,_1,_0deg)]"
+					>
+					</div>
+					<div
+						class="absolute flex min-h-80 flex-col gap-4 p-20 duration-1000 [transform:rotate3d(1_,-1,_1,_30deg)] group-hover:w-96 group-hover:[transform:rotate3d(1_,-1,_1,_0deg)]"
+					>
+						<span class="text-2xl font-extrabold text-red-800"
+							>聚合支付</span
+						>
+						<div class="text-base font-semibold leading-7">
+							<p class="text-gray-900">支付宝支付</p>
+							<p class="text-gray-900">微信支付</p>
+							<p class="text-gray-900">银行卡支付</p>
+							<p class="text-gray-900">信用卡支付</p>
+							<p class="text-gray-900">一码通用支付</p>
+						</div>
+					</div>
+					<div class="absolute top-80">
+						<a href="http://lh.liuketh.cn" target="_blank">
+							<button
+								class="w-[36vw] py-2 opacity-0 group-hover:bg-sky-600 group-hover:opacity-100"
+								>点击领取</button
+							>
+						</a>
 					</div>
 				</div>
 			</div>
@@ -213,7 +344,7 @@ import flowcard from "../image/index/flowcard.jpg";
 								class="inline-block w-full rounded-md bg-blue-400 px-6 py-3 text-center font-semibold text-white"
 								>Get started
 								<Image
-									src={flowcard}
+									src={flowcarddragon}
 									width={350}
 									height={300}
 									alt="流量卡"
@@ -586,7 +717,7 @@ import flowcard from "../image/index/flowcard.jpg";
 							<p
 								class="text-body mb-5 font-light text-[#636262] md:mb-6 lg:mb-8"
 							>
-								高级用户，所有产品都可以体验
+								年费用户，所有产品都可以体验
 							</p>
 							<a
 								href="#"
