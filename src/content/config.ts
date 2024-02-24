@@ -22,13 +22,13 @@ const blogCollection = defineCollection({
   type: 'content',
     schema: z.object({
       title: z.string(),
-      pubDate: z.date(),
+      pubDate: z.string(),
       description: z.string(),
-      cover: z.string(),
+      cover: z.string().optional(),
       coverAlt: z.string(),
       author: z.string(),
       image: z.object({
-        url: z.string(),
+        url: z.string().optional(),
         alt: z.string()
       }),
       tags: z.array(z.string())
@@ -38,5 +38,5 @@ const blogCollection = defineCollection({
 //    这个键应该与 `src/content` 中的集合目录名匹配
 export const collections = {
   'blog': blogCollection,
-  'hotCard': hotCard
+  'hotcard': hotCard
 };

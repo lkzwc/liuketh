@@ -1,5 +1,76 @@
 ---
-import Layout from "../../layouts/HomeLayout.astro";
+import { getCollection } from "astro:content";
+import Layout from "../../layouts/BaseLayout.astro";
+import { Image } from "astro:assets";
+import yd from "../../image/product/dragon.jpg";
+import lt from "../../image/product/flowcard.jpg";
+import dx from "../../image/product/dragon.jpg";
+import gd from "../../image/product/gd.jpg";
+
+const hotcard = await getCollection("hotcard");
+const type = [
+    {
+        url: yd,
+        alt: "中国移动流量卡",
+    },
+    {
+        url: lt,
+        alt: "中国联通流量卡",
+    },
+    {
+        url: dx,
+        alt: "中国电信流量卡",
+    },
+    {
+        url: gd,
+        alt: "中国广电流量卡",
+    },
+];
 ---
 
-<Layout pageTitle="流量卡">流量卡</Layout>
+<Layout pageTitle="流量卡">
+    {console.log("allPosts", hotcard)}
+    <div class="hidden md:flex gap-5 mx-5 mt-10">
+        {
+            type.map((item) => (
+                <Image
+                    src={item.url}
+                    alt={item.alt}
+                    width="300"
+                    height="150"
+                    class="rounded-xl"
+                />
+            ))
+        }
+    </div>
+    {
+        hotcard?.map((item: any) => (
+            <div class="m-1 sm:flex sm:m-20 p-1 border-2 border-sky-500 rounded-xl ">
+                <Image
+                    src={item.data.image.url}
+                    alt={item.data.image.alt}
+                    width="300"
+                    height="150"
+                    class="rounded-xl"
+                />
+                <div class="grid p-5">
+                    <a
+                        class="text-xl font-weight"
+                        href={`/flowcard${item.slug}`}
+                    >
+                        {item.data.title}
+                    </a>
+                    <p>{item.data.description}</p>
+                    <div class="space-x-5">
+                        {item.data.tags.map((item: any) => (
+                            <span class="bg-sky-300 p-1 rounded-xl">
+                                {item}
+                            </span>
+                        ))}
+                    </div>
+                    <p>{item.data.pubDate}</p>
+                </div>
+            </div>
+        ))
+    }
+</Layout>

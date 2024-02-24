@@ -5,7 +5,7 @@ author: Astro 学习者
 description: "学习了一些 Astro 后，我根本停不下来！"
 cover: 'https://developer.mozilla.org/en-US/blog/technical-writing/featured.png'
 coverAlt: "一张山脉后面的日落照片。"
-pubDate: 2022-07-01
+pubDate: "2022-07-01"
 image:
     url: "https://developer.mozilla.org/en-US/blog/technical-writing/featured.png"
     alt: "Thumbnail of Astro arcs."

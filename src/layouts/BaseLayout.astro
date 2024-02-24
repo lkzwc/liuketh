@@ -1,0 +1,47 @@
+---
+import { Image } from "astro:assets";
+import Header from "../components/Header.astro";
+import "../styles/global.css";
+import fs from "../image/index/fs.png";
+import Footer from "../components/Footer.astro";
+const { pageTitle } = Astro.props;
+---
+
+<html lang="zh-cn">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width" />
+		<meta name="generator" content={Astro.generator} />
+		<title>{pageTitle}</title>
+	</head>
+	<body>
+		<Header />
+		<main>
+			<div class="flex">
+				<div class="md:basis-5/6"><slot /></div>
+				<div
+					class="bg-slate-500 hidden lg:basis-1/6 p-10 min-h-screen text-xl lg:grid items-center"
+				>
+					<div>
+						🏘️粉丝群
+						<Image
+							src={fs}
+							width={150}
+							height={150}
+							alt="粉丝福利微信群"
+						/>
+					</div>
+					<!--?xml version="1.0" encoding="UTF-8"?-->
+					📱155563 55573
+				</div>
+			</div>
+		</main>
+		<Footer />
+		<script>
+			document.getElementById("expend")?.addEventListener("click", () => {
+				console.log("run");
+				document.getElementById("menu")?.classList.toggle("hidden");
+			});
+		</script>
+	</body>
+</html>

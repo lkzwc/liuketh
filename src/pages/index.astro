@@ -8,6 +8,7 @@ import flowcardgd from "../image/product/gd.jpg";
 import yl from "../image/product/yl.jpg";
 import neibu from "../image/product/neibu.jpg";
 import ai from "../image/index/ai.svg";
+import use from "../image/index/use.svg";
 ---
 
 <Layout>
@@ -63,9 +64,11 @@ import ai from "../image/index/ai.svg";
 						</p>
 					</div>
 					<!-- Image -->
-					<img
-						src="https://content-assets.sxlcdn.com/res/hrscywv4p/image/upload/c_limit,f_auto,fl_lossy,w_20,q_auto/blog_service/2020-12-17-201217lunbotu.jpg"
-						alt=""
+					<Image
+						src={use}
+						width={100}
+						height={100}
+						alt="流量卡"
 						class="relative bottom-0 right-0 m-6 mt-12 w-[480px] object-cover lg:absolute lg:mt-0 lg:h-[480px] lg:p-10"
 					/>
 				</div>
@@ -132,6 +135,14 @@ import ai from "../image/index/ai.svg";
 		</section>
 
 		<section class="grid gap-4">
+			<div class="mx-auto my-8 max-w-3xl text-center md:mb-12">
+				<!-- Heading -->
+				<h2 class="text-3xl font-bold md:text-5xl">产品 &amp; 价格</h2>
+				<!-- Subheading -->
+				<p class="mt-4 text-sm text-[#636262] sm:text-base">
+					我们产品种类丰富，致力于为每一为客户提供长期服务
+				</p>
+			</div>
 			<div
 				class="hidden md:block md:columns-3 md:w-9/12 md:rounded-[92px] md:mx-auto md:shadow-xl md:p-6 md:py-12"
 			>
@@ -296,16 +307,6 @@ import ai from "../image/index/ai.svg";
 			<!-- Container -->
 			<div class="mx-auto max-w-7xl px-5 py-10 md:px-10 md:py-10">
 				<!-- Heading Container -->
-				<div class="mx-auto mb-8 max-w-3xl text-center md:mb-12">
-					<!-- Heading -->
-					<h2 class="text-3xl font-bold md:text-5xl">
-						产品 &amp; 价格
-					</h2>
-					<!-- Subheading -->
-					<p class="mt-4 text-sm text-[#636262] sm:text-base">
-						我们产品种类丰富，致力于为每一为客户提供长期服务
-					</p>
-				</div>
 				<!-- Prices -->
 				<div
 					class="grid grid-cols-1 gap-16 sm:grid-cols-2 md:grid-cols-3 md:gap-4"
