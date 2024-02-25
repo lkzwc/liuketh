@@ -5,78 +5,47 @@ import { Image } from "astro:assets";
 // 1. 为每个集合条目生成一个新路径
 export async function getStaticPaths() {
     const blogEntries = await getCollection("hotcard");
+    console.log("11111111", blogEntries);
     return blogEntries.map((entry) => ({
-        params: { slug: entry.slug },
+        params: {
+            id: entry.id,
+            slug: entry.slug,
+            title: entry.data.title,
+            desc: entry.data.description,
+        },
         props: { entry },
     }));
 }
 // 2. 当渲染的时候，你可以直接从属性中得到条目
 const { entry } = Astro.props;
+const { id, title, desc } = Astro.params;
 const { Content } = await entry.render();
 const allPosts = await getCollection("hotcard");
 ---
 
-<Layout>
-    <div class="m-10 bg-slate-200">
-        <h1 class="p-5 text-2xl font-bold">{entry.data.title}</h1>
-        <div class="m-2">
-            <p><em>{entry.data.description}</em></p>
-            <div class="flex justify-between">
-                <span>作者: {entry.data.author}</span>
-                <span>更新日期：{entry.data.pubDate}</span>
-            </div>
-            <Image
-                src={entry.data.image.url}
-                width={500}
-                height={300}
-                alt={entry.data.image.alt}
-            />
-            <Content />
-            <div class="tags">
+<Layout pageTitle={title} desc={desc}>
+    <div class="m-10">
+        <Content />
+        <div class="m-2 flex justify-evenly">
+            <div class="scale-150">🢠</div>
+            <div class="scale-150">➯</div>
+        </div>
+        <div class="bg-slate-100 shadow-xl p-5">
+            <span class="text-xl mx-16">你可能也喜欢：</span>
+            <div class="grid mx-16">
                 {
-                    entry.data.tags.map((tag: unknown) => (
-                        <a class="tag" href={`/tags/${tag}`}>
-                            {tag}
-                        </a>
-                    ))
+                    allPosts
+                        .filter((item) => item.id !== id)
+                        .map((p) => (
+                            <a
+                                class="hover:bg-blue-200"
+                                href={`/flowcard${p.slug}`}
+                            >
+                                {p.data.title}
+                            </a>
+                        ))
                 }
             </div>
         </div>
-        <div class="m-2 flex justify-between">
-            <div>上一篇</div>
-            <div>下一篇</div>
-        </div>
-        <div>
-            <h2>你可能也喜欢：</h2>
-            {
-                allPosts
-                    .filter((item) => item.id !== entry.id)
-                    .map((p) => (
-                        <div>
-                            <a href={`/blog${p.slug}`}>{p.data.title}</a>
-                        </div>
-                    ))
-            }
-        </div>
-
-        <style>
-            a {
-                color: #00539f;
-            }
-
-            .tags {
-                display: flex;
-                flex-wrap: wrap;
-            }
-
-            .tag {
-                margin: 0.25em;
-                border: dotted 1px #a1a1a1;
-                border-radius: 0.5em;
-                padding: 3px;
-                font-size: 1.15em;
-                background-color: #f8fcfd;
-            }
-        </style>
     </div>
 </Layout>

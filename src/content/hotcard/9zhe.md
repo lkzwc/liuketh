@@ -2,6 +2,7 @@
 slug: /9zhe
 title: 2024年
 author: Astro 学习者
+layout: ../../layouts/MD.astro
 description: "学习了一些 Astro 后，我根本停不下来！"
 cover: 'https://developer.mozilla.org/en-US/blog/technical-writing/featured.png'
 coverAlt: "一张山脉后面的日落照片。"
