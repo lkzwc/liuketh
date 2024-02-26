@@ -1,3 +1,4 @@
+
 html.dark {
     background-color: rgba(0, 0, 0, 0.8);
     color: #fff;
@@ -11,6 +12,3 @@ main {
     color: #fff;
 }
 
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
