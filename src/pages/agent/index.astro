@@ -1,0 +1,18 @@
+---
+import Layout from "../../layouts/HomeLayout.astro";
+
+const us =["流量卡","随声Wifi & 云路由","内部套餐卡","互联网卡","手机靓号","话费9折充值","聚合支付","京东优惠券"]
+
+---
+
+<Layout pageTitle="代理合作">
+    <div class="grid gap-3 m-10">
+        {
+            us.map((item,index) => (
+                <div class="text-2xl ">
+                    <h1>{index + 1} {item}</h1>
+                </div>
+            ))
+        }
+    </div>
+</Layout>

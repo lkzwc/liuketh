@@ -48,19 +48,9 @@ const data = [
     <div class="flex space-x-10 m-6 flex-wrap">
         {
             data.map((item) => (
-                <div>
-                    <a href={item?.detail} target={"_blank"}>
-                        <h2
-                            style={{
-                                textAlign: "center",
-                                borderRadius: "0px 200px 200px 200px",
-                                WebkitBorderRadius: "0px 200px 200px 200px",
-                                background: "#e7a61a",
-                                color: "blue",
-                            }}
-                        >
-                            {item?.title}
-                        </h2>
+                <div class="w-80">
+                    <a href={item?.detail} target={"_blank"} class=" bg-orange-400 rounded-lg text-xl p-1 underline text-blue-800 w-[90%] block text-center " >
+                        {item?.title}
                     </a>
                     <Image
                         class="mt-3"

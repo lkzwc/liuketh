@@ -1,0 +1,32 @@
+---
+import { Image } from "astro:assets";
+const { list } = Astro.props;
+---
+
+<div>
+  {
+    list?.map((item: any) => (
+      <div class="m-1 sm:flex sm:m-20 p-1 border-2 border-sky-500 rounded-xl ">
+        <Image
+          src={item.data.image.url}
+          alt={item.data.image.alt}
+          width="300"
+          height="150"
+          class="rounded-xl"
+        />
+        <div class="grid p-5">
+          <a class="text-xl font-weight" href={`/flowcard${item.slug}`}>
+            {item.data.title}
+          </a>
+          <p>{item.data.description}</p>
+          <div class="space-x-5">
+            {item.data.tags.map((item: any) => (
+              <span class="bg-sky-300 p-1 rounded-xl">{item}</span>
+            ))}
+          </div>
+          <p>{item.data.pubDate}</p>
+        </div>
+      </div>
+    ))
+  }
+</div>

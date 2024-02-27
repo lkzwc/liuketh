@@ -6,7 +6,6 @@ import { Image } from "astro:assets";
 // 1. 为每个集合条目生成一个新路径
 export async function getStaticPaths() {
     const blogEntries = await getCollection("hotcard");
-    console.log("11111111", blogEntries);
     return blogEntries.map((entry) => ({
         params: {
             id: entry.id,
