@@ -23,3 +23,4 @@ tags: ["astro", "blogging", "learning in public", "successes"]
 layout: ../../layouts/MD.astro
 ```
 在学习 Astro 大约一周后，我决定尝试些新的东西。我编写并导入了一个小组件！
+
