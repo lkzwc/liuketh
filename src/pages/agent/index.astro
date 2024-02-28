@@ -1,7 +1,53 @@
 ---
 import Layout from "../../layouts/HomeLayout.astro";
 
-const us =["流量卡","随声Wifi & 云路由","内部套餐卡","互联网卡","手机靓号","话费9折充值","聚合支付","京东优惠券"]
+const us =[
+    {
+        title:"流量卡",
+        desc:"",
+        url: "http://shop.liuketh.cn"
+    },
+    {
+        title:"随声Wifi & 云路由",
+        desc:"",
+        url: "http://shop.liuketh.cn"
+    },
+    {
+        title:"内部套餐卡",
+        desc:"",
+        url: "http://shop.liuketh.cn"
+    },
+    {
+        title:"互联网卡",
+        desc:"",
+        url: "http://shop.liuketh.cn"
+    },
+    {
+        title:"免费靓号",
+        desc:"",
+        url: "http://shop.liuketh.cn"
+    },
+    {
+        title:"付费靓号",
+        desc:"",
+        url: "http://lh.liuketh.cn"
+    },
+    {
+        title:"话费9折充值",
+        desc:"",
+        url: "http://shop.liuketh.cn"
+    },
+    {
+        title:"聚合支付",
+        desc:"",
+        url: "http://shop.liuketh.cn"
+    },
+    {
+        title:"京东优惠券",
+        desc:"",
+        url: "http://shop.liuketh.cn"
+    },
+]
 
 ---
 
@@ -10,7 +56,7 @@ const us =["流量卡","随声Wifi & 云路由","内部套餐卡","互联网卡"
         {
             us.map((item,index) => (
                 <div class="text-2xl ">
-                    <h1>{index + 1} {item}</h1>
+                    <h1>{index + 1} {item.title}</h1>
                 </div>
             ))
         }

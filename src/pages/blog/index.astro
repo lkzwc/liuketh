@@ -1,35 +1,11 @@
 ---
 import { getCollection } from "astro:content";
 import Layout from "../../layouts/BaseLayout.astro";
-import { Image } from "astro:assets";
+import BlogList from "../../components/BlogList.astro";
 
 const allPosts = await getCollection("blog");
 ---
 
 <Layout pageTitle="最新资讯">
-    {
-        allPosts.map((item) => (
-            <div class="m-1 sm:flex sm:m-20 space-x-4 border-2 border-sky-500 rounded-xl ">
-                <Image
-                    src={item.data.image.url}
-                    alt={item.data.image.alt}
-                    width="300"
-                    height="150"
-                    class="rounded-xl"
-                />
-                <div class="grid">
-                    <a class="text-xl font-weight" href={`/blog${item.slug}`}>
-                        {item.data.title}
-                    </a>
-                    <p>{item.data.description}</p>
-                    <p>{item.data.pubDate}</p>
-                    <div class="space-x-5">
-                        {item.data.tags.map((item) => (
-                            <span class="bg-lime-300">{item}</span>
-                        ))}
-                    </div>
-                </div>
-            </div>
-        ))
-    }
+    <BlogList list={allPosts} path="/blog"/>
 </Layout>

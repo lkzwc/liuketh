@@ -4,6 +4,9 @@ import Header from "../components/Header.astro";
 import "../styles/global.css";
 import fs from "../image/index/fs.png";
 import Footer from "../components/Footer.astro";
+import Tags from '../pages/tags/index.astro'
+
+
 const { pageTitle, desc } = Astro.props;
 
 const makeTitle = pageTitle
@@ -15,6 +18,7 @@ const makeTitle = pageTitle
 	<head>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width" />
+		<meta name="theme-color"/>
 		<meta name="generator" content={Astro.generator} />
 		<meta name="description" content={desc} />
 		<title>{makeTitle}</title>
@@ -25,7 +29,7 @@ const makeTitle = pageTitle
 			<div class="flex">
 				<div class="xl:basis-5/6 xl:mx-20"><slot /></div>
 				<div
-					class="bg-slate-500 m-10 hidden xl:basis-1/6 p-5 max-h-96 text-xl xl:grid items-center"
+					class="bg-slate-500 m-10 h-[100vh] hidden xl:basis-1/6 p-5 text-xl xl:grid items-center"
 				>
 					<div>
 						🏘️粉丝群
@@ -38,15 +42,13 @@ const makeTitle = pageTitle
 					</div>
 					<!--?xml version="1.0" encoding="UTF-8"?-->
 					📱155563 55573
+
+					<div class=" border-teal-500 border-2 rounded-2xl p-3">
+						<Tags />
+					</div>
 				</div>
 			</div>
 		</main>
 		<Footer />
-		<script>
-			document.getElementById("expend")?.addEventListener("click", () => {
-				console.log("run");
-				document.getElementById("menu")?.classList.toggle("hidden");
-			});
-		</script>
 	</body>
 </html>
