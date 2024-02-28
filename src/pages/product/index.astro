@@ -45,11 +45,11 @@ const data = [
 ---
 
 <Layout pageTitle="最新产品">
-    <div class="flex space-x-10 m-6 flex-wrap">
+    <div class="flex p-6 gap-3 flex-wrap">
         {
             data.map((item) => (
-                <div class="w-80">
-                    <a href={item?.detail} target={"_blank"} class=" bg-orange-400 rounded-lg text-xl p-1 underline text-blue-800 w-[90%] block text-center " >
+                <div class="max-w-72">
+                    <a href={item?.detail} target={"_blank"} class=" bg-orange-400 rounded-lg text-xl p-1 underline text-blue-800 block text-center " >
                         {item?.title}
                     </a>
                     <Image

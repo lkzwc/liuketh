@@ -1,58 +1,65 @@
 ---
 import Layout from "../../layouts/HomeLayout.astro";
 const data = [
-    {
-        time: "2017",
-        event: "流客科技成立于西安高新区,主营VPN、流量卡业务",
-    },
-    {
-        time: "2018",
-        event: "加入通讯产品随身WiFi、云路由等智能设备",
-    },
-    {
-        time: "2020",
-        event: "引入全新平台系统，对接通信服务商",
-    },
-    {
-        time: "2023.10",
-        event: "接入号卡平台系统，对接全部通信服务商",
-    },
-    {
-        time: "2023.10",
-        event: "接入号卡平台系统，对接全部通信服务商",
-    },
-    {
-        time: "2023.10",
-        event: "接入号卡平台系统，对接全部通信服务商",
-    },
-    {
-        time: "2023.10",
-        event: "接入号卡平台系统，对接全部通信服务商",
-    },
-    {
-        time: "2024",
-        event: "新的启航",
-    },
+  {
+    time: "2017",
+    event: "流客科技成立于西安高新区,主营VPN、流量卡业务",
+  },
+  {
+    time: "2018",
+    event: "加入通讯产品随身WiFi、云路由等智能设备",
+  },
+  {
+    time: "2020",
+    event: "引入全新平台系统，对接通信服务商",
+  },
+  {
+    time: "2023.10",
+    event: "接入号卡平台系统，对接全部通信服务商",
+  },
+  {
+    time: "2024.2",
+    event: "接入云闪付聚合支付，可开通大小企业、小微企业的支付渠道",
+  },
+  {
+    time: "2024",
+    event: "新的启航",
+  },
 ];
 ---
 
 <Layout pageTitle="关于我们">
-    <div class="grid place-items-center">
-        <div class="flex">
-            {
-                data.map((item) => (
-                    <div class="grid grid-rows-6 outline outline-offset-2 outline-2 w-20 min-h-96 m-5 rounded-xl text-center rounded-lb-full justify-start">
-                        <div class="row-start-1 row-end-5">{item.event}</div>
-                        <div class="row-start-6">{item.time}</div>
-                    </div>
-                ))
-            }
-        </div>
-        <div class="m-10">
-            <img
-                class="rounded-md"
-                src="https://p6-tt.byteimg.com/origin/pgc-image/6bdd6fc6b671490a8628153a9c4b5b8f?from=pc"
-            />
-        </div>
+  <div class="grid place-items-center">
+    <div class="container mx-auto p-5 lg:p-28">
+      <div class="flex flex-col relative">
+        <!-- Timeline line -->
+        <div class="absolute left-5 top-0 bottom-0 w-0.5 bg-cyan-400"></div>
+
+        <!-- Timeline items -->
+        <!-- 2013年 -->
+        {
+          data.map((item) => (
+            <div class="mb-8 ml-4">
+              <div class="flex items-center">
+                <div class="flex-shrink-0 w-7 h-7 -ml-2 rounded-full bg-gray-900 border-4 border-cyan-400 z-10" />
+                <div class="flex-grow ml-4 px-4 py-2 bg-gray-700 rounded-lg shadow-md">
+                  <h3 class="font-semibold text-lg mb-1 text-cyan-400">
+                    {item.time}
+                  </h3>
+                  <p class="text-sm text-gray-200">{item.event}</p>
+                </div>
+              </div>
+            </div>
+          ))
+        }
+      </div>
     </div>
+
+    <div class="m-10">
+      <img
+        class="rounded-md"
+        src="https://p6-tt.byteimg.com/origin/pgc-image/6bdd6fc6b671490a8628153a9c4b5b8f?from=pc"
+      />
+    </div>
+  </div>
 </Layout>

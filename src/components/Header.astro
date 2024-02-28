@@ -1,9 +1,58 @@
 ---
 import Navigation from "./Navigation.astro";
+import { Image } from "astro:assets";
+import logo from "../image/index/logo_w.png";
 ---
 
 <header>
-    <nav>
-        <Navigation />
-    </nav>
+  <nav
+    class="bg-gray-800 flex items-center justify-between bg-gray-800 p-4 text-white"
+  >
+    <div class="hidden sm:flex">
+      <a href="/">
+        <Image class="h-16 w-60 rounded-lg" src={logo} alt="Logo" />
+      </a>
+      <div class="sm:flex space-x-10 text-3xl font-medium basis-4/5">
+        <a class="hover:bg-blue-500 hover:scale-125" href="/flowcard">流量卡</a>
+        <a class="hover:bg-blue-500 hover:scale-125" href="/wifi">随身Wifi</a>
+        <a class="hover:bg-blue-500 hover:scale-125" href="/product">最新产品</a>
+        <a class="hover:bg-blue-500 hover:scale-125" href="/agent">代理合作</a>
+        <a class="hover:bg-blue-500 hover:scale-125" href="/blog/">最新资讯</a>
+        <a class="hover:bg-blue-500 hover:scale-125" href="/about">关于我们</a>
+      </div>
+    </div>
+
+    <!-- Mobile Menu -->
+    <div class="grid md:hidden ">
+      <a href="/">
+        <Image class="h-15 w-40 rounded-lg lg:hidden" src={logo} alt="Logo" />
+      </a>
+      <div class="hidden grid w-[80vw] place-items-center text-xl" id="mobile-menu">
+        <a class="hover:bg-blue-500" href="/flowcard">流量卡</a>
+        <a class="hover:bg-blue-500" href="/wifi">随身Wifi</a>
+        <a class="hover:bg-blue-500" href="/product">最新产品</a>
+        <a class="hover:bg-blue-500" href="/agent">代理合作</a>
+        <a class="hover:bg-blue-500" href="/blog/">最新资讯</a>
+        <a class="hover:bg-blue-500" href="/about">关于我们</a>
+      </div>
+    </div>
+
+    <button
+        type="button"
+        class="text-gray-200 hover:text-white focus:text-white focus:outline-none right-0 sm:hidden"
+        aria-label="toggle menu"
+        id="togglemenu"
+      >
+        <svg viewBox="0 0 24 24" class="h-6 w-6 fill-current">
+          <path
+            fill-rule="evenodd"
+            d="M4 5h16v2H4V5zm0 6h16v2H4v-2zm0 6h16v2H4v-2z"></path>
+        </svg>
+      </button>
+  </nav>
+  <script>
+    document.getElementById("togglemenu")?.addEventListener("click", () => {
+      document.getElementById("mobile-menu")?.classList.toggle("hidden");
+    });
+  </script>
 </header>
