@@ -7,13 +7,9 @@ import lt from "../../image/product/flowcard.jpg";
 import dx from "../../image/product/dragon.jpg";
 import gd from "../../image/product/gd.jpg";
 import BlogList from "../../components/BlogList.astro";
+import type { GetStaticPathsOptions } from "astro";
 
-const hotcard = await getCollection("hotcard");
 const type = [
-  {
-    url: yd,
-    alt: "中国移动流量卡",
-  },
   {
     url: lt,
     alt: "中国联通流量卡",
@@ -27,8 +23,16 @@ const type = [
     alt: "中国广电流量卡",
   },
 ];
----
 
+
+export async function getStaticPaths({ paginate }: GetStaticPathsOptions) { 
+  const hotcard = await getCollection("hotcard");
+  return paginate(hotcard, { pageSize: 2 });
+ }
+
+ const hotcard = await getCollection("hotcard");
+ const { page } = Astro.props;
+---
 <Layout pageTitle="流量卡">
   <div class="hidden md:flex gap-5 mx-5 m-10">
     {
@@ -45,6 +49,6 @@ const type = [
   </div>
   <!-- //client:load  -->
   <div>
-    <BlogList list={hotcard} path="/flowcard" />
+    <BlogList list={hotcard} path="/flowcard" page={page}  />
   </div>
 </Layout>
