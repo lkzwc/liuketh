@@ -1,50 +1,63 @@
 ---
+import { Image } from "astro:assets";
 import Layout from "../../layouts/HomeLayout.astro";
 
 const us =[
     {
         title:"流量卡",
-        desc:"",
+        desc:[
+            {
+                main:'高利润分成',
+                desc:"享受高达30%的销售利润分成。"
+            },
+            {
+                main:'全渠道',
+                desc:"覆盖通讯全网运营商"
+            },
+            {
+                main:'零风险',
+                desc:"行业数十年的从业者，带入发现商机"
+            }
+        ],
         url: "http://shop.liuketh.cn"
     },
     {
         title:"随声Wifi & 云路由",
-        desc:"",
+        desc:[],
         url: "http://shop.liuketh.cn"
     },
     {
         title:"内部套餐卡",
-        desc:"",
+        desc:[],
         url: "http://shop.liuketh.cn"
     },
     {
         title:"互联网卡",
-        desc:"",
+        desc:[],
         url: "http://shop.liuketh.cn"
     },
     {
         title:"免费靓号",
-        desc:"",
+        desc:[],
         url: "http://shop.liuketh.cn"
     },
     {
         title:"付费靓号",
-        desc:"",
+        desc:[],
         url: "http://lh.liuketh.cn"
     },
     {
         title:"话费9折充值",
-        desc:"",
+        desc:[],
         url: "http://shop.liuketh.cn"
     },
     {
         title:"聚合支付",
-        desc:"",
-        url: "http://shop.liuketh.cn"
+        desc:[],
     },
     {
         title:"京东优惠券",
-        desc:"",
+        desc:[],
         url: "http://shop.liuketh.cn"
     },
 ]
@@ -55,10 +68,24 @@ const us =[
     <div class="grid gap-3 m-10">
         {
             us.map((item,index) => (
-                <div class="text-2xl ">
-                    <h1>{index + 1} {item.title}</h1>
+            <section class="bg-gray-50">
+                <div class="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
+                    <h2 class="text-2xl font-bold text-gray-900">{item.title} {item.url && <a href=`${item.url}` class="underline text-blue-700">网址预览</a>}</h2>
+               
+                    <div class="mt-6 grid grid-cols-1 gap-6 md:grid-cols-2">
+                    {
+                        item.desc?.map((one: { main: string; desc: string; })=>(<div class="rounded-lg bg-white p-6 shadow">
+                        <h3 class="text-lg font-medium text-gray-900">{one.main}</h3>
+                        <p class="text-gray-500">{one.desc}</p>
+                    </div>))
+                    }
+                    </div>
                 </div>
+            </section>
             ))
         }
+        <section>
+            <Image src="" width={100} height={100} alt="联系我们"/>
+        </section>
     </div>
 </Layout>

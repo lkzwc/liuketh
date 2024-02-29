@@ -10,7 +10,7 @@ author: '流客科技'
 image:
     url: "/src/content/blog/image/9zhe.webp"
     alt: '全国话费9折充值'
-tags: ["9折充话费", ]
+tags: ["9折充话费"]
 ---
 
 
@@ -47,6 +47,6 @@ tags: ["9折充话费", ]
 
 ## 充值直达
 
-https://work.weixin.qq.com/gm/a6484050538dc4716d3a98758f8e30ab
+[充值客服链接](https://work.weixin.qq.com/gm/a6484050538dc4716d3a98758f8e30ab)
 
 点击链接加入官方粉丝福利微信群，@小助理进行充值即可

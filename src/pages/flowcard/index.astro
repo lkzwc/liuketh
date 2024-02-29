@@ -10,39 +10,41 @@ import BlogList from "../../components/BlogList.astro";
 
 const hotcard = await getCollection("hotcard");
 const type = [
-    {
-        url: yd,
-        alt: "中国移动流量卡",
-    },
-    {
-        url: lt,
-        alt: "中国联通流量卡",
-    },
-    {
-        url: dx,
-        alt: "中国电信流量卡",
-    },
-    {
-        url: gd,
-        alt: "中国广电流量卡",
-    },
+  {
+    url: yd,
+    alt: "中国移动流量卡",
+  },
+  {
+    url: lt,
+    alt: "中国联通流量卡",
+  },
+  {
+    url: dx,
+    alt: "中国电信流量卡",
+  },
+  {
+    url: gd,
+    alt: "中国广电流量卡",
+  },
 ];
 ---
 
 <Layout pageTitle="流量卡">
-    <div class="hidden md:flex gap-5 mx-5 mt-10">
-        {
-            type.map((item) => (
-                <Image
-                    src={item.url}
-                    alt={item.alt}
-                    width="300"
-                    height="150"
-                    class="rounded-xl"
-                />
-            ))
-        }
-    </div>
-    <!-- //client:load  -->
-   <BlogList list={hotcard} path="/flowcard"/>
+  <div class="hidden md:flex gap-5 mx-5 m-10">
+    {
+      type.map((item) => (
+        <Image
+          src={item.url}
+          alt={item.alt}
+          width="300"
+          height="150"
+          class="rounded-xl"
+        />
+      ))
+    }
+  </div>
+  <!-- //client:load  -->
+  <div>
+    <BlogList list={hotcard} path="/flowcard" />
+  </div>
 </Layout>

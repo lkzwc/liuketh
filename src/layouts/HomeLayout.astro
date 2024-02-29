@@ -14,6 +14,7 @@ const makeTitle = pageTitle
 	<head>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width" />
+
 		<meta name="generator" content={Astro.generator} />
 		<title>{makeTitle}</title>
 		<meta
@@ -28,11 +29,5 @@ const makeTitle = pageTitle
 			<slot />
 		</main>
 		<Footer />
-		<script>
-			document.getElementById("expend")?.addEventListener("click", () => {
-				console.log("run");
-				document.getElementById("menu")?.classList.toggle("hidden");
-			});
-		</script>
 	</body>
 </html>

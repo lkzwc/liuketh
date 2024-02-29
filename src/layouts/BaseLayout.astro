@@ -25,30 +25,35 @@ const makeTitle = pageTitle
 	</head>
 	<body>
 		<Header />
-		<main>
-			<div class="flex">
-				<div class="xl:basis-5/6 xl:mx-20"><slot /></div>
-				<div
-					class="bg-slate-500 m-10 h-[100vh] hidden xl:basis-1/6 p-5 text-xl xl:grid items-center"
-				>
-					<div>
-						🏘️粉丝群
-						<Image
-							src={fs}
-							width={150}
-							height={150}
-							alt="粉丝福利微信群"
-						/>
-					</div>
-					<!--?xml version="1.0" encoding="UTF-8"?-->
-					📱155563 55573
-
-					<div class=" border-teal-500 border-2 rounded-2xl p-3">
-						<Tags />
-					</div>
-				</div>
+		<main class="flex flex-col xl:flex-row">
+			<div class="flex-1 xl:mx-20 my-5">
+			  <slot /> <!-- 此处是页面主要内容 -->
 			</div>
-		</main>
+			<aside class="hidden xl:block xl:flex-none xl:w-1/6 bg-slate-200 m-10 p-5 text-xl rounded-lg shadow-xl">
+			  <div class="space-y-4">
+				<section class="flex flex-col items-center text-center space-y-3">
+				  <h2 class="font-semibold">🏘️ 粉丝群</h2>
+				  <Image
+					src={fs}
+					width={150}
+					height={150}
+					alt="粉丝福利微信群"
+					class="rounded-xl shadow-sm"
+				  />
+				</section>
+				
+				<section class="text-center">
+				  <h2 class="font-semibold">📱 联系方式</h2>
+				  <a href="tel:15556355573" class="hover:underline">155563 55573</a>
+				</section>
+				
+				<div class="border-teal-500 border-2 rounded-2xl p-3">
+				  <Tags />
+				</div>
+			  </div>
+			</aside>
+		  </main>
+		  
 		<Footer />
 	</body>
 </html>

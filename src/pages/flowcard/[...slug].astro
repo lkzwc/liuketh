@@ -10,20 +10,20 @@ export async function getStaticPaths() {
         params: {
             id: entry.id,
             slug: entry.slug,
-            title: entry.data.title,
-            desc: entry.data.description,
         },
         props: { entry },
     }));
 }
 // 2. 当渲染的时候，你可以直接从属性中得到条目
 const { entry } = Astro.props;
-const { id, title, desc } = Astro.params;
+const { entry:{ data:{title, description} } } = Astro.props;
+const { id, slug } = Astro.params;
+
 const { Content } = await entry.render();
 const allPosts = await getCollection("hotcard");
 ---
 
-<Layout pageTitle={title} desc={desc}>
+<Layout pageTitle={title} desc={description}>
     <div class="m-10">
         <MDContent>
             <Content />
@@ -38,21 +38,24 @@ const allPosts = await getCollection("hotcard");
             </div>
         </div>
         <div class="bg-slate-200 shadow-xl p-5">
-            <span class="text-xl mx-16">你可能也喜欢：</span>
-            <div class="grid mx-16">
-                {
-                    allPosts
-                        .filter((item) => item.id !== id)
-                        .map((p) => (
-                            <a
-                                class="hover:bg-blue-200"
-                                href={`/flowcard${p.slug}`}
-                            >
-                                {p.data.title}
-                            </a>
-                        ))
-                }
-            </div>
-        </div>
+            <h3 class="text-xl font-semibold my-4 mx-16">你可能也喜欢：</h3>
+            <ul class="list-none mx-16">
+              {
+                allPosts
+                  .filter((item) => item.id !== id)
+                  .map((p) => (
+                    <li class="mb-3">
+                      <a
+                        class="block p-3 rounded hover:bg-blue-200 transition duration-300 ease-in-out shadow-sm hover:shadow-md"
+                        href={`/flowcard${p.slug}`}
+                      >
+                        {p.data.title}
+                      </a>
+                    </li>
+                  ))
+              }
+            </ul>
+          </div>
+          
     </div>
 </Layout>

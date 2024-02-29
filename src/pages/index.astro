@@ -42,36 +42,30 @@ import use from "../image/index/use.svg";
 				</div>
 			</div>
 			<!-- Hero bottom -->
-			<div
-				class="mx-auto max-w-7xl px-5 py-12 md:px-10 md:py-16 lg:py-20"
-			>
-				<!-- Component -->
-				<div
-					class="relative flex flex-col gap-6 lg:flex-row lg:justify-between"
-				>
-					<div class="max-w-xl p-10">
-						<!-- Title -->
-						<h3 class="text-2xl font-bold md:text-3xl">介绍</h3>
-						<!-- Divider -->
-						<div
-							class="my-6 w-1/3 [border-top:2px_solid_rgb(0,_0,_0)]"
-						>
-						</div>
-						<p class="text-xl text-[#636262]">
-							提供IOT全面服务，包括通信领域，物联网领域，流量卡领域，可进行手机卡办理，靓号办理，155555、1555522、1555533、1314520定制靓号办理，全国手机话费9折充值，内部优惠套餐卡办理!
-							随身wifi，5G路由器云路由，智能监控等物联网服务!
-						</p>
-					</div>
-					<!-- Image -->
+			<section class="mx-auto max-w-7xl px-5 py-12 md:px-10 md:py-16 lg:py-20">
+				<div class="relative flex flex-col gap-6 lg:flex-row lg:justify-between">
+				  <article class="max-w-xl p-10">
+					<!-- 使用article标签可以提升SEO的语义化 -->
+					<h3 class="text-2xl font-bold md:text-3xl">介绍</h3>
+					<!-- 使用更适合的标签替换div，增强语义化 -->
+					<hr class="my-6 border-t-2 border-black w-1/3" />
+					<!-- 优化段落字符 -->
+					<p class="text-xl text-gray-600">
+					  提供IOT全面服务，覆盖通信、物联网和流量卡领域。我们提供手机卡办理、靓号定制服务（如155555、1555522、1555533和1314520），全国手机话费九折充值，内部优惠套餐卡办理。此外，我们还提供随身WiFi、5G路由器云路由和智能监控等物联网服务。
+					</p>
+				  </article>
+				  <figure class="mt-12 ml-auto lg:ml-0 lg:absolute lg:right-0 lg:bottom-0 lg:h-auto lg:max-w-sm">
 					<Image
-						src={use}
-						width={100}
-						height={100}
-						alt="流量卡"
-						class="relative bottom-0 -right-20 ml-80 mt-12 w-[480px] lg:absolute lg:h-[480px] lg:w-fit lg:p-10"
+					  src={use}
+					  width={480} 
+					  height={480} 
+					  alt="流量卡"
+					  class="w-full h-auto"
 					/>
+				  </figure>
 				</div>
-			</div>
+			  </section>
+			  
 		</section>
 
 		<section>
@@ -183,11 +177,11 @@ import use from "../image/index/use.svg";
 
 				<div class="relative rounded-2xl group h-96 overflow-hidden">
 					<div
-						class="opacity-150 absolute min-h-80 w-screen blur duration-1000 [transform:rotate3d(1_,-1,_1,_30deg)] group-hover:w-screen group-hover:bg-cyan-200 group-hover:blur-none group-hover:[transform:rotate3d(1_,-1,_1,_0deg)]"
+						class="opacity-150 absolute min-h-80 blur duration-1000 [transform:rotate3d(1_,-1,_1,_30deg)] group-hover:w-screen group-hover:bg-cyan-200 group-hover:blur-none group-hover:[transform:rotate3d(1_,-1,_1,_0deg)]"
 					>
 					</div>
 					<div
-						class="absolute flex min-h-80 flex-col gap-4 p-20 duration-1000 [transform:rotate3d(1_,-1,_1,_30deg)] group-hover:w-96 group-hover:[transform:rotate3d(1_,-1,_1,_0deg)]"
+						class="absolute flex min-h-80 flex-col gap-4 p-12 duration-1000 [transform:rotate3d(1_,-1,_1,_30deg)] group-hover:w-96 group-hover:[transform:rotate3d(1_,-1,_1,_0deg)]"
 					>
 						<span class="text-2xl font-extrabold text-red-800"
 							>手机靓号</span
@@ -196,7 +190,7 @@ import use from "../image/index/use.svg";
 							<p class="text-gray-900">老板号码</p>
 							<p class="text-gray-900">情侣号码</p>
 							<p class="text-gray-900">豹子号码</p>
-							<p class="text-gray-900">各大运营商覆盖全面</p>
+							<p class="text-gray-900">运营商覆盖全面</p>
 							<div class="divide-x-2 divide-y divide-dashed">
 								<div></div>
 							</div>
@@ -222,7 +216,7 @@ import use from "../image/index/use.svg";
 					>
 					</div>
 					<div
-						class="absolute flex min-h-80 flex-col gap-4 p-20 duration-1000 [transform:rotate3d(1_,-1,_1,_30deg)] group-hover:w-96 group-hover:[transform:rotate3d(1_,-1,_1,_0deg)]"
+						class="absolute flex min-h-80 flex-col gap-4 p-8 duration-1000 [transform:rotate3d(1_,-1,_1,_30deg)] group-hover:w-96 group-hover:[transform:rotate3d(1_,-1,_1,_0deg)]"
 					>
 						<span class="text-2xl font-extrabold text-red-800"
 							>内部套餐卡</span
@@ -277,7 +271,7 @@ import use from "../image/index/use.svg";
 					>
 					</div>
 					<div
-						class="absolute flex min-h-80 flex-col gap-4 p-20 duration-1000 [transform:rotate3d(1_,-1,_1,_30deg)] group-hover:w-96 group-hover:[transform:rotate3d(1_,-1,_1,_0deg)]"
+						class="absolute flex min-h-80 flex-col gap-4 p-8 duration-1000 [transform:rotate3d(1_,-1,_1,_30deg)] group-hover:w-96 group-hover:[transform:rotate3d(1_,-1,_1,_0deg)]"
 					>
 						<span class="text-2xl font-extrabold text-red-800"
 							>聚合支付</span
@@ -484,7 +478,7 @@ import use from "../image/index/use.svg";
 						</div>
 					</div>
 					<!-- Price 2 -->
-					<div class="mx-auto w-full max-w-md border-solid border-2">
+					<div class="mx-auto w-full max-w-md border-solid border-2 shadow-xl">
 						<!-- Price 2 Card -->
 						<div
 							class="overflow-hidden rounded-md bg-[#f2f2f7] p-10 sm:w-full sm:flex-initial"
@@ -693,7 +687,7 @@ import use from "../image/index/use.svg";
 						</div>
 					</div>
 					<!-- Price 3 -->
-					<div class="mx-auto w-full max-w-md border-solid border-2">
+					<div class="mx-auto w-full max-w-md border-solid border-2 shadow-lg">
 						<!-- Price 3 Card -->
 						<div class="rounded-md p-10">
 							<div
