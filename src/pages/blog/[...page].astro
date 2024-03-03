@@ -1,0 +1,54 @@
+---
+import { getCollection } from "astro:content";
+import Layout from "../../layouts/BaseLayout.astro";
+import { Image } from "astro:assets";
+import yd from "../../image/product/dragon.jpg";
+import lt from "../../image/product/flowcard.jpg";
+import dx from "../../image/product/dragon.jpg";
+import gd from "../../image/product/gd.jpg";
+import BlogList from "../../components/BlogList.astro";
+import type { GetStaticPathsOptions } from "astro";
+
+const type = [
+  {
+    url: lt,
+    alt: "中国联通流量卡",
+  },
+  {
+    url: dx,
+    alt: "中国电信流量卡",
+  },
+  {
+    url: gd,
+    alt: "中国广电流量卡",
+  },
+];
+
+
+export async function getStaticPaths({ paginate }: GetStaticPathsOptions) { 
+  const hotcard = await getCollection("blog");
+  return paginate(hotcard, { pageSize: 2 });
+ }
+
+ const hotcard = await getCollection("blog");
+ const { page } = Astro.props;
+---
+<Layout pageTitle="博客">
+  <div class="hidden md:flex gap-5 mx-5 m-10">
+    {
+      type.map((item) => (
+        <Image
+          src={item.url}
+          alt={item.alt}
+          width="300"
+          height="150"
+          class="rounded-xl"
+        />
+      ))
+    }
+  </div>
+  <!-- //client:load  -->
+  <div>
+    <BlogList list={hotcard} path="/flowcard" page={page}  />
+  </div>
+</Layout>
