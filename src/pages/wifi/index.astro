@@ -11,10 +11,10 @@ const hotcard = await getCollection("hotcard");
 ---
 
 <Layout pageTitle="随身WiFi" >
-    <div class="flex gap-2 flex-wrap p-10">
-        <Image src={wifi} width={300} height={150} alt="随身Wifi"/>
-        <Image src={cloudwifi1} width={300} height={150} alt="随身Wifi"/>
-        <Image src={cloudwifi2} width={300} height={150} alt="随身Wifi"/>
+    <div class="flex gap-2 flex-wrap p-10 ">
+        <Image src={wifi} width={300} height={300} alt="随身Wifi" class="w-[30%] h-[30%]"/>
+        <Image src={cloudwifi1} width={300} height={300} alt="随身Wifi" class="w-[30%] h-[30%]"/>
+        <Image src={cloudwifi2} width={300} height={300} alt="随身Wifi" class="w-[26%] h-[26%]"/>
     </div>
     <BlogList page={{data: hotcard}} path="/wifi"/>
     
