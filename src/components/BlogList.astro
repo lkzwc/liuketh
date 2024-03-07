@@ -1,9 +1,7 @@
 ---
 import { Image } from "astro:assets";
 
-
 const { path, page } = Astro.props;
-
 ---
 
 <div class="grid gap-5 p-5 grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
@@ -12,6 +10,8 @@ const { path, page } = Astro.props;
       <Image
         src={item.data.image.url}
         alt={item.data.image.alt}
+        width={100}
+        height={100}
         class="w-full object-cover h-48" // 设置图片宽度为100%，高度固定或自适应
       />
       <div class="p-5">
