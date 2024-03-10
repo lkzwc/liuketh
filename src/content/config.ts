@@ -3,15 +3,15 @@ import { z, defineCollection } from 'astro:content';
 // 2. 定义集合
 const blogCollection = defineCollection({
   type: 'content',
-    schema: z.object({
+    schema: ({ image })=>z.object({
       title: z.string(),
       pubDate: z.string(),
       description: z.string(),
-      cover: z.string(),
+      cover:   z.string().optional(),
       coverAlt: z.string(),
       author: z.string(),
       image: z.object({
-        url: z.string().optional(),
+        url:  z.string().optional(),
         alt: z.string()
       }),
       tags: z.array(z.string())
@@ -20,15 +20,15 @@ const blogCollection = defineCollection({
 
  const hotCard = defineCollection({
   type: 'content',
-    schema: z.object({
+    schema: ({ image })=>z.object({
       title: z.string(),
       pubDate: z.string(),
       description: z.string(),
-      cover: z.string().optional(),
+      cover:  z.string().optional(),
       coverAlt: z.string(),
       author: z.string(),
       image: z.object({
-        url: z.string().optional(),
+        url:  z.string().optional(),
         alt: z.string()
       }),
       tags: z.array(z.string())
