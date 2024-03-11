@@ -9,22 +9,23 @@ export async function getStaticPaths() {
     const blogEntries = await getCollection("blog");
     return blogEntries.map((entry) => ({
         params: { 
-            id: entry.id,
             slug: entry.slug,
-            title: entry.data.title,
-            desc: entry.data.description,
          },
         props: { entry },
     }));
 }
+
+
 // 2. 当渲染的时候，你可以直接从属性中得到条目
 const { entry } = Astro.props;
-const { id, title, desc } = Astro.params;
+const { slug } = Astro.params;
 const { Content } = await entry.render();
 const allPosts = await getCollection("blog");
+
+const blogEntries = await getCollection("blog");
 ---
 
-<Layout pageTitle={title} desc={desc}>
+<Layout pageTitle={entry.data.title} desc={entry.data.description}>
     <div class="m-5">
         <MDLayout frontmatter={entry.data}>
             <MDContent class="rounded-xl">
@@ -32,20 +33,12 @@ const allPosts = await getCollection("blog");
             </MDContent>
         </MDLayout>
  
-        <!-- <div class="m-2 flex justify-evenly">
-            <div >
-                <Image src="https://img.icons8.com/color/48/double-left--v2.png" width={40} height={40} alt=""/>
-            </div>
-            <div>
-                <Image src="https://img.icons8.com/color/48/double-right--v1.png" width={40} height={40} alt=""/>
-            </div>
-        </div> -->
         <div class="bg-slate-200 shadow-xl p-5 mt-5 rounded-xl">
             <span class="text-xl mx-2">你可能也喜欢：</span>
             <div class="grid mx-2">
                 {
                     allPosts
-                        .filter((item) => item.id !== id)
+                        .filter((item) => item.slug !== `/${slug}`)
                         .map((p) => (
                             <a
                             class="rounded my-2 p-2 hover:bg-blue-200 transition duration-300 ease-in-out shadow-sm hover:shadow-md underline text-blue-600 text-xl"

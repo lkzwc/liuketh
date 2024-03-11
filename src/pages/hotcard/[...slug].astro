@@ -9,7 +9,6 @@ export async function getStaticPaths() {
   const blogEntries = await getCollection("hotcard");
   return blogEntries.map((entry) => ({
     params: {
-      id: entry.id,
       slug: entry.slug,
     },
     props: { entry },
@@ -22,8 +21,7 @@ const {
     data: { title, description },
   },
 } = Astro.props;
-const { id, slug } = Astro.params;
-
+const { slug } = Astro.params;
 const { Content } = await entry.render();
 const allPosts = await getCollection("hotcard");
 ---
@@ -41,7 +39,7 @@ const allPosts = await getCollection("hotcard");
       <ul class="list-none mx-16">
         {
           allPosts
-            .filter((item) => item.id !== id)
+            .filter((item) => item.slug !== `/${slug}`)
             .map((p) => (
               <li class="mb-3">
                 <a
