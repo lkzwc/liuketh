@@ -9,11 +9,11 @@ const { path, page } = Astro.props;
   {page.data?.map((item: any) => (
     <div class="flex flex-col bg-white shadow-lg rounded-xl overflow-hidden hover:scale-105">
     
-      <img
+      <Image
         src={item.data.image.url}
         alt={item.data.image.alt}
-        width={100}
-        height={100}
+        width={350}
+        height={350}
         class="w-full object-cover h-48" // 设置图片宽度为100%，高度固定或自适应
       />
       <div class="p-5">

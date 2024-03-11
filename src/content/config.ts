@@ -7,11 +7,15 @@ const blogCollection = defineCollection({
       title: z.string(),
       pubDate: z.string(),
       description: z.string(),
-      cover:   z.string().optional(),
+      cover:  image().refine((img) => img.width >= 580, {
+        message: "封面图片必须至少 1080 像素宽！",
+        }).or(z.string()).optional(),
       coverAlt: z.string(),
       author: z.string(),
       image: z.object({
-        url:  z.string().optional(),
+        url:  image().refine((img) => img.width >= 580, {
+          message: "封面图片必须至少 1080 像素宽！",
+          }).or(z.string()).optional(),
         alt: z.string()
       }),
       tags: z.array(z.string())
@@ -24,11 +28,15 @@ const blogCollection = defineCollection({
       title: z.string(),
       pubDate: z.string(),
       description: z.string(),
-      cover:  z.string().optional(),
+      cover:  image().refine((img) => img.width >= 580, {
+        message: "封面图片必须至少 1080 像素宽！",
+        }).or(z.string()).optional(),
       coverAlt: z.string(),
       author: z.string(),
       image: z.object({
-        url:  z.string().optional(),
+        url: image().refine((img) => img.width >= 580, {
+          message: "封面图片必须至少 1080 像素宽！",
+          }).or(z.string()).optional(),
         alt: z.string()
       }),
       tags: z.array(z.string())
