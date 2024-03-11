@@ -42,13 +42,13 @@ const allPosts = await getCollection("blog");
         </div> -->
         <div class="bg-slate-200 shadow-xl p-5 mt-5 rounded-xl">
             <span class="text-xl mx-16">你可能也喜欢：</span>
-            <div class="grid mx-16">
+            <div class="grid mx-2">
                 {
                     allPosts
                         .filter((item) => item.id !== id)
                         .map((p) => (
                             <a
-                                class="hover:bg-blue-200"
+                                class="hover:bg-blue-200 underline text-blue-600"
                                 href={`/blog${p.slug}`}
                             >
                                 {p.data.title}
