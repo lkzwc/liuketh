@@ -27,7 +27,7 @@ const type = [
 
 export async function getStaticPaths({ paginate }: GetStaticPathsOptions) { 
   const hotcard = await getCollection("hotcard");
-  return paginate(hotcard, { pageSize: 2 });
+  return paginate(hotcard, { pageSize: 5 });
  }
 
  const hotcard = await getCollection("hotcard");
@@ -49,6 +49,6 @@ export async function getStaticPaths({ paginate }: GetStaticPathsOptions) {
   </div>
   <!-- //client:load  -->
   <div>
-    <BlogList list={hotcard} path="/flowcard" page={page}  />
+    <BlogList list={hotcard} path="/hotcard" page={page}  />
   </div>
 </Layout>

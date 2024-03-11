@@ -2,38 +2,32 @@
 import { getCollection } from "astro:content";
 import Layout from "../../layouts/BaseLayout.astro";
 import { Image } from "astro:assets";
-import yd from "../../image/product/dragon.jpg";
-import lt from "../../image/product/flowcard.jpg";
-import dx from "../../image/product/dragon.jpg";
-import gd from "../../image/product/gd.jpg";
+import wifi from "../../image/product/wifi.webp";
+import cloudwifi from "../../image/product/cloudwifi2.webp";
 import BlogList from "../../components/BlogList.astro";
 import type { GetStaticPathsOptions } from "astro";
 
 const type = [
   {
-    url: lt,
-    alt: "中国联通流量卡",
+    url: wifi,
+    alt: "随身wifi",
   },
   {
-    url: dx,
-    alt: "中国电信流量卡",
-  },
-  {
-    url: gd,
-    alt: "中国广电流量卡",
+    url: cloudwifi,
+    alt: "云路由",
   },
 ];
 
 
 export async function getStaticPaths({ paginate }: GetStaticPathsOptions) { 
-  const hotcard = await getCollection("blog");
-  return paginate(hotcard, { pageSize: 10 });
+  const wifi = await getCollection("wifi");
+  return paginate(wifi, { pageSize: 5 });
  }
 
- const hotcard = await getCollection("blog");
+ const wifis = await getCollection("wifi");
  const { page } = Astro.props;
 ---
-<Layout pageTitle="博客">
+<Layout pageTitle="随身wifi">
   <div class="hidden md:flex gap-5 mx-5 m-10">
     {
       type.map((item) => (
@@ -49,6 +43,6 @@ export async function getStaticPaths({ paginate }: GetStaticPathsOptions) {
   </div>
   <!-- //client:load  -->
   <div>
-    <BlogList list={hotcard} path="/blog" page={page}  />
+    <BlogList list={wifis} path="/wifi" page={page}  />
   </div>
 </Layout>

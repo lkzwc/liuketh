@@ -19,12 +19,8 @@ const us =[
                 main:'零风险',
                 desc:"行业数十年的从业者，带入发现商机"
             },
-            {
-                main:'代理限时开通',
-                url:"https://haoka.lot-ml.com/plugreg.html?agentid=108186"
-            }
         ],
-        url: "http://shop.liuketh.cn"
+        // url: "http://shop.liuketh.cn"
     },
     {
         title:"随声Wifi & 云路由",
@@ -48,12 +44,16 @@ const us =[
             },
             {
                 main:'全利润分成',
-                desc:"享受高达100%的销售利润分成。"
+                desc:"享受高达100%的销售利润分成，单卡佣金50-280之间。"
             },
             {
                 main:'顺丰包邮',
                 desc:"免费申请，顺丰包邮"
             },
+            {
+                main:'代理限时开通',
+                url:"https://haoka.lot-ml.com/plugreg.html?agentid=108186"
+            }
         ],
         url: "http://tc.liuketh.cn"
     },
@@ -168,7 +168,7 @@ const us =[
                     {
                         item.desc?.map((one: { main: string; desc?: string; url?: string })=>(<div class="rounded-lg bg-white p-6 shadow">
                         <h3 class="text-lg font-medium text-gray-900">{one.main}</h3>
-                       { one.desc && <p class="text-gray-500">{one.desc}</p>}  { one.url && <a class=" underline text-blue-700" href={item.url}>🦸‍♂️代理注册</a>}
+                       { one.desc && <p class="text-gray-500">{one.desc}</p>}  { one.url && <a class=" underline text-blue-700" target="_blank" href={one.url}>🦸‍♂️代理注册</a>}
                     </div>))
                     }
                     </div>
