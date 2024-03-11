@@ -2,7 +2,6 @@
 slug: /9zhe
 title: 全国话费9折充值
 cover: "/src/content/blog/_image/9zhe.webp"
-layout: ../../layouts/MD.astro
 coverAlt: "全国话费9折充值"
 pubDate: "2024-02-24"
 description: '电信梦节卡29元185G长期套餐,免费申请电信流量卡。'

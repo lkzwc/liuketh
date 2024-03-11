@@ -2,6 +2,7 @@
 import { getCollection } from "astro:content";
 import Layout from "../../layouts/BaseLayout.astro";
 import MDContent from '../../components/MDContent.astro'
+import BlogLayout from "../../layouts/MD.astro";
 import { Image } from "astro:assets";
 // 1. 为每个集合条目生成一个新路径
 export async function getStaticPaths() {
@@ -25,9 +26,12 @@ const allPosts = await getCollection("hotcard");
 
 <Layout pageTitle={title} desc={description}>
     <div class="m-5">
-        <MDContent class="rounded-xl" >
-            <Content />
-        </MDContent>
+        <BlogLayout frontmatter={entry.data}>
+          <MDContent class="rounded-xl" >
+              <Content />
+          </MDContent>
+        </BlogLayout>
+
  
         <!-- <div class="m-2 flex justify-evenly">
             <div >

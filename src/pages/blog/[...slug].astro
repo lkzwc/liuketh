@@ -2,6 +2,7 @@
 import { getCollection } from "astro:content";
 import Layout from "../../layouts/BaseLayout.astro";
 import { Image } from "astro:assets";
+import BlogLayout from "../../layouts/MD.astro";
 import MDContent from "../../components/MDContent.astro";
 // 1. 为每个集合条目生成一个新路径
 export async function getStaticPaths() {
@@ -25,9 +26,11 @@ const allPosts = await getCollection("blog");
 
 <Layout pageTitle={title} desc={desc}>
     <div class="m-5">
-        <MDContent class="rounded-xl">
+      <BlogLayout frontmatter={entry.data}>
+        <MDContent class="rounded-xl" >
             <Content />
         </MDContent>
+      </BlogLayout>
  
         <!-- <div class="m-2 flex justify-evenly">
             <div >
