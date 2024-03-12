@@ -3,7 +3,6 @@ import { getCollection } from "astro:content";
 import Layout from "../../layouts/BaseLayout.astro";
 import MDContent from "../../components/MDContent.astro";
 import MDLayout from "../../layouts/MD.astro";
-import { Image } from "astro:assets";
 // 1. 为每个集合条目生成一个新路径
 export async function getStaticPaths() {
   const blogEntries = await getCollection("hotcard");

@@ -7,19 +7,37 @@ const { pageTitle } = Astro.props;
 
 const makeTitle = pageTitle
 	? pageTitle + " | " + "流客科技"
-	: "流客科技 - 万网之流，来者皆可客";
+	: "流客科技-万网之流来者皆客";
 ---
 
 <html lang="zh-cn">
 	<head>
 		<meta charset="utf-8" />
+		<meta name="google-adsense-account" content="ca-pub-8701466885719364">
 		<meta name="viewport" content="width=device-width" />
-
 		<meta name="generator" content={Astro.generator} />
 		<title>{makeTitle}</title>
 		<meta
+			name="keywords"
+			content="流客科技,流量卡官网,流量卡"
+		/>
+		<meta
 			name="description"
-			content="流量卡官网，提供IOT全面服务,包括通信领域,物联网领域,流量卡领域,可进行手机卡开通,靓号办理,155555、1555522、1555533、1314520手机靓号办理,全国手机话费9折充值,内部优惠套餐卡办理! "
+			content="流客科技流量卡官网，提供IOT全面服务,包括通信领域,物联网领域,流量卡领域,可进行手机卡开通,靓号办理,155555、1555522、1555533、1314520手机靓号办理,全国手机话费9折充值,内部优惠套餐卡办理! "
+		/>
+		<meta
+			property="og:title"
+			content="流客科技-万网之流来者皆客"
+		/>
+		<meta property="og:url" content="https://liuketh.cn/">
+		<meta
+			property="og:site_name"
+			content={makeTitle}
+		/>
+		<!-- <meta property="og:image" content="https://astro.build/og/astro.jpg"> -->
+		<meta
+			property="og:description"
+			content="流客科技流量卡官网，提供IOT全面服务,包括通信领域,物联网领域,流量卡领域,可进行手机卡开通,靓号办理,155555、1555522、1555533、1314520手机靓号办理,全国手机话费9折充值,内部优惠套餐卡办理! "
 		/>
 		<ViewTransitions />
 	</head>

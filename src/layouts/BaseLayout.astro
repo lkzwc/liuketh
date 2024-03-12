@@ -22,6 +22,13 @@ const makeTitle = pageTitle
 		<meta name="generator" content={Astro.generator} />
 		<meta name="description" content={desc} />
 		<title>{makeTitle}</title>
+
+		<meta property="og:title" content={makeTitle}>
+		<meta property="og:type" content="website">
+		<meta property="og:url" content="https://liuketh.cn/">
+		<meta property="og:description" content={desc}>
+		<meta property="og:site_name" content={makeTitle}>
+		<meta property="og:image" content="https://astro.build/og/astro.jpg">
 	</head>
 	<body>
 		<Header />
