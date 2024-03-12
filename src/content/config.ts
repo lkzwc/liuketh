@@ -1,3 +1,6 @@
+
+
+
 // 1. 从 `astro:content` 导入
 import { z, defineCollection } from 'astro:content';
 // 2. 定义集合

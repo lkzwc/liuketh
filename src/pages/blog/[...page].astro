@@ -27,7 +27,7 @@ const type = [
 
 export async function getStaticPaths({ paginate }: GetStaticPathsOptions) { 
   const hotcard = await getCollection("blog");
-  return paginate(hotcard, { pageSize: 10 });
+  return paginate(hotcard, { pageSize: 12 });
  }
 
  const hotcard = await getCollection("blog");
