@@ -8,6 +8,8 @@ const { pageTitle } = Astro.props;
 const makeTitle = pageTitle
 	? pageTitle + " | " + "流客科技"
 	: "流客科技-万网之流来者皆客";
+
+const url = new URL(Astro.url.pathname, Astro.site).toString();
 ---
 
 <html lang="zh-cn">
@@ -29,7 +31,7 @@ const makeTitle = pageTitle
 			property="og:title"
 			content="流客科技-万网之流来者皆客"
 		/>
-		<meta property="og:url" content="https://liuketh.cn/">
+		<meta property="og:url" content={url}>
 		<meta
 			property="og:site_name"
 			content={makeTitle}
