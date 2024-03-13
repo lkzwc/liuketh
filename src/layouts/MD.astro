@@ -21,7 +21,7 @@ import { fade } from "astro:transitions";
                 alt={frontmatter.image.alt}
             />
             <slot />
-            <div class="flex gap-5">
+            <div class="flex gap-5 my-5">
                 {
                     frontmatter.tags.map((tag: unknown) => (
                         <a
