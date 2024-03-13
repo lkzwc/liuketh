@@ -41,15 +41,15 @@ const { path, page } = Astro.props;
   {
     page?.url?.next ? (
     <div class="flex justify-around">
-      <a href={page?.url?.prev}><?xml version="1.0" encoding="UTF-8"?><svg width="47" height="47" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="6" y="6" width="36" height="36" rx="3" fill="#2F88FF" stroke="#333" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/><path d="M29 34L19 24L29 14" stroke="#FFF" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+      <a href={page?.url?.prev} alt="上一页"><?xml version="1.0" encoding="UTF-8"?><svg width="47" height="47" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="6" y="6" width="36" height="36" rx="3" fill="#2F88FF" stroke="#333" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/><path d="M29 34L19 24L29 14" stroke="#FFF" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
       <span class="bg-[#2F88FF] w-20 rounded-lg text-center my-auto font-semibold">{page.currentPage}</span>
-      <a href={page.url.next}><?xml version="1.0" encoding="UTF-8"?><svg width="47" height="47" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="6" y="6" width="36" height="36" rx="3" fill="#2F88FF" stroke="#333" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/><path d="M19 14L29 24L19 34" stroke="#FFF" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+      <a href={page.url.next} alt="下一页"><?xml version="1.0" encoding="UTF-8"?><svg width="47" height="47" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="6" y="6" width="36" height="36" rx="3" fill="#2F88FF" stroke="#333" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/><path d="M19 14L29 24L19 34" stroke="#FFF" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
     </div>
   ) : (
   <div class="flex justify-around">
-      <a href={page?.url?.prev}><?xml version="1.0" encoding="UTF-8"?><svg width="47" height="47" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="6" y="6" width="36" height="36" rx="3" fill="#2F88FF" stroke="#333" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/><path d="M29 34L19 24L29 14" stroke="#FFF" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+      <a href={page?.url?.prev} alt="上一页"><?xml version="1.0" encoding="UTF-8"?><svg width="47" height="47" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="6" y="6" width="36" height="36" rx="3" fill="#2F88FF" stroke="#333" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/><path d="M29 34L19 24L29 14" stroke="#FFF" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
       <span class="bg-[#2F88FF] w-20 rounded-lg text-center my-auto font-semibold">{page.currentPage}</span>
-      <a href={page.url.next}></a>
+      <a href={page.url.next} alt="下一页"></a>
     </div>
   )
   }

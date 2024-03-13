@@ -33,7 +33,7 @@ export async function getStaticPaths({ paginate }: GetStaticPathsOptions) {
  const hotcard = await getCollection("blog");
  const { page } = Astro.props;
 ---
-<Layout pageTitle="博客">
+<Layout pageTitle="流量卡资讯" desc="分享流量卡行业的各种资讯，提供流量卡的售后服务以及激活使用教程">
   <div class="hidden md:flex gap-5 mx-5 m-10">
     {
       type.map((item) => (

@@ -24,18 +24,21 @@ const type = [
   },
 ];
 
-
-export async function getStaticPaths({ paginate }: GetStaticPathsOptions) { 
+export async function getStaticPaths({ paginate }: GetStaticPathsOptions) {
   const hotcard = await getCollection("hotcard");
   return paginate(hotcard, { pageSize: 5 });
- }
+}
 
- const hotcard = await getCollection("hotcard");
- const { page } = Astro.props;
+const hotcard = await getCollection("hotcard");
+const { page } = Astro.props;
 ---
-<Layout pageTitle="流量卡">
+
+<Layout
+  pageTitle="流量卡官网"
+  desc="流量卡官方网站，提供流量卡的申请、办理、充值、售后等功能"
+>
   <div class="hidden md:flex gap-5 mx-5 m-10">
-    {
+    <!-- {
       type.map((item) => (
         <Image
           src={item.url}
@@ -45,10 +48,18 @@ export async function getStaticPaths({ paginate }: GetStaticPathsOptions) {
           class="rounded-xl"
         />
       ))
-    }
+    } -->
+
+    <Image
+      src="https://mp-dbef5695-ba44-4423-8102-319bf5c8c363.cdn.bspapp.com/gw/ka.png"
+      alt="流量卡图片"
+      width="1200"
+      height="150"
+      class="rounded-xl"
+    />
   </div>
   <!-- //client:load  -->
   <div>
-    <BlogList list={hotcard} path="/hotcard" page={page}  />
+    <BlogList list={hotcard} path="/hotcard" page={page} />
   </div>
 </Layout>

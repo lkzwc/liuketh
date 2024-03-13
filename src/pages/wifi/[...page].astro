@@ -27,7 +27,7 @@ export async function getStaticPaths({ paginate }: GetStaticPathsOptions) {
  const wifis = await getCollection("wifi");
  const { page } = Astro.props;
 ---
-<Layout pageTitle="随身wifi">
+<Layout pageTitle="随身wifi" desc="随身wifi、云路由、智能设备，让你告别没网络、网速慢的问题">
   <div class="hidden md:flex gap-5 mx-5 m-10">
     {
       type.map((item) => (

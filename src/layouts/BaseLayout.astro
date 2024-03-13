@@ -10,10 +10,11 @@ import Tags from '../pages/tags/index.astro'
 const { pageTitle, desc } = Astro.props;
 
 const makeTitle = pageTitle
-	? pageTitle + " | " + "流量卡官网 | 流客科技"
+	? pageTitle + " | " + "流客科技"
 	: "流量卡官网 | 流客科技";
 
 const url = new URL(Astro.url.pathname, Astro.site).toString();
+console.log("url",url)
 ---
 
 <html lang="zh-cn">
