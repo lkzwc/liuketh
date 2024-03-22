@@ -1,0 +1,14 @@
+---
+import HomeLayout from '../layouts/HomeLayout.astro'
+
+setTimeout(() => {
+    return Astro.redirect('/');
+}, 2000);
+
+---
+
+<HomeLayout pageTitle="流客科技" desc="全国话费9折充值，装修团购家电团购最低价">
+    <div class="m-10">
+        <h1>世界那么大，荒原很常见，相遇即是缘分</h2>
+    </div>
+</HomeLayout>

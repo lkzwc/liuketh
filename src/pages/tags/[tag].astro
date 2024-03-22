@@ -28,16 +28,18 @@ console.log("posts", JSON.stringify(posts[0]));
 <BaseLayout pageTitle={tag} desc="文章标签，帮你快速找到相关文章">
   <div class="m-5 text-2xl">
     <h1>🔍找到了以下内容 【 {tag}】</h1>
-    {
-      posts.map((item: any) => (
-        <li class="rounded my-2 p-2 hover:bg-blue-200 transition duration-300 ease-in-out shadow-sm hover:shadow-md underline text-blue-600 text-xl">
-          <a
-            href={item.file.split("content")[1].slice(0, -4)}
-          >
-            {item.frontmatter.title}
-          </a>
-        </li>
-      ))
-    }
+    <menu>
+      {
+        posts.map((item: any) => (
+          <li class="rounded my-2 p-2 hover:bg-blue-200 transition duration-300 ease-in-out shadow-sm hover:shadow-md underline text-blue-600 text-xl">
+            <a
+              href={item.file.split("content")[1].slice(0, -4)}
+            >
+              {item.frontmatter.title}
+            </a>
+          </li>
+        ))
+      }
+    </menu>
   </div>
 </BaseLayout>
