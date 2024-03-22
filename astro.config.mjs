@@ -21,6 +21,6 @@ export default defineConfig({
     // 如果你需要定义或导入你自己的 "base.css"，这很有用。
   }), mdx(), sitemap()],
   redirects: {
-    '/hot/[...slug]': '/hotcard',
+    // '/hot/[...slug]': '/hotcard',
   }
 });
