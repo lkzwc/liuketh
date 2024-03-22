@@ -6,7 +6,7 @@ import { Image } from "astro:assets";
 import MDContent from "../../components/MDContent.astro";
 // 1. 为每个集合条目生成一个新路径
 export async function getStaticPaths() {
-    const blogEntries = await getCollection("blog");
+    const blogEntries = await getCollection("news");
     return blogEntries.map((entry) => ({
         params: { 
             slug: entry.slug,
@@ -20,9 +20,9 @@ export async function getStaticPaths() {
 const { entry } = Astro.props;
 const { slug } = Astro.params;
 const { Content } = await entry.render();
-const allPosts = await getCollection("blog");
+const allPosts = await getCollection("news");
 
-const blogEntries = await getCollection("blog");
+const blogEntries = await getCollection("news");
 ---
 
 <Layout pageTitle={entry.data.title} desc={entry.data.description}>
@@ -42,7 +42,7 @@ const blogEntries = await getCollection("blog");
                         .map((p) => (
                             <a
                             class="rounded my-2 p-2 hover:bg-blue-200 transition duration-300 ease-in-out shadow-sm hover:shadow-md underline text-blue-600 text-xl"
-                                href={`/blog${p.slug}`}
+                                href={`/news${p.slug}`}
                             >
                                 {p.data.title}
                             </a>
