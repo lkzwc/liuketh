@@ -26,11 +26,11 @@ const type = [
 
 
 export async function getStaticPaths({ paginate }: GetStaticPathsOptions) { 
-  const news = await getCollection("news");
-  return paginate(news.sort((a,b)=>(new Date(b.data?.pubDate).getTime() - new Date(a.data?.pubDate).getTime())), { pageSize: 12 });
+  const info = await getCollection("news");
+  return paginate(info.sort((a,b)=>(new Date(b.data?.pubDate).getTime() - new Date(a.data?.pubDate).getTime())), { pageSize: 12 });
  }
 
- const news = await getCollection("news");
+ const info = await getCollection("news");
  const { page } = Astro.props;
 ---
 <Layout pageTitle="流量卡资讯" desc="分享流量卡行业的各种资讯，提供流量卡的售后服务以及激活使用教程">
@@ -49,6 +49,6 @@ export async function getStaticPaths({ paginate }: GetStaticPathsOptions) {
   </div>
   <!-- //client:load  -->
   <div>
-    <BlogList list={news} path="/news" page={page}  />
+    <BlogList list={info} path="/news" page={page}  />
   </div>
 </Layout>
