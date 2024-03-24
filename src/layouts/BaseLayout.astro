@@ -41,8 +41,9 @@ const url = new URL(Astro.url.pathname, Astro.site).toString();
 			</div>
 			<aside class="hidden xl:block xl:flex-none xl:w-1/5 bg-slate-200 m-10 p-5 text-xl rounded-lg shadow-xl">
 			  <div class="space-y-4">
-				<section class="flex flex-col items-center text-center space-y-3">
-				  <h2 class="font-semibold">🏘️ 粉丝群</h2>
+				<slot name="shop" />
+				<section class="grid gap-5 ">
+				  <h2 class="font-semibold float-left">🏘️ 粉丝群</h2>
 				  <Image
 					src={fs}
 					width={300}
@@ -52,9 +53,9 @@ const url = new URL(Astro.url.pathname, Astro.site).toString();
 				  />
 				</section>
 				
-				<section class="text-center">
+				<section class="grid text-left gap-5 ">
 				  <h2 class="font-semibold">📱 联系方式</h2>
-				  <a href="tel:15556355573" class="hover:underline">155563 55573</a>
+				  <a href="tel:15556355573" class="hover:underline text-center">155563 55573</a>
 				</section>
 				
 				<div class="border-teal-500 border-2 rounded-2xl p-3">

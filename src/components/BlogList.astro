@@ -4,7 +4,9 @@ import { Image } from "astro:assets";
 const { path, page } = Astro.props;
 
 ---
-
+<!-- <div class='bg-slate-600'>
+  19元长期
+</div> -->
 <div class="grid gap-5 p-5 grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
   {page.data?.map((item: any) => (
     <div class="flex flex-col bg-white shadow-lg rounded-xl overflow-hidden hover:scale-105">

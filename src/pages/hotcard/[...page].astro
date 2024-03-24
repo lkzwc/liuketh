@@ -6,6 +6,7 @@ import yd from "../../image/product/dragon.jpg";
 import lt from "../../image/product/flowcard.jpg";
 import dx from "../../image/product/dragon.jpg";
 import gd from "../../image/product/gd.jpg";
+import shop from "../../content/hotcard/_image/cangjie.jpg";
 import BlogList from "../../components/BlogList.astro";
 import type { GetStaticPathsOptions } from "astro";
 
@@ -26,7 +27,14 @@ const type = [
 
 export async function getStaticPaths({ paginate }: GetStaticPathsOptions) {
   const hotcard = await getCollection("hotcard");
-  return paginate(hotcard.sort((a,b)=>(new Date(b.data?.pubDate).getTime() - new Date(a.data?.pubDate).getTime())), { pageSize: 12 });
+  return paginate(
+    hotcard.sort(
+      (a, b) =>
+        new Date(b.data?.pubDate).getTime() -
+        new Date(a.data?.pubDate).getTime()
+    ),
+    { pageSize: 12 }
+  );
 }
 
 const hotcard = await getCollection("hotcard");
@@ -50,14 +58,22 @@ const { page } = Astro.props;
       ))
     } -->
 
-    <Image
-      src="https://mp-dbef5695-ba44-4423-8102-319bf5c8c363.cdn.bspapp.com/gw/ka.png"
-      alt="流量卡图片"
-      width="1200"
-      height="150"
-      class="rounded-xl"
-    />
+    <a href="http://tc.liuketh.cn" target="_blank">
+      <Image
+        src="https://mp-dbef5695-ba44-4423-8102-319bf5c8c363.cdn.bspapp.com/gw/ka.png"
+        alt="流量卡图片"
+        width="1200"
+        height="150"
+        class="rounded-xl"
+      />
+    </a>
   </div>
+  <p slot="shop" class="w-full">
+      <span>🛍️免费办卡</span>
+      <a href="http://tc.liuketh.cn" target="_blank">
+        <Image src={shop} width={300} height={30} alt="19元100Ｇ流量卡" class="rounded-md mt-3" />
+      </a>
+  </p>
   <!-- //client:load  -->
   <div>
     <BlogList list={hotcard} path="/hotcard" page={page} />
