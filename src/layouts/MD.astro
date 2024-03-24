@@ -9,7 +9,7 @@ import { fade } from "astro:transitions";
         <h1 class="m-2 text-2xl font-bold">{frontmatter.title}</h1>
         <div class="leading-snug grid w-full">
             <!-- <p><em>{frontmatter.description}</em></p> -->
-            <div class="flex justify-between mt-5 font-semibold">
+            <div class="flex justify-between m-5 font-semibold text-lg">
                 <span>作者: {frontmatter.author}</span>
                 <span>更新日期：{frontmatter.pubDate.slice(0, 10)}</span>
             </div>
@@ -21,7 +21,7 @@ import { fade } from "astro:transitions";
                 alt={frontmatter.image.alt}
             />
             <slot />
-            <div class="flex gap-5 my-5">
+            <div class="flex gap-5 m-5">
                 {
                     frontmatter.tags.map((tag: unknown) => (
                         <a
