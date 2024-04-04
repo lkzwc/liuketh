@@ -7,11 +7,13 @@ import QA from '../components/Landing/QA'
 import Service from '../components/Landing/Service.astro'
 import Cooperate from "../components/Landing/Cooperate";
 import Product from '../components/Landing/Product'
+import Feature from "../components/Landing/Feature.astro";
 ---
 
 <Layout>
 	<main>
 		<HomeMain />
+		<Feature />
 		<Product client:only="react"/>
 		<Price />
 		<Service />

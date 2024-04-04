@@ -5,16 +5,18 @@ import { Image } from "@nextui-org/react";
 
 export default function Cooperate() {
   return (
-    <section class="w-8/12  mx-auto my-10">
-      <div class="text-center text-white text-3xl">
-        <RoughNotation type="highlight" show={true} color="#2563EB" class="p-2 m-2">
+    <section class="w-8/12 mx-auto">
+      <div class="text-center text-white text-4xl">
+        <div>
+        <RoughNotation type="highlight" show={true} color="#2563EB" class="m-2 p-2">
           合作共赢
         </RoughNotation>
+        </div>
         <p class="mx-auto mb-8 mt-4 max-w-lg items-center text-center text-sm text-[#636262] sm:text-base md:mb-12 lg:mb-16">
           目前与我们合作的企业
         </p>
       </div>
-      <div>
+      <div className=" gap-6">
         <Marquee>
           <Image
             src="https://img2.baidu.com/it/u=518827103,2960247070&fm=253&fmt=auto&app=120&f=JPEG?w=570&h=356"

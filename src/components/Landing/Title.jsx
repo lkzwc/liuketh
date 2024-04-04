@@ -4,7 +4,7 @@ import { RoughNotation } from "react-rough-notation";
 export default function Title(props) {
   const { title, desc } = props;
   return (
-    <div class="text-center text-white text-3xl my-10 ">
+    <div class="text-center text-white text-4xl ">
       <RoughNotation type="highlight" show={true} color="#2563EB" class="p-2 m-2">
         {title}
       </RoughNotation>

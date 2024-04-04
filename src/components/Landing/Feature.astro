@@ -1,0 +1,68 @@
+---
+import { Image } from "astro:assets";
+import Title from "./Title";
+import { Like } from "@icon-park/react";
+import { Bookmark } from "@icon-park/react";
+
+const data = [
+  {
+    title: "流量卡",
+    desc: "提供手机设备上网的纯流量卡，套餐多样化，随用随充",
+    // icon: <Like theme="multi-color" size="24" fill={['#333' ,'#2F88FF' ,'#FFF' ,'#43CCF8']} />
+  },
+  {
+    title: "手机靓号",
+    desc: "提供手机设备上网的纯流量卡，套餐多样化，随用随充",
+    // icon: <Like theme="multi-color" size="24" fill={['#333' ,'#2F88FF' ,'#FFF' ,'#43CCF8']}/>
+  },
+  {
+    title: "内部套餐卡",
+    desc: "提供手机设备上网的纯流量卡，套餐多样化，随用随充",
+    // src: <Like theme="multi-color" size="24" fill={['#333' ,'#2F88FF' ,'#FFF' ,'#43CCF8']}/>
+  },
+  {
+    title: "互联网卡",
+    desc: "提供手机设备上网的纯流量卡，套餐多样化，随用随充",
+    // src: <Like theme="multi-color" size="24" fill={['#333' ,'#2F88FF' ,'#FFF' ,'#43CCF8']}/>
+  },
+  {
+    title: "话费充值",
+    desc: "提供全国话费9折充值服务",
+    // src: <Like theme="multi-color" size="24" fill={['#333' ,'#2F88FF' ,'#FFF' ,'#43CCF8']}/>
+  },
+  {
+    title: "云闪付",
+    desc: "可为商家和个人开通云闪付功能",
+    // src: <Like theme="multi-color" size="24" fill={['#333' ,'#2F88FF' ,'#FFF' ,'#43CCF8']}/>
+  },
+];
+---
+
+<section class="my-10">
+  <Title
+    title="我们能提供什么"
+    desc="我们提供的服务以及产品有哪些呢？"
+    client:only="react"
+  />
+  <div class="mx-auto max-w-[66vw] grid grid-cols-3 gap-1 mb-10">
+    {
+      data.map((item, index) => (
+        <div
+        class="shadow-2xl m-8 text-center p-3"
+        //   class={`
+        //       flex flex-col items-center text-center px-8 py-6 border-b
+        //       ${index === 0 ? "md:border-r" : ""}
+        //       ${index === 1 ? "lg:border-r" : ""}
+        //       ${index === 2 ? "md:border-r lg:border-r-0" : ""}
+        //       ${index === 3 ? "lg:border-b-0 lg:border-r" : ""}
+        //       ${index === 4 ? "md:border-b-0 md:border-r" : ""}
+        //       ${index === 5 ? "border-b-0 border-r-0" : ""}
+        //     `}
+        >
+          <p class="text-3xl m-2 font-normal ">{item.title}</p>
+          <span>{item.desc}</span>
+        </div>
+      ))
+    }
+  </div>
+</section>
