@@ -4,7 +4,7 @@ import { RoughNotation } from "react-rough-notation";
 
 export default function Product() {
   return (
-    <section class=" max-w-[70vw]  mx-auto grid mb-10">
+    <section class=" max-w-[70vw]  mx-auto grid mb-10 p-10">
       <div class="text-center text-white text-4xl">
         <div>
           <RoughNotation

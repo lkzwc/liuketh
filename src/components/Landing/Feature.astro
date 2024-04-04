@@ -44,22 +44,22 @@ const data = [
     desc="我们提供的服务以及产品有哪些呢？"
     client:only="react"
   />
-  <div class="mx-auto max-w-[66vw] grid grid-cols-3 gap-1 mb-10">
+  <div class="mx-auto max-w-[66vw] grid grid-cols-3 mb-10">
     {
       data.map((item, index) => (
         <div
-        class="shadow-2xl m-8 text-center p-3"
-        //   class={`
-        //       flex flex-col items-center text-center px-8 py-6 border-b
-        //       ${index === 0 ? "md:border-r" : ""}
-        //       ${index === 1 ? "lg:border-r" : ""}
-        //       ${index === 2 ? "md:border-r lg:border-r-0" : ""}
-        //       ${index === 3 ? "lg:border-b-0 lg:border-r" : ""}
-        //       ${index === 4 ? "md:border-b-0 md:border-r" : ""}
-        //       ${index === 5 ? "border-b-0 border-r-0" : ""}
-        //     `}
+        class="shadow-xl m-5 text-center p-3"
+          // class={`
+          //     flex flex-col items-center text-center px-8 py-6 border-b
+          //     ${index === 0 ? "md:border-r" : ""}
+          //     ${index === 1 ? "lg:border-r" : ""}
+          //     ${index === 2 ? "md:border-r lg:border-r-0" : ""}
+          //     ${index === 3 ? "lg:border-b-0 lg:border-r" : ""}
+          //     ${index === 4 ? "md:border-b-0 md:border-r" : ""}
+          //     ${index === 5 ? "border-b-0 border-r-0" : ""}
+          //   `}
         >
-          <p class="text-3xl m-2 font-normal ">{item.title}</p>
+          <p class="m-2 text-lg font-semibold ">{item.title}</p>
           <span>{item.desc}</span>
         </div>
       ))
