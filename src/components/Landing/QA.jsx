@@ -28,10 +28,10 @@ const qas = [
 
 export default function QA() {
   return (
-    <section class="w-8/12 mx-auto pt-20">
+    <section class="w-8/12 mx-auto p-20">
       <div class="text-center text-white text-4xl">
         <div>
-        <RoughNotation
+          <RoughNotation
             type="highlight"
             show={true}
             color="#2563EB"
