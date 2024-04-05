@@ -32,7 +32,7 @@ const hotcard = await getCollection("hotcard");
       client:only="react"
       title="流量卡"
       desc="提供流量卡的申请办理"
-      data={page.data.map((item) => ({
+      data={page.data.map((item: any) => ({
         image: item.data.image.url?.src,
         url: `/hotcard/${item.slug}`,
       }))}
