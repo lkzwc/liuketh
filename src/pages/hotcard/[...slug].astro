@@ -34,8 +34,8 @@ const allPosts = await getCollection("hotcard");
     </MDLayout>
 
     <div class="bg-slate-200 shadow-xl p-5 mt-5 rounded-xl">
-      <h3 class="text-xl font-semibold my-4 mx-16">你可能也喜欢：</h3>
-      <ul class="list-none mx-16">
+      <h3 class="text-xl font-semibold my-4 md:mx-16">你可能也喜欢：</h3>
+      <ul class="list-none md:mx-16">
         {
           allPosts
             .filter((item) => item.slug !== `/${slug}`)

@@ -14,7 +14,7 @@ import Feature from "../components/Landing/Feature.astro";
 	<main>
 		<HomeMain />
 		<Feature />
-		<Product client:only="react"/>
+		<Product client:only="react" home={true}/>
 		<Price />
 		<Service />
 		<Evaluate/>

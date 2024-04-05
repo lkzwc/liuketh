@@ -5,6 +5,7 @@ import { RoughNotation } from "react-rough-notation";
 export default function Product(props) {
   const {
     title = "我们的产品",
+    home = false,
     desc = "目前我们的产品已经覆盖全行业链，包括纯流量卡、随身wifi、手机靓号等等",
     data = Array.from({ length: 18 }, (_, i) => ({
       image: `https://mp-dbef5695-ba44-4423-8102-319bf5c8c363.cdn.bspapp.com/gw/${
@@ -13,11 +14,13 @@ export default function Product(props) {
       url: "http://tc.liuketh.cn",
     })),
   } = props;
+
+
   return (
     <section class="mx-auto grid mb-10 md:p-10">
       <div class="text-xl text-center text-white md:text-4xl">
         <div>
-          <RoughNotation
+        <RoughNotation
             type="highlight"
             show={true}
             color="#2563EB"
@@ -30,7 +33,7 @@ export default function Product(props) {
           {desc}
         </p>
       </div>
-      <div class="w-max-[75vw]">
+      <div class={home ? "w-[80vw] md:w-[80vw] mx-auto" : "w-[60vw] mx-auto" }>
         <Marquee>
           {data.map((item) => (
             <a href={item.url} target="_blank">
@@ -39,7 +42,7 @@ export default function Product(props) {
                 alt={`${new Date().getFullYear()}无限流量卡`}
                 width={400}
                 height={300}
-                className="rounded-3xl rounded-tl-3xl m-2 w-16 h-16 md:w-80 md:h-80 "
+                className="rounded-3xl rounded-tl-3xl m-2 w-20 h-20 md:w-80 md:h-80 "
               />
             </a>
           ))}
