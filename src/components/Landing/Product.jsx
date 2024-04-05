@@ -4,8 +4,8 @@ import { RoughNotation } from "react-rough-notation";
 
 export default function Product() {
   return (
-    <section class=" max-w-[70vw]  mx-auto grid mb-10 p-10">
-      <div class="text-center text-white text-4xl">
+    <section class="w-[80vw] mx-auto grid mb-10 md:p-10">
+      <div class="text-xl text-center text-white md:text-4xl">
         <div>
           <RoughNotation
             type="highlight"
@@ -20,7 +20,7 @@ export default function Product() {
           目前我们的产品已经覆盖全行业链，包括纯流量卡、随身wifi、手机靓号等等
         </p>
       </div>
-      <div>
+      <div class="w-[80vw]">
         <Marquee>
           {Array.from({ length: 18 }, (_, i) => i + 1).map((item) => (
             <Image
@@ -28,7 +28,7 @@ export default function Product() {
               alt={`${new Date().getFullYear()}无限流量卡`}
               width={400}
               height={300}
-              className="rounded-3xl rounded-tl-3xl m-2 w-80 h-80"
+              className="rounded-3xl rounded-tl-3xl m-2 w-16 h-16  md:w-80 md:h-80 "
             />
           ))}
         </Marquee>

@@ -5,8 +5,8 @@ import { Image } from "@nextui-org/react";
 
 export default function Cooperate() {
   return (
-    <section class="w-8/12 mx-auto">
-      <div class="text-center text-white text-4xl">
+    <section class="md:w-8/12 mx-auto">
+      <div class="text-xl text-center text-white md:text-4xl">
         <RoughNotation
           type="highlight"
           show={true}

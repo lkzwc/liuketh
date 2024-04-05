@@ -28,8 +28,8 @@ const qas = [
 
 export default function QA() {
   return (
-      <section class="w-8/12 mx-auto p-10">
-      <div class="text-center text-white text-4xl">
+      <section class="md:w-8/12 mx-auto p-10">
+      <div class="text-xl text-center text-white md:text-4xl">
         <div>
           <RoughNotation
             type="highlight"
@@ -45,7 +45,7 @@ export default function QA() {
         </p>
       </div>
 
-      <div>
+      <div class=" w-full">
         <Accordion class="my-2" variant="bordered">
           {qas.map((item, index) => (
             <AccordionItem
