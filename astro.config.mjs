@@ -19,7 +19,13 @@ export default defineConfig({
   integrations: [
     react(),
     sitemap(),
-    mdx(),
+    mdx({
+      optimize: {
+        // 防止优化器处理 `h1` 元素
+        // 这些元素将被视为自定义组件
+        customComponentNames: ['table'],
+      },
+    }),
     tailwind()
   ],
   devToolbar: {
