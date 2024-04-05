@@ -2,28 +2,10 @@
 import { getCollection } from "astro:content";
 import Layout from "../../layouts/BaseLayout.astro";
 import { Image } from "astro:assets";
-import yd from "../../image/product/dragon.jpg";
-import lt from "../../image/product/flowcard.jpg";
-import dx from "../../image/product/dragon.jpg";
-import gd from "../../image/product/gd.jpg";
 import shop from "../../content/hotcard/_image/cangjie.jpg";
 import BlogList from "../../components/BlogList.astro";
 import type { GetStaticPathsOptions } from "astro";
-
-const type = [
-  {
-    url: lt,
-    alt: "中国联通流量卡",
-  },
-  {
-    url: dx,
-    alt: "中国电信流量卡",
-  },
-  {
-    url: gd,
-    alt: "中国广电流量卡",
-  },
-];
+import Play from "../../components/Landing/Play";
 
 export async function getStaticPaths({ paginate }: GetStaticPathsOptions) {
   const hotcard = await getCollection("hotcard");
@@ -37,8 +19,8 @@ export async function getStaticPaths({ paginate }: GetStaticPathsOptions) {
   );
 }
 
-const hotcard = await getCollection("hotcard");
 const { page } = Astro.props;
+const hotcard = await getCollection("hotcard");
 ---
 
 <Layout
@@ -46,36 +28,30 @@ const { page } = Astro.props;
   desc="流量卡官方网站，提供流量卡的申请、办理、充值、售后等功能"
 >
   <div class="hidden md:flex gap-5 mx-5 m-10">
-    <!-- {
-      type.map((item) => (
-        <Image
-          src={item.url}
-          alt={item.alt}
-          width="300"
-          height="150"
-          class="rounded-xl"
-        />
-      ))
-    } -->
-
-    <a href="http://tc.liuketh.cn" target="_blank">
-      <Image
-        src="https://mp-dbef5695-ba44-4423-8102-319bf5c8c363.cdn.bspapp.com/gw/ka.png"
-        alt="流量卡图片"
-        width="1200"
-        height="150"
-        class="rounded-xl"
-      />
-    </a>
+    <Play
+      client:only="react"
+      title="流量卡"
+      desc="提供流量卡的申请办理"
+      data={page.data.map((item) => ({
+        image: item.data.image.url?.src,
+        url: `/hotcard/${item.slug}`,
+      }))}
+    />
   </div>
   <p slot="shop" class="w-full">
-      <span>🛍️免费办卡</span>
-      <a href="http://tc.liuketh.cn" target="_blank">
-        <Image src={shop} width={300} height={30} alt="19元100Ｇ流量卡" class="rounded-md mt-3" />
-      </a>
+    <span>🛍️免费办卡</span>
+    <a href="http://tc.liuketh.cn" target="_blank">
+      <Image
+        src={shop}
+        width={300}
+        height={30}
+        alt="19元100Ｇ流量卡"
+        class="rounded-md mt-3"
+      />
+    </a>
   </p>
   <!-- //client:load  -->
   <div>
-    <BlogList list={hotcard} path="/hotcard" page={page} />
+    <BlogList path="/hotcard" page={page} />
   </div>
 </Layout>
