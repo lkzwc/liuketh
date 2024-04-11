@@ -6,7 +6,7 @@ import react from "@astrojs/react";
 
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://liuketh.cn',
+  site: 'https://www.liuketh.cn',
   build: {
     inlineStylesheets: 'never'
   },
