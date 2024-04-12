@@ -17,7 +17,7 @@ const { path, page } = Astro.props;
       <div class="p-5">
         <a
           class="text-lg font-bold text-blue-600 hover:underline" // 使用text-lg来适应不同屏幕大小的标题
-          href={`${path}${item.slug}`}
+          href={`${path}/${item.slug}`}
         >
           {item.data.title}
         </a>
