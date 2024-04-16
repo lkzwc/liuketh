@@ -13,6 +13,7 @@ const url = new URL(Astro.url.pathname, Astro.site).toString();
 ---
 
 <html lang="zh-cn">
+
 	<head>
 		<meta charset="utf-8" />
 		<meta name="google-adsense-account" content="ca-pub-8701466885719364">
@@ -45,6 +46,10 @@ const url = new URL(Astro.url.pathname, Astro.site).toString();
 	</head>
 	<body>
 		<Header />
+		{Astro.url.pathname !=='/' &&  <div class="p-5">
+			<a href="/" class=" underline text-blue-700 " target="_parent">Home</a>{` ⯈  `}{pageTitle}
+		</div>}
+		
 		<main>
 			<slot />
 		</main>

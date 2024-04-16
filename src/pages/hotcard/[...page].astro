@@ -24,13 +24,13 @@ const hotcard = await getCollection("hotcard");
 ---
 
 <Layout
-  pageTitle="流量卡官网"
-  desc="流量卡官方网站，提供流量卡的申请、办理、充值、售后等功能"
+  pageTitle="流量卡"
+  desc="流量卡官网，提供流量卡的申请、办理、充值、售后等功能"
 >
   <div class="hidden md:flex gap-5 mx-5 m-10">
     <Play
       client:only="react"
-      title="流量卡"
+      title="流量卡官网"
       desc="提供流量卡的申请办理"
       data={page.data.map((item: any) => ({
         image: item.data.image.url?.src,

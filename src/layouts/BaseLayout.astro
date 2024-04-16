@@ -4,67 +4,88 @@ import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
 import "../styles/global.css";
 import fs from "../image/index/fs.png";
-import Tags from '../pages/tags/index.astro'
-
+import Tags from "../pages/tags/index.astro";
 
 const { pageTitle, desc } = Astro.props;
 
 const makeTitle = pageTitle
-	? pageTitle + " | " + "流客科技"
-	: "流量卡官网 | 流客科技";
+  ? pageTitle + " | " + "流客科技"
+  : "流量卡官网 | 流客科技";
 
 const url = new URL(Astro.url.pathname, Astro.site).toString();
-
 ---
 
 <html lang="zh-cn">
-	<head>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="theme-color"/>
-		<meta name="generator" content={Astro.generator} />
-		<meta name="description" content={desc} />
-		<title>{makeTitle}</title>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="theme-color" />
+    <meta name="generator" content={Astro.generator} />
+    <meta name="description" content={desc} />
+    <title>{makeTitle}</title>
 
-		<meta property="og:title" content={makeTitle}>
-		<meta property="og:type" content="website">
-		<meta property="og:url" content={url}>
-		<meta property="og:description" content={desc}>
-		<meta property="og:site_name" content={makeTitle}>
-		<meta property="og:image" content="https://astro.build/og/astro.jpg">
-	</head>
-	<body>
-		<Header />
-		<main class="flex flex-col xl:flex-row">
-			<div class="flex-1 xl:mx-20 my-5">
-			  <slot /> <!-- 此处是页面主要内容 -->
-			</div>
-			<aside class="hidden xl:block xl:flex-none xl:w-1/5 bg-slate-200 m-10 p-5 text-xl rounded-lg shadow-xl">
-			  <div class="space-y-4">
-				<slot name="shop" />
-				<section class="grid gap-5 ">
-				  <h2 class="font-semibold float-left">🏘️ 粉丝群</h2>
-				  <Image
-					src={fs}
-					width={300}
-					height={300}
-					alt="粉丝福利微信群"
-					class="w-full object-cover " 
-				  />
-				</section>
-				
-				<section class="grid text-left gap-5 ">
-				  <h2 class="font-semibold">📱 联系方式</h2>
-				  <a href="tel:15556355573" class="hover:underline text-center">155563 55573</a>
-				</section>
-				
-				<div class="border-teal-500 border-2 rounded-2xl p-3">
-				  <Tags />
-				</div>
-			  </div>
-			</aside>
-		  </main>
-		  
-		<Footer />
-	</body>
+    <meta property="og:title" content={makeTitle} />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={url} />
+    <meta property="og:description" content={desc} />
+    <meta property="og:site_name" content={makeTitle} />
+    <meta property="og:image" content="https://astro.build/og/astro.jpg" />
+  </head>
+  <body>
+    <Header />
+    <div class="p-5">
+      <a href="/" class="underline text-blue-700" target="_parent">Home</a>{
+        ` ⯈  `
+      }
+      {
+        Astro.url.pathname.split("/").length > 2 && (
+          <a
+            href={`/${Astro.url.pathname.split("/")[1]}`}
+            class=" underline text-blue-700 "
+            target="_parent"
+          >
+            {Astro.url.pathname.split("/")[1]}⯈
+          </a>
+        )
+      }
+      {pageTitle}
+    </div>
+
+    <main class="flex flex-col xl:flex-row">
+      <div class="flex-1 xl:mx-20 my-5">
+        <slot />
+        <!-- 此处是页面主要内容 -->
+      </div>
+      <aside
+        class="hidden xl:block xl:flex-none xl:w-1/5 bg-slate-200 m-10 p-5 text-xl rounded-lg shadow-xl"
+      >
+        <div class="space-y-4">
+          <slot name="shop" />
+          <section class="grid gap-5">
+            <h2 class="font-semibold float-left">🏘️ 粉丝群</h2>
+            <Image
+              src={fs}
+              width={300}
+              height={300}
+              alt="粉丝福利微信群"
+              class="w-full object-cover"
+            />
+          </section>
+
+          <section class="grid text-left gap-5">
+            <h2 class="font-semibold">📱 联系方式</h2>
+            <a href="tel:15556355573" class="hover:underline text-center"
+              >155563 55573</a
+            >
+          </section>
+
+          <div class="border-teal-500 border-2 rounded-2xl p-3">
+            <Tags />
+          </div>
+        </div>
+      </aside>
+    </main>
+
+    <Footer />
+  </body>
 </html>

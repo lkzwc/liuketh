@@ -22,7 +22,6 @@ export async function getStaticPaths() {
 const { tag } = Astro.params;
 const { posts } = Astro.props;
 
-console.log("posts", JSON.stringify(posts[0]));
 ---
 
 <BaseLayout pageTitle={tag} desc="文章标签，帮你快速找到相关文章">
