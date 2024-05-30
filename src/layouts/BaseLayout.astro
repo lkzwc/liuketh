@@ -3,7 +3,7 @@ import { Image } from "astro:assets";
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
 import "../styles/global.css";
-import fs from "../image/index/fs.png";
+import me from "../image/index/me.webp";
 import Tags from "../pages/tags/index.astro";
 
 const { pageTitle, desc } = Astro.props;
@@ -62,9 +62,9 @@ const url = new URL(Astro.url.pathname, Astro.site).toString();
         <div class="space-y-4">
           <slot name="shop" />
           <section class="grid gap-5">
-            <h2 class="font-semibold float-left">🏘️ 粉丝群</h2>
+            <h2 class="font-semibold float-left">🏘️ 招商服务</h2>
             <Image
-              src={fs}
+              src={me}
               width={300}
               height={300}
               alt="粉丝福利微信群"
