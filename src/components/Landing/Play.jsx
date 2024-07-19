@@ -7,8 +7,8 @@ export default function Product(props) {
     title = "我们的产品",
     home = false,
     desc = "目前我们的产品已经覆盖全行业链，包括纯流量卡、随身wifi、手机靓号等等",
-    data = Array.from({ length: 18 }, (_, i) => ({
-      image: `https://mp-dbef5695-ba44-4423-8102-319bf5c8c363.cdn.bspapp.com/gw/${
+    data = Array.from({ length: 7 }, (_, i) => ({
+      image: `https://mp-5424e9b8-2652-414a-b1c5-bfc089ca2fbe.cdn.bspapp.com/gw/${
         i + 1
       }.webp`,
       url: "http://tc.liuketh.cn",
