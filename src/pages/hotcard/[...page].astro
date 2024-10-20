@@ -29,8 +29,8 @@ const { page } = Astro.props;
   <div class="hidden md:flex gap-5 mx-5 m-10">
     <Play
       client:only="react"
-      title="流量卡官网"
-      desc="提供流量卡的申请办理"
+      title="随身WiFi"
+      desc="提供随身WiFi设备的申请办理"
       data={page.data.map((item: any) => ({
         image: item.data.image.url?.src,
         url: `/hotcard/${item.slug}`,
