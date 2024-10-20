@@ -6,6 +6,7 @@ import wifi from "../../image/product/wifi.webp";
 import cloudwifi from "../../image/product/cloudwifi2.webp";
 import BlogList from "../../components/BlogList.astro";
 import type { GetStaticPathsOptions } from "astro";
+import Play from "../../components/Landing/Play";
 
 const type = [
   {
@@ -18,18 +19,21 @@ const type = [
   },
 ];
 
-
-export async function getStaticPaths({ paginate }: GetStaticPathsOptions) { 
+export async function getStaticPaths({ paginate }: GetStaticPathsOptions) {
   const wifi = await getCollection("wifi");
   return paginate(wifi, { pageSize: 5 });
- }
+}
 
- const wifis = await getCollection("wifi");
- const { page } = Astro.props;
+const wifis = await getCollection("wifi");
+const { page } = Astro.props;
 ---
-<Layout pageTitle="随身wifi" desc="随身wifi、云路由、智能设备，让你告别没网络、网速慢的问题">
+
+<Layout
+  pageTitle="随身wifi"
+  desc="随身wifi、云路由、智能设备，让你告别没网络、网速慢的问题"
+>
   <div class="hidden md:flex gap-5 mx-5 m-10">
-    {
+    <!-- {
       type.map((item) => (
         <Image
           src={item.url}
@@ -39,10 +43,19 @@ export async function getStaticPaths({ paginate }: GetStaticPathsOptions) {
           class="rounded-xl"
         />
       ))
-    }
+    } -->
+    <Play
+      client:only="react"
+      title="流量卡官网"
+      desc="提供流量卡的申请办理"
+      data={page.data.map((item: any) => ({
+        image: item.data.image.url?.src,
+        url: `/wifi/${item.slug}`,
+      }))}
+    />
   </div>
   <!-- //client:load  -->
   <div>
-    <BlogList list={wifis} path="/wifi" page={page}  />
+    <BlogList list={wifis} path="/wifi" page={page} />
   </div>
 </Layout>

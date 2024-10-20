@@ -20,7 +20,6 @@ export async function getStaticPaths({ paginate }: GetStaticPathsOptions) {
 }
 
 const { page } = Astro.props;
-const hotcard = await getCollection("hotcard");
 ---
 
 <Layout
@@ -45,7 +44,7 @@ const hotcard = await getCollection("hotcard");
         src={shop}
         width={300}
         height={30}
-        alt="19元100Ｇ流量卡"
+        alt="19元100G流量卡"
         class="rounded-md mt-3"
       />
     </a>

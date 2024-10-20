@@ -11,13 +11,13 @@ const blogCollection = defineCollection({
       pubDate: z.string(),
       description: z.string(),
       cover:  image().refine((img) => img.width >= 580, {
-        message: "封面图片必须至少 1080 像素宽！",
+        message: "封面图片必须至少 580 像素宽！",
       }),
       coverAlt: z.string(),
       author: z.string(),
       image: z.object({
         url:  image().refine((img) => img.width >= 580, {
-          message: "封面图片必须至少 1080 像素宽！",
+          message: "封面图片必须至少 580 像素宽！",
           }).or(z.string()).optional(),
         alt: z.string()
       }),
@@ -32,13 +32,13 @@ const blogCollection = defineCollection({
       pubDate: z.string(),
       description: z.string(),
       cover:  image().refine((img) => img.width >= 580, {
-        message: "封面图片必须至少 1080 像素宽！",
+        message: "封面图片必须至少 580 像素宽！",
       }),
       coverAlt: z.string(),
       author: z.string(),
       image: z.object({
         url: image().refine((img) => img.width >= 580, {
-          message: "封面图片必须至少 1080 像素宽！",
+          message: "封面图片必须至少 580 像素宽！",
           }).or(z.string()).optional(),
         alt: z.string()
       }),
