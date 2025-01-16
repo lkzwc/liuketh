@@ -1,93 +1,103 @@
 ---
-import Title from "./Title";
-import { Like, Wifi, SimCard, Phone, Wallet, PayCode } from "@icon-park/react";
+import { Image } from "astro:assets";
+import { Wifi, Like, Headset, Rocket } from '@icon-park/react';
+import type { Icon } from '@icon-park/react/lib/runtime';
 
-// 统一的图标配置
-const iconConfig = {
-  theme: "multi-color",
-  size: "36",  // 增大图标尺寸
-  strokeWidth: 2,
-  className: "transition-transform hover:scale-110", // 添加悬停效果
-};
+type FeatureIcon = 'wifi' | 'like' | 'headset' | 'rocket';
 
-// 为不同类型的图标定义不同的颜色主题
-const iconColors = {
-  simcard: ['#4F46E5', '#818CF8', '#C7D2FE', '#3730A3'],   // 紫色主题
-  phone: ['#059669', '#34D399', '#A7F3D0', '#065F46'],     // 绿色主题
-  like: ['#DC2626', '#F87171', '#FECACA', '#991B1B'],      // 红色主题
-  wifi: ['#2563EB', '#60A5FA', '#BFDBFE', '#1E40AF'],      // 蓝色主题
-  wallet: ['#D97706', '#FBBF24', '#FDE68A', '#92400E'],    // 橙色主题
-  paycode: ['#4F46E5', '#818CF8', '#C7D2FE', '#3730A3'],   // 紫色主题
-};
+interface Feature {
+  title: string;
+  description: string;
+  icon: FeatureIcon;
+  color: string;
+}
 
-const data = [
+const features: Feature[] = [
   {
-    title: "流量卡",
-    desc: "提供手机设备上网的纯流量卡，套餐多样化，随用随充",
-    iconType: "simcard"
+    title: "高速网络",
+    description: "4G/5G双模，全国漫游，高速上网",
+    icon: "wifi",
+    color: "blue"
   },
   {
-    title: "手机靓号",
-    desc: "提供免费靓号、付费靓号、靓号定制服务",
-    iconType: "phone"
+    title: "优质服务",
+    description: "24小时在线客服，快速响应",
+    icon: "like",
+    color: "green"
   },
   {
-    title: "内部套餐卡",
-    desc: "提供手机设备上网的19元100G流量卡",
-    iconType: "like"
+    title: "专业支持",
+    description: "专业技术团队，解决各类问题",
+    icon: "headset",
+    color: "purple"
   },
   {
-    title: "互联网卡",
-    desc: "提供腾讯网卡、阿里宝卡等卡种的申请服务",
-    iconType: "wifi"
-  },
-  {
-    title: "话费充值",
-    desc: "提供全国话费9折充值服务",
-    iconType: "wallet"
-  },
-  {
-    title: "云闪付",
-    desc: "可为商家和个人开通云闪付聚合支付功能",
-    iconType: "paycode"
-  },
+    title: "快速发货",
+    description: "全国次日达，安全可靠",
+    icon: "rocket",
+    color: "orange"
+  }
 ];
+
+const iconColors: Record<FeatureIcon, string[]> = {
+  wifi: ["#60A5FA"],
+  like: ["#34D399"],
+  headset: ["#A78BFA"],
+  rocket: ["#F97316"]
+};
+
+const iconComponents: Record<FeatureIcon, Icon> = {
+  wifi: Wifi,
+  like: Like,
+  headset: Headset,
+  rocket: Rocket
+};
+
+const baseIconConfig = {
+  theme: "outline",
+  size: "32",
+  strokeWidth: 3,
+  className: "transition-transform duration-300 group-hover:scale-110"
+};
 ---
 
-<section class="my-10">
-  <Title
-    title="我们能提供什么"
-    desc="我们提供的服务以及产品有哪些呢？"
-    client:only="react"
-  />
-  <div class="mx-auto md:w-[66vw] w-[88vw] grid md:grid-cols-3 md:mb-10 gap-6">
-    {
-      data.map((item) => (
-        <div class="bg-white rounded-xl shadow-lg p-6 hover:shadow-2xl transition-all duration-300 hover:-translate-y-1">
-          <div class="flex justify-center mb-4">
-            {item.iconType === 'simcard' && (
-              <SimCard client:load {...iconConfig} fill={iconColors.simcard} />
-            )}
-            {item.iconType === 'phone' && (
-              <Phone client:load {...iconConfig} fill={iconColors.phone} />
-            )}
-            {item.iconType === 'like' && (
-              <Like client:load {...iconConfig} fill={iconColors.like} />
-            )}
-            {item.iconType === 'wifi' && (
-              <Wifi client:load {...iconConfig} fill={iconColors.wifi} />
-            )}
-            {item.iconType === 'wallet' && (
-              <Wallet client:load {...iconConfig} fill={iconColors.wallet} />
-            )}
-            {item.iconType === 'paycode' && (
-              <PayCode client:load {...iconConfig} fill={iconColors.paycode} />
-            )}
+<section class="py-16 bg-gray-50">
+  <div class="container mx-auto px-4">
+    <div class="text-center mb-12">
+      <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+        我们的优势
+      </h2>
+      <div class="w-24 h-1 bg-gradient-to-r from-blue-600 to-blue-700 mx-auto mb-6"></div>
+      <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+        专业的服务团队，为您提供全方位的支持
+      </p>
+    </div>
+
+    <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-4">
+      {features.map((feature) => {
+        const IconComponent = iconComponents[feature.icon];
+        return (
+          <div class="group bg-white p-6 rounded-xl shadow-md hover:shadow-lg transition-all duration-300">
+            <div class={`w-14 h-14 rounded-lg bg-${feature.color}-100 flex items-center justify-center mb-6`}>
+              <IconComponent 
+                theme="outline" 
+                size="32" 
+                fill={iconColors[feature.icon]} 
+                strokeWidth={3}
+                className="transition-transform duration-300 group-hover:scale-110"
+              />
+            </div>
+            <h3 class="text-xl font-bold text-gray-900 mb-3">{feature.title}</h3>
+            <p class="text-gray-600">{feature.description}</p>
           </div>
-          <h3 class="text-xl font-bold mb-2 text-gray-800">{item.title}</h3>
-          <p class="text-gray-600 text-sm leading-relaxed">{item.desc}</p>
-        </div>
-      ))
-    }
+        );
+      })}
+    </div>
   </div>
 </section>
+
+<style>
+  .gradient-mask {
+    mask-image: linear-gradient(to bottom, black 50%, transparent 100%);
+  }
+</style>
