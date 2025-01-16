@@ -3,20 +3,29 @@ import { getCollection } from "astro:content";
 import Layout from "../../layouts/BaseLayout.astro";
 import { Image } from "astro:assets";
 import wifi from "../../image/product/wifi.webp";
-import cloudwifi from "../../image/product/cloudwifi2.webp";
+import wifi2 from "../../image/product/wifi2.webp";
 import BlogList from "../../components/BlogList.astro";
 import type { GetStaticPathsOptions } from "astro";
-import Play from "../../components/Landing/Play";
 
-const type = [
+const products = [
   {
-    url: wifi,
-    alt: "随身wifi",
+    id: 1,
+    name: '随身WiFi',
+    description: '便携式WiFi设备，随时随地高速上网',
+    image: wifi,
+    price: '¥299',
+    features: ['4G/5G双模', '8小时续航', '支持多设备'],
+    link: 'https://work.weixin.qq.com/gm/2f7011219a43a467a4e178a259797647'
   },
   {
-    url: cloudwifi,
-    alt: "云路由",
-  },
+    id: 2,
+    name: '云路由',
+    description: '智能路由器，打造家庭网络中心',
+    image: wifi2,
+    price: '¥399',
+    features: ['双频WiFi6', '智能组网', 'AI防护'],
+    link: 'https://work.weixin.qq.com/gm/2f7011219a43a467a4e178a259797647'
+  }
 ];
 
 export async function getStaticPaths({ paginate }: GetStaticPathsOptions) {
@@ -32,30 +41,69 @@ const { page } = Astro.props;
   pageTitle="随身wifi"
   desc="随身wifi、云路由、智能设备，让你告别没网络、网速慢的问题"
 >
-  <div class="hidden md:flex gap-5 mx-5 m-10">
-    <!-- {
-      type.map((item) => (
-        <Image
-          src={item.url}
-          alt={item.alt}
-          width="300"
-          height="150"
-          class="rounded-xl"
-        />
-      ))
-    } -->
-    <Play
-      client:only="react"
-      title="流量卡官网"
-      desc="提供流量卡的申请办理"
-      data={page.data.map((item: any) => ({
-        image: item.data.image.url?.src,
-        url: `/wifi/${item.slug}`,
-      }))}
-    />
-  </div>
-  <!-- //client:load  -->
-  <div>
-    <BlogList list={wifis} path="/wifi" page={page} />
-  </div>
+  <!-- 产品展示区域 -->
+  <section class="bg-gradient-to-b from-gray-50 to-white">
+    <div class="container mx-auto px-4 py-12">
+      <div class="text-center mb-10">
+        <h2 class="text-2xl md:text-3xl font-bold text-gray-900 mb-2">热门产品</h2>
+        <div class="w-20 h-1 bg-blue-600 mx-auto"></div>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
+        {products.map(product => (
+          <div class="bg-white rounded-lg shadow-lg hover:shadow-xl transition-all duration-300">
+            <div class="relative aspect-[16/9] overflow-hidden rounded-t-lg">
+              <Image
+                src={product.image}
+                alt={product.name}
+                width={400}
+                height={225}
+                class="w-full h-full object-cover"
+              />
+            </div>
+            <div class="p-6">
+              <div class="flex justify-between items-center mb-3">
+                <h3 class="text-base font-bold text-gray-900">{product.name}</h3>
+                <span class="text-sm font-semibold text-blue-600">{product.price}</span>
+              </div>
+              <p class="text-sm text-gray-600 mb-4">{product.description}</p>
+              <div class="bg-gray-50 rounded-lg p-4 mb-4">
+                <h4 class="text-sm font-semibold text-gray-900 mb-3">产品特色</h4>
+                <div class="flex justify-between items-center">
+                  {product.features.map(feature => (
+                    <div class="flex items-center">
+                      <svg class="w-5 h-5 text-blue-600 mr-2" viewBox="0 0 20 20" fill="currentColor">
+                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                      </svg>
+                      <span class="text-sm font-medium text-gray-700">{feature}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+              <a
+                href={product.link}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="block w-full text-center py-2.5 px-4 rounded-lg bg-blue-600 text-white text-sm font-medium hover:bg-blue-700 transition-colors duration-200"
+              >
+                了解更多
+              </a>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- 博客文章区域 -->
+  <section class="bg-gray-50 py-12">
+    <div class="container mx-auto px-4">
+      <div class="text-center mb-10">
+        <h2 class="text-2xl md:text-3xl font-bold text-gray-900 mb-2">相关文章</h2>
+        <div class="w-20 h-1 bg-blue-600 mx-auto"></div>
+      </div>
+      <div class="max-w-5xl mx-auto">
+        <BlogList list={wifis} path="/wifi" page={page} />
+      </div>
+    </div>
+  </section>
 </Layout>

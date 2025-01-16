@@ -1,39 +1,55 @@
 ---
-import { Image } from "astro:assets";
 import Title from "./Title";
-import { Like } from "@icon-park/react";
-import { Bookmark } from "@icon-park/react";
+import { Like, Wifi, SimCard, Phone, Wallet, PayCode } from "@icon-park/react";
+
+// 统一的图标配置
+const iconConfig = {
+  theme: "multi-color",
+  size: "36",  // 增大图标尺寸
+  strokeWidth: 2,
+  className: "transition-transform hover:scale-110", // 添加悬停效果
+};
+
+// 为不同类型的图标定义不同的颜色主题
+const iconColors = {
+  simcard: ['#4F46E5', '#818CF8', '#C7D2FE', '#3730A3'],   // 紫色主题
+  phone: ['#059669', '#34D399', '#A7F3D0', '#065F46'],     // 绿色主题
+  like: ['#DC2626', '#F87171', '#FECACA', '#991B1B'],      // 红色主题
+  wifi: ['#2563EB', '#60A5FA', '#BFDBFE', '#1E40AF'],      // 蓝色主题
+  wallet: ['#D97706', '#FBBF24', '#FDE68A', '#92400E'],    // 橙色主题
+  paycode: ['#4F46E5', '#818CF8', '#C7D2FE', '#3730A3'],   // 紫色主题
+};
 
 const data = [
   {
     title: "流量卡",
     desc: "提供手机设备上网的纯流量卡，套餐多样化，随用随充",
-    // icon: <Like theme="multi-color" size="24" fill={['#333' ,'#2F88FF' ,'#FFF' ,'#43CCF8']} />
+    iconType: "simcard"
   },
   {
     title: "手机靓号",
     desc: "提供免费靓号、付费靓号、靓号定制服务",
-    // icon: <Like theme="multi-color" size="24" fill={['#333' ,'#2F88FF' ,'#FFF' ,'#43CCF8']}/>
+    iconType: "phone"
   },
   {
     title: "内部套餐卡",
-    desc: "提供手机设备上网的19元100G流量卡"
-    // src: <Like theme="multi-color" size="24" fill={['#333' ,'#2F88FF' ,'#FFF' ,'#43CCF8']}/>
+    desc: "提供手机设备上网的19元100G流量卡",
+    iconType: "like"
   },
   {
     title: "互联网卡",
     desc: "提供腾讯网卡、阿里宝卡等卡种的申请服务",
-    // src: <Like theme="multi-color" size="24" fill={['#333' ,'#2F88FF' ,'#FFF' ,'#43CCF8']}/>
+    iconType: "wifi"
   },
   {
     title: "话费充值",
     desc: "提供全国话费9折充值服务",
-    // src: <Like theme="multi-color" size="24" fill={['#333' ,'#2F88FF' ,'#FFF' ,'#43CCF8']}/>
+    iconType: "wallet"
   },
   {
     title: "云闪付",
     desc: "可为商家和个人开通云闪付聚合支付功能",
-    // src: <Like theme="multi-color" size="24" fill={['#333' ,'#2F88FF' ,'#FFF' ,'#43CCF8']}/>
+    iconType: "paycode"
   },
 ];
 ---
@@ -44,23 +60,32 @@ const data = [
     desc="我们提供的服务以及产品有哪些呢？"
     client:only="react"
   />
-  <div class="mx-auto  md:w-[66vw] w-[88vw] grid md:grid-cols-3 md:mb-10">
+  <div class="mx-auto md:w-[66vw] w-[88vw] grid md:grid-cols-3 md:mb-10 gap-6">
     {
-      data.map((item, index) => (
-        <div
-        class="shadow-xl m-5 text-center p-3"
-          // class={`
-          //     flex flex-col items-center text-center px-8 py-6 border-b
-          //     ${index === 0 ? "md:border-r" : ""}
-          //     ${index === 1 ? "lg:border-r" : ""}
-          //     ${index === 2 ? "md:border-r lg:border-r-0" : ""}
-          //     ${index === 3 ? "lg:border-b-0 lg:border-r" : ""}
-          //     ${index === 4 ? "md:border-b-0 md:border-r" : ""}
-          //     ${index === 5 ? "border-b-0 border-r-0" : ""}
-          //   `}
-        >
-          <p class="m-2 text-lg font-semibold ">{item.title}</p>
-          <span>{item.desc}</span>
+      data.map((item) => (
+        <div class="bg-white rounded-xl shadow-lg p-6 hover:shadow-2xl transition-all duration-300 hover:-translate-y-1">
+          <div class="flex justify-center mb-4">
+            {item.iconType === 'simcard' && (
+              <SimCard client:load {...iconConfig} fill={iconColors.simcard} />
+            )}
+            {item.iconType === 'phone' && (
+              <Phone client:load {...iconConfig} fill={iconColors.phone} />
+            )}
+            {item.iconType === 'like' && (
+              <Like client:load {...iconConfig} fill={iconColors.like} />
+            )}
+            {item.iconType === 'wifi' && (
+              <Wifi client:load {...iconConfig} fill={iconColors.wifi} />
+            )}
+            {item.iconType === 'wallet' && (
+              <Wallet client:load {...iconConfig} fill={iconColors.wallet} />
+            )}
+            {item.iconType === 'paycode' && (
+              <PayCode client:load {...iconConfig} fill={iconColors.paycode} />
+            )}
+          </div>
+          <h3 class="text-xl font-bold mb-2 text-gray-800">{item.title}</h3>
+          <p class="text-gray-600 text-sm leading-relaxed">{item.desc}</p>
         </div>
       ))
     }

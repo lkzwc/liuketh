@@ -57,12 +57,12 @@ const url = new URL(Astro.url.pathname, Astro.site).toString();
         <!-- 此处是页面主要内容 -->
       </div>
       <aside
-        class="hidden xl:block xl:flex-none xl:w-1/5 bg-slate-200 m-10 p-5 text-xl rounded-lg shadow-xl"
+        class="hidden xl:block xl:flex-none xl:w-1/5 bg-slate-200 m-10 p-5 rounded-lg shadow-xl text-base"
       >
         <div class="space-y-4">
           <slot name="shop" />
           <section class="grid gap-5">
-            <h2 class="font-semibold float-left">🏘️ 招商服务</h2>
+            <span class="font-semibold float-left">🏘️ 招商服务</span>
             <Image
               src={me}
               width={300}
@@ -73,7 +73,7 @@ const url = new URL(Astro.url.pathname, Astro.site).toString();
           </section>
 
           <section class="grid text-left gap-5">
-            <h2 class="font-semibold">📱 联系方式（同微）</h2>
+            <span class="font-semibold">📱 联系方式（同微）</span>
             <a href="tel:15556355573" class="hover:underline text-center font-medium"
               >155563 55573</a
             >

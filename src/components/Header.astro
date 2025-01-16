@@ -4,54 +4,83 @@ import logo from "../image/index/logo_w.png";
 ---
 
 <header>
-  <nav
-    class="bg-gray-800 flex items-center justify-between p-5  text-white font"
-  >
-    <div class="hidden lg:flex">
-      <a href="/">
-        <Image class="h-16 w-60 rounded-lg" width={231} height={64} src={logo} alt="Logo" />
-      </a>
-      <div class="sm:flex space-x-5 mt-1 ml-3 text-3xl p-3 font-medium basis-4/5 ">
-        <a class="hover:bg-blue-500 hover:scale-125 rounded-md" href="/hotcard">流量卡</a>
-        <a class="hover:bg-blue-500 hover:scale-125 rounded-md" href="/wifi">随身Wifi </a>
-        <a class="hover:bg-blue-500 hover:scale-125 rounded-md" href="/product">最新产品 </a>
-        <a class="hover:bg-blue-500 hover:scale-125 rounded-md" href="/agent">代理合作 </a>
-        <a class="hover:bg-blue-500 hover:scale-125 rounded-md" href="/news">最新资讯</a>
-        <a class="hover:bg-blue-500 hover:scale-125 rounded-md" href="/about">关于我们</a>
+  <nav class="bg-gray-800 px-4 py-3">
+    <div class="container mx-auto flex items-center justify-between">
+      <!-- Logo -->
+      <div class="flex items-center">
+        <a href="/" class="flex-shrink-0">
+          <Image class="h-14 w-auto rounded-lg" width={231} height={64} src={logo} alt="Logo" />
+        </a>
       </div>
-    </div>
 
-    <!-- Mobile Menu -->
-    <div class="grid lg:hidden ">
-      <a href="/">
-        <Image class="h-15 w-40 rounded-lg lg:hidden" src={logo} alt="Logo" />
-      </a>
-      <div class="hidden grid w-[80vw] place-items-center text-2xl h-[50vh]" id="mobile-menu">
-        <a class="hover:bg-blue-500" href="/hotcard">流量卡</a>
-        <a class="hover:bg-blue-500" href="/wifi">随身Wifi</a>
-        <a class="hover:bg-blue-500" href="/product">最新产品</a>
-        <a class="hover:bg-blue-500" href="/agent">代理合作</a>
-        <a class="hover:bg-blue-500" href="/news">最新资讯</a>
-        <a class="hover:bg-blue-500" href="/about">关于我们</a>
+      <!-- Desktop Menu -->
+      <div class="hidden lg:flex items-center space-x-6">
+        <a href="/hotcard" class="nav-link">流量卡</a>
+        <a href="/wifi" class="nav-link">随身Wifi</a>
+        <a href="/product" class="nav-link">最新产品</a>
+        <a href="/agent" class="nav-link">代理合作</a>
+        <a href="/news" class="nav-link">最新资讯</a>
+        <a href="/about" class="nav-link">关于我们</a>
       </div>
-    </div>
 
-    <button
+      <!-- Mobile Menu Button -->
+      <button
         type="button"
-        class="text-gray-200 hover:text-white focus:text-white focus:outline-none right-0 lg:hidden"
+        class="lg:hidden text-gray-200 hover:text-white focus:text-white focus:outline-none"
         aria-label="toggle menu"
         id="togglemenu"
       >
         <svg viewBox="0 0 24 24" class="h-6 w-6 fill-current">
-          <path
-            fill-rule="evenodd"
-            d="M4 5h16v2H4V5zm0 6h16v2H4v-2zm0 6h16v2H4v-2z"></path>
+          <path fill-rule="evenodd" d="M4 5h16v2H4V5zm0 6h16v2H4v-2zm0 6h16v2H4v-2z"></path>
         </svg>
       </button>
+    </div>
+
+    <!-- Mobile Menu -->
+    <div class="hidden lg:hidden" id="mobile-menu">
+      <div class="px-2 pt-2 pb-3 space-y-1">
+        <a href="/hotcard" class="mobile-nav-link">流量卡</a>
+        <a href="/wifi" class="mobile-nav-link">随身Wifi</a>
+        <a href="/product" class="mobile-nav-link">最新产品</a>
+        <a href="/agent" class="mobile-nav-link">代理合作</a>
+        <a href="/news" class="mobile-nav-link">最新资讯</a>
+        <a href="/about" class="mobile-nav-link">关于我们</a>
+      </div>
+    </div>
   </nav>
-  <script>
-    document.getElementById("togglemenu")?.addEventListener("click", () => {
-      document.getElementById("mobile-menu")?.classList.toggle("hidden");
-    });
-  </script>
 </header>
+
+<style>
+  .nav-link {
+    @apply text-gray-300 text-[19px] tracking-wide font-medium hover:text-white px-4 py-2 rounded-lg transition-all duration-200;
+    text-shadow: 0 1px 2px rgba(0,0,0,0.1);
+    position: relative;
+  }
+  
+  .nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: 0;
+    height: 2px;
+    background: linear-gradient(90deg, #60A5FA, #3B82F6);
+    transition: all 0.3s ease;
+    transform: translateX(-50%);
+  }
+  
+  .nav-link:hover::after {
+    width: 80%;
+  }
+
+  .mobile-nav-link {
+    @apply block text-[19px] tracking-wide font-medium text-gray-300 hover:text-white hover:bg-gray-700 px-4 py-3 rounded-lg transition-all duration-200;
+    text-shadow: 0 1px 2px rgba(0,0,0,0.1);
+  }
+</style>
+
+<script>
+  document.getElementById("togglemenu")?.addEventListener("click", () => {
+    document.getElementById("mobile-menu")?.classList.toggle("hidden");
+  });
+</script>

@@ -2,44 +2,96 @@
 import { Image } from "astro:assets";
 
 const { path, page } = Astro.props;
-
 ---
-<div class="grid gap-5 p-5 grid-cols-1 ">
-  {page.data?.map((item: any) => (
-    <div class="flex flex-row bg-white shadow-lg rounded-xl overflow-hidden hover:scale-105">
-      <Image
-        src={item.data.image.url}
-        alt={item.data.image.alt}
-        width={500}
-        height={500}
-        class="w-full object-cover h-48  basis-1/3 max-w-[33%] flex-grow-2" // 设置图片宽度为100%，高度固定或自适应
-      />
-      <div class="p-5 basis-2/3">
-        <a
-          class="text-lg font-bold text-blue-600 hover:underline" // 使用text-lg来适应不同屏幕大小的标题
-          href={`${path}/${item.slug}`}
-        >
-          {item.data.title}
-        </a>
-        <div class="text-sm mt-2">
-          <p>{item.data.description}</p>
-          <div class="flex flex-wrap gap-2 mt-2">
+
+<div class="container py-12">
+  <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+    {page.data?.map((item: any) => (
+      <article class="card group">
+        <div class="relative overflow-hidden">
+          <Image
+            src={item.data.image.url}
+            alt={item.data.image.alt}
+            width={600}
+            height={400}
+            class="w-full h-48 object-cover transform group-hover:scale-105 transition-transform duration-300"
+          />
+          <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+        </div>
+        
+        <div class="p-6 space-y-4">
+          <div class="flex gap-2">
             {item.data.tags.map((tag: any) => (
-              <span class="bg-sky-300 py-1 px-2 rounded-xl text-xs">{tag}</span> // 使用text-xs来适应小屏幕尺寸
+              <span class="px-3 py-1 text-xs font-medium bg-primary-50 text-primary-700 rounded-full">
+                {tag}
+              </span>
             ))}
           </div>
-          <p class="mt-2">{item.data.pubDate}</p>
+          
+          <h3 class="text-xl font-bold line-clamp-2">
+            <a href={`${path}/${item.slug}`} class="hover:text-primary-600 transition-colors">
+              {item.data.title}
+            </a>
+          </h3>
+          
+          <p class="text-neutral-600 line-clamp-3">
+            {item.data.description}
+          </p>
+          
+          <div class="flex items-center justify-between pt-4 border-t border-neutral-100">
+            <time class="text-sm text-neutral-500" datetime={item.data.pubDate}>
+              {new Date(item.data.pubDate).toLocaleDateString('zh-CN', {
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric'
+              })}
+            </time>
+            <a href={`${path}/${item.slug}`} 
+               class="text-sm font-medium text-primary-600 hover:text-primary-700">
+              阅读更多 →
+            </a>
+          </div>
         </div>
-      </div>
-    </div>
-  ))}
+      </article>
+    ))}
+  </div>
+  
+  <!-- Pagination -->
+  {page.lastPage > 1 && (
+    <nav class="mt-12 flex justify-center gap-4">
+      {page.url.prev && (
+        <a href={page.url.prev} 
+           class="btn btn-secondary">
+          ← 上一页
+        </a>
+      )}
+      <span class="px-4 py-2 rounded-lg bg-primary-50 text-primary-700 font-medium">
+        {page.currentPage} / {page.lastPage}
+      </span>
+      {page.url.next && (
+        <a href={page.url.next} 
+           class="btn btn-secondary">
+          下一页 →
+        </a>
+      )}
+    </nav>
+  )}
 </div>
-{
-  <div class="flex justify-around">
-      <div>{page?.url?.prev && <a href={page?.url?.prev}><?xml version="1.0" encoding="UTF-8"?><svg width="47" height="47" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="6" y="6" width="36" height="36" rx="3" fill="#2F88FF" stroke="#333" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/><path d="M29 34L19 24L29 14" stroke="#FFF" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/></svg></a>}</div>
-      <span class="bg-[#2F88FF] w-20 rounded-lg text-center my-auto font-semibold">{page.currentPage}</span>
-      <div>{page?.url?.next && <a href={page.url.next} ><?xml version="1.0" encoding="UTF-8"?><svg width="47" height="47" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="6" y="6" width="36" height="36" rx="3" fill="#2F88FF" stroke="#333" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/><path d="M19 14L29 24L19 34" stroke="#FFF" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"/></svg></a>}</div>
-    </div>
-}
+
+<style>
+  .line-clamp-2 {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+  
+  .line-clamp-3 {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+</style>
 
 

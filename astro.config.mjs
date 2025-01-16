@@ -14,7 +14,9 @@ export default defineConfig({
     gfm: false
   },
   image: {
-    service: squooshImageService()
+    service: squooshImageService(),
+    domains: ['assets.website-files.com'],
+    format: ['webp', 'avif', 'png', 'jpg'],
   },
   integrations: [
     react(),

@@ -2,21 +2,37 @@
 import { getCollection } from "astro:content";
 import Layout from "../../layouts/BaseLayout.astro";
 import { Image } from "astro:assets";
-import shop from "../../content/hotcard/_image/cangjie.jpg";
+import neibu from "../../image/product/neibu.webp";
+import number from "../../image/product/number.webp";
 import BlogList from "../../components/BlogList.astro";
 import type { GetStaticPathsOptions } from "astro";
-import Play from "../../components/Landing/Play";
+
+const products = [
+  {
+    id: 1,
+    name: '内部套餐卡',
+    description: '超值套餐，专享优惠价，月租低至19元',
+    image: neibu,
+    price: '¥99起',
+    features: ['大流量', '低月租', '全国漫游'],
+    link: 'http://tc.liuketh.cn'
+  },
+  {
+    id: 2,
+    name: '靓号专区',
+    description: '精选靓号，彰显品味，支持在线选号',
+    image: number,
+    price: '询价',
+    features: ['号码靓丽', '可选性强', '全国可用'],
+    link: 'http://tc.liuketh.cn'
+  }
+];
 
 export async function getStaticPaths({ paginate }: GetStaticPathsOptions) {
   const hotcard = await getCollection("hotcard");
-  return paginate(
-    hotcard.sort(
-      (a, b) =>
-        new Date(b.data?.pubDate).getTime() -
-        new Date(a.data?.pubDate).getTime()
-    ),
-    { pageSize: 12 }
-  );
+  return paginate(hotcard.sort((a, b) =>
+    new Date(b.data?.pubDate).getTime() - new Date(a.data?.pubDate).getTime()
+  ), { pageSize: 12 });
 }
 
 const { page } = Astro.props;
@@ -26,31 +42,69 @@ const { page } = Astro.props;
   pageTitle="流量卡"
   desc="流量卡官网，提供流量卡的申请、办理、充值、售后等功能"
 >
-  <div class="hidden md:flex gap-5 mx-5 m-10">
-    <Play
-      client:only="react"
-      title="随身WiFi"
-      desc="提供随身WiFi设备的申请办理"
-      data={page.data.map((item: any) => ({
-        image: item.data.image.url?.src,
-        url: `/hotcard/${item.slug}`,
-      }))}
-    />
-  </div>
-  <p slot="shop" class="w-full">
-    <span>🛍️免费办卡</span>
-    <a href="http://tc.liuketh.cn" target="_blank">
-      <Image
-        src={shop}
-        width={300}
-        height={30}
-        alt="19元100G流量卡"
-        class="rounded-md mt-3"
-      />
-    </a>
-  </p>
-  <!-- //client:load  -->
-  <div>
-    <BlogList path="/hotcard" page={page} />
-  </div>
+  <!-- 产品展示区域 -->
+  <section class="bg-gradient-to-b from-gray-50 to-white">
+    <div class="container mx-auto px-4 py-12">
+      <div class="text-center mb-10">
+        <h2 class="text-2xl md:text-3xl font-bold text-gray-900 mb-2">热门产品</h2>
+        <div class="w-20 h-1 bg-blue-600 mx-auto"></div>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
+        {products.map(product => (
+          <div class="bg-white rounded-lg shadow-lg hover:shadow-xl transition-all duration-300">
+            <div class="relative aspect-[16/9] overflow-hidden rounded-t-lg">
+              <Image
+                src={product.image}
+                alt={product.name}
+                width={400}
+                height={225}
+                class="w-full h-full object-cover"
+              />
+            </div>
+            <div class="p-6">
+              <div class="flex justify-between items-center mb-3">
+                <h3 class="text-base font-bold text-gray-900">{product.name}</h3>
+                <span class="text-sm font-semibold text-blue-600">{product.price}</span>
+              </div>
+              <p class="text-sm text-gray-600 mb-4">{product.description}</p>
+              <div class="bg-gray-50 rounded-lg p-4 mb-4">
+                <h4 class="text-sm font-semibold text-gray-900 mb-3">产品特色</h4>
+                <div class="flex justify-between items-center">
+                  {product.features.map(feature => (
+                    <div class="flex items-center">
+                      <svg class="w-5 h-5 text-blue-600 mr-2" viewBox="0 0 20 20" fill="currentColor">
+                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                      </svg>
+                      <span class="text-sm font-medium text-gray-700">{feature}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+              <a
+                href={product.link}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="block w-full text-center py-2.5 px-4 rounded-lg bg-blue-600 text-white text-sm font-medium hover:bg-blue-700 transition-colors duration-200"
+              >
+                了解更多
+              </a>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- 博客文章区域 -->
+  <section class="bg-gray-50 py-12">
+    <div class="container mx-auto px-4">
+      <div class="text-center mb-10">
+        <h2 class="text-2xl md:text-3xl font-bold text-gray-900 mb-2">相关文章</h2>
+        <div class="w-20 h-1 bg-blue-600 mx-auto"></div>
+      </div>
+      <div class="max-w-5xl mx-auto">
+        <BlogList path="/hotcard" page={page} />
+      </div>
+    </div>
+  </section>
 </Layout>

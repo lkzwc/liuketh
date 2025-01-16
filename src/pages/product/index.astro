@@ -1,70 +1,159 @@
 ---
+import BaseLayout from "../../layouts/BaseLayout.astro";
 import { Image } from "astro:assets";
-import Layout from "../../layouts/BaseLayout.astro";
+import wifi from "../../image/product/wifi.webp";
+import wifi2 from "../../image/product/cloudwifi2.webp";
+import neibu from "../../image/product/neibu.webp";
+import number from "../../image/product/number.webp";
 
-import imageFree from "../../image/product/free.webp";
-import imageFlowcard from "../../image/product/flowcard.jpg";
-import imageNet from "../../image/product/net.webp";
-import imagePhoneNumber from "../../image/product/number.webp";
-import imageNeibu from "../../image/product/neibu.webp";
-import imageYl from '../../image/product/yl.jpg';
-
-const data = [
-    {
-        title: "精选手机靓号",
-        description: "精选手机靓号，各种号码定制、老板号等等，全国归属地任选",
-        img: imagePhoneNumber,
-        detail: "http://lh.liuketh.cn",
-    },
-    {
-        title: "互联网卡",
-        description:
-            "腾讯王卡、阿里宝卡、哔哩哔哩卡、蚂蚁宝卡、天神卡等互联网卡",
-        img: imageNet,
-        detail: "https://mall.xuankaba.com/xk/?p_id=0&keyWord=XFZET2",
-    },
-    {
-        title: "号卡",
-        description:
-            "套餐9元到39元的大流量卡长期内部套餐卡，可通讯，免费包邮到家",
-        img: imageNeibu,
-        detail: "https://172.lot-ml.com/Product/Index/108186",
-    },
-    {
-        title: "号卡+靓号15555",
-        description: "套餐9元到39元的大流量卡长期内部套餐卡，可通讯，免费包邮到家,更有1314、155555来靓号定制",
-        img: imageFlowcard,
-        detail: "http://hk.fs8888.top/index?k=U0xETnBKM3hjTW89",
-    },
-    {
-        title: "云闪付开通",
-        description: "个人、小微企业、企业支持开通云闪付，银联官方授权",
-        img: imageYl,
-        detail: "https://172.lot-ml.com/Product/Index/108186",
-    },
+const products = [
+  {
+    id: 1,
+    name: '随身WiFi',
+    description: '便携式WiFi，随时随地高速上网，支持4G/5G双模，8小时续航，多设备同时连接，让您在旅途中也能享受高速网络。',
+    image: wifi,
+    price: '¥299',
+    features: [
+      '4G/5G双模网络',
+      '8小时持久续航',
+      '支持多设备接入',
+      '全国漫游无限制',
+      '智能网络优化',
+      '便携小巧设计'
+    ],
+    link: 'https://work.weixin.qq.com/gm/2f7011219a43a467a4e178a259797647',
+    tag: '热销',
+    tagColor: 'from-red-500 to-red-600'
+  },
+  {
+    id: 2,
+    name: '云路由',
+    description: '智能路由器，打造家庭网络中心。支持WiFi6技术，智能组网，AI防护，让您的家庭网络更安全、更稳定、更快速。',
+    image: wifi2,
+    price: '¥399',
+    features: [
+      '双频WiFi6技术',
+      '智能分布式组网',
+      'AI网络防护',
+      '千兆端口支持',
+      '智能设备管理',
+      '防蹭网保护'
+    ],
+    link: 'https://work.weixin.qq.com/gm/2f7011219a43a467a4e178a259797647',
+    tag: '新品',
+    tagColor: 'from-green-500 to-green-600'
+  },
+  {
+    id: 3,
+    name: '内部套餐卡',
+    description: '超值套餐，专享优惠价。大流量，低月租，全国漫游，为您提供最实惠的通信服务，让您畅享无限网络。',
+    image: neibu,
+    price: '¥99起',
+    features: [
+      '超大流量套餐',
+      '低至99元月租',
+      '全国无限漫游',
+      '5G网络支持',
+      '专属客服服务',
+      '灵活套餐选择'
+    ],
+    link: 'http://tc.liuketh.cn',
+    tag: '优惠',
+    tagColor: 'from-purple-500 to-purple-600'
+  },
+  {
+    id: 4,
+    name: '靓号专区',
+    description: '精选靓号，彰显品味。提供多样化的号码选择，让您的通讯更有个性，展现独特魅力。',
+    image: number,
+    price: '询价',
+    features: [
+      '精选靓号资源',
+      '号码意义评估',
+      '全国号码可选',
+      'VIP专属服务',
+      '快速办理激活',
+      '终身号码保护'
+    ],
+    link: 'http://tc.liuketh.cn',
+    tag: '精选',
+    tagColor: 'from-yellow-500 to-yellow-600'
+  }
 ];
 ---
 
-<Layout pageTitle="最新产品" desc="流客科技最新产品，覆盖行业的发展和前行！">
-    <div class="flex p-6 gap-3 flex-wrap">
-        {
-            data.map((item) => (
-                <div class="max-w-72">
-                    <a href={item?.detail} target={"_blank"} class=" bg-orange-400 rounded-lg text-xl p-1 underline text-blue-800 block text-center " >
-                        {item?.title}
-                    </a>
-                    <Image
-                        class="mt-3"
-                        src={item.img}
-                        alt={item.title}
-                        width="300"
-                        height="300"
-                    />
-                    <div>
-                        <span class="text-center">{item?.description}</span>
-                    </div>
+<BaseLayout pageTitle="最新产品" desc="流客科技最新产品，覆盖行业的发展和前行！">
+  <main>
+    <section class="py-20 bg-gradient-to-b from-gray-50 to-white">
+      <div class="container mx-auto px-4">
+        <div class="text-center mb-16">
+          <h1 class="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+            最新产品
+          </h1>
+          <div class="w-24 h-1 bg-gradient-to-r from-blue-600 to-blue-700 mx-auto mb-8"></div>
+          <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+            为您提供优质的通信产品和服务，让连接更简单，生活更智能
+          </p>
+        </div>
+        
+        <div class="grid gap-8 md:grid-cols-2">
+          {products.map(product => (
+            <div class="group relative overflow-hidden rounded-2xl bg-white shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
+              {/* 标签 */}
+              <div class="absolute top-4 right-4 z-10">
+                <span class={`px-4 py-1.5 text-sm font-medium text-white rounded-full bg-gradient-to-r ${product.tagColor} shadow-lg`}>
+                  {product.tag}
+                </span>
+              </div>
+
+              {/* 图片容器 */}
+              <div class="relative aspect-[16/9] overflow-hidden">
+                <Image
+                  src={product.image}
+                  alt={product.name}
+                  width={800}
+                  height={450}
+                  class="h-full w-full object-cover transform transition-transform duration-700 scale-100 group-hover:scale-110"
+                />
+                <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-black/0 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+              </div>
+              
+              <div class="p-8">
+                <div class="flex justify-between items-start mb-4">
+                  <h2 class="text-3xl font-bold text-gray-900 group-hover:text-blue-600 transition-colors duration-300">
+                    {product.name}
+                  </h2>
+                  <span class="text-xl font-semibold text-blue-600 bg-blue-50 px-4 py-1.5 rounded-full">
+                    {product.price}
+                  </span>
                 </div>
-            ))
-        }
-    </div>
-</Layout>
+                
+                <p class="text-lg text-gray-600 mb-8">{product.description}</p>
+                
+                <div class="grid grid-cols-2 gap-4 mb-8">
+                  {product.features.map((feature) => (
+                    <div class="flex items-center text-gray-700 group/item">
+                      <svg class="w-5 h-5 text-blue-500 mr-3 flex-shrink-0 transition-transform duration-300 group-hover/item:scale-110" viewBox="0 0 20 20" fill="currentColor">
+                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                      </svg>
+                      <span class="text-base group-hover/item:text-blue-600 transition-colors duration-300">{feature}</span>
+                    </div>
+                  ))}
+                </div>
+                
+                <a
+                  href={product.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="block w-full text-center py-4 px-6 rounded-xl bg-gradient-to-r from-blue-600 to-blue-700 text-white text-lg font-medium hover:from-blue-700 hover:to-blue-800 transition-all duration-300 transform hover:scale-[1.02] shadow-md hover:shadow-lg"
+                >
+                  了解更多
+                </a>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  </main>
+</BaseLayout>
