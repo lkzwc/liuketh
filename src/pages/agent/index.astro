@@ -1,162 +1,231 @@
 ---
-import { Image } from "astro:assets";
-import Layout from "../../layouts/HomeLayout.astro";
-import boss from '../../image/index/boss.webp'
+import BaseLayout from "../../layouts/BaseLayout.astro";
 
-const us =[
-    {
-        title:"流量卡",
-        desc:[
-            {
-                main:'高利润分成',
-                desc:"享受高达30%的销售利润分成。"
-            },
-            {
-                main:'全渠道',
-                desc:"覆盖通讯全网运营商"
-            },
-            {
-                main:'零风险',
-                desc:"行业数十年的从业者，带入发现商机"
-            },
-        ],
-        // url: "http://shop.liuketh.cn"
-    },
-    {
-        title:"随声Wifi & 云路由",
-        desc:[
-            {
-                main:'随身Wifi',
-                desc:"享受高达40%的销售利润分成。"
-            },
-            {
-                main:'全渠道',
-                desc:"畅想流量无线"
-            },
-        ],
-    },
-    {
-        title:"内部套餐卡",
-        desc:[
-            {
-                main:'运营商全覆盖',
-                desc:"已开通移动、联通、电信、广电多个渠道"
-            },
-            {
-                main:'全利润分成',
-                desc:"享受高达100%的销售利润分成，单卡佣金50-280之间。"
-            },
-            {
-                main:'顺丰包邮',
-                desc:"免费申请，顺丰包邮"
-            },
-            {
-                main:'流量卡代理限时开通',
-                url:"https://haoka.lot-ml.com/plugreg.html?agentid=108186"
-            }
-        ],
-        url: "http://tc.liuketh.cn"
-    },
-    {
-        title:"互联网卡",
-        desc:[
-            {
-                main:'互联网卡',
-                desc:"阿里系、腾讯系全覆盖"
-            },
-            {
-                main:'全利润分成',
-                desc:"享受高达100%的销售利润分成。"
-            },
-            {
-                main:'顺丰包邮',
-                desc:"免费申请，顺丰包邮"
-            },
-        ],
-        url: "https://mall.xuankaba.com/xk/?p_id=0&keyWord=XFZET2"
-    },
-    {
-        title:"手机靓号",
-        desc:[
-            {
-                main:'定制化',
-                desc:"全国号码库，种类全，支持条件搜索"
-            },
-            {
-                main:'全利润分成',
-                desc:"享受高达100%的销售利润分成。"
-            },
-        ],
-        url: "http://lh.liuketh.cn"
-    },
-    {
-        title:"话费9折充值",
-        desc:[
-            {
-                main:'全国话费充值',
-                desc:"支持各种号码"
-            },
-            {
-                main:'全利润分成',
-                desc:"享受高达100%的销售利润分成。"
-            },
-        ],
-        url: "https://work.weixin.qq.com/gm/6c83ecabb445ff6f13b95498a91c03e1"
-    },
-    {
-        title:"聚合支付",
-        desc:[
-            {
-                main:'支持类型',
-                desc:"支持个人、个体、企业开通聚合支付"
-            },
-            {
-                main:'支付渠道',
-                desc:"支持网银、微信、支付宝、信用卡等"
-            },
-            {
-                main:'费率',
-                desc:"商户0.38的利率，代理万10+返利"
-            },
-        ],
-    },
-    {
-        title:"京东优惠券",
-        desc:[
-            {
-                main:'粉丝福利',
-                desc:"免费进群"
-            },
-            {
-                main:'全利润分成',
-                desc:"享受高达100%的销售利润分成。"
-            },
-        ],
-        url: "https://work.weixin.qq.com/gm/6c83ecabb445ff6f13b95498a91c03e1"
-    },
-]
+const benefits = [
+  {
+    title: "高额返佣",
+    description: "提供业内最具竞争力的返佣比例，让您的收益最大化",
+    color: "blue"
+  },
+  {
+    title: "专业支持",
+    description: "一对一专属服务，提供完整的运营指导和技术支持",
+    color: "green"
+  },
+  {
+    title: "快速结算",
+    description: "佣金日结制度，资金结算快速安全",
+    color: "purple"
+  },
+  {
+    title: "品牌赋能",
+    description: "共享品牌资源，助力业务快速增长",
+    color: "orange"
+  }
+];
 
+const features = [
+  {
+    title: "丰富的产品线",
+    items: [
+      "随身WiFi设备",
+      "高性能路由器",
+      "优质流量套餐",
+      "精选靓号资源"
+    ]
+  },
+  {
+    title: "完善的培训体系",
+    items: [
+      "产品知识培训",
+      "销售技巧指导",
+      "运营经验分享",
+      "市场分析支持"
+    ]
+  },
+  {
+    title: "强大的系统支持",
+    items: [
+      "专业后台系统",
+      "订单实时跟踪",
+      "数据统计分析",
+      "客户管理工具"
+    ]
+  }
+];
+
+const steps = [
+  {
+    number: "01",
+    title: "提交申请",
+    description: "填写基本信息，提交代理申请"
+  },
+  {
+    number: "02",
+    title: "资质审核",
+    description: "专业团队审核，确保合作质量"
+  },
+  {
+    number: "03",
+    title: "签订协议",
+    description: "确认合作细节，签署代理协议"
+  },
+  {
+    number: "04",
+    title: "开始合作",
+    description: "完成培训后，正式开展业务"
+  }
+];
 ---
 
-<Layout pageTitle="代理合作" desc="流客科技开通全渠道合作，大家可以随身申请流量卡代理，手机靓号代理，聚合支付代理等">
-    <div class="grid gap-3 w-5/6 mx-auto m-2">
-        {
-            us.map((item,index) => (
-            <section class="bg-gray-200 rounded-xl">
-                <div class="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
-                    <h2 class="text-2xl font-bold text-gray-900">{item.title} {item.url && <a href=`${item.url}` class="underline text-blue-700">网址预览</a>}</h2>
-               
-                    <div class="mt-6 grid grid-cols-1 gap-6 md:grid-cols-2">
-                    {
-                        item.desc?.map((one: { main: string; desc?: string; url?: string })=>(<div class="rounded-lg bg-white p-6 shadow">
-                        <h3 class="text-lg font-medium text-gray-900">{one.main}</h3>
-                       { one.desc && <p class="text-gray-500">{one.desc}</p>}  { one.url && <a class=" underline text-blue-700" target="_blank" href={one.url}>🦸‍♂️代理注册</a>}
-                    </div>))
-                    }
-                    </div>
+<BaseLayout pageTitle="代理合作" desc="流客科技诚邀您加入我们的代理团队，共创辉煌！">
+  <main>
+    <!-- Hero Section -->
+    <section class="relative overflow-hidden bg-gradient-to-br from-blue-50 via-white to-purple-50 py-20">
+      <div class="absolute inset-0 bg-grid-slate-100 [mask-image:linear-gradient(0deg,white,rgba(255,255,255,0.6))]"></div>
+      <div class="container mx-auto px-4 relative">
+        <div class="grid lg:grid-cols-2 gap-12 items-center">
+          <div class="space-y-8">
+            <h1 class="text-4xl md:text-5xl font-bold text-gray-900 leading-tight">
+              成为我们的合作伙伴
+              <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600">
+                共创未来
+              </span>
+            </h1>
+            <p class="text-xl text-gray-600 leading-relaxed">
+              加入流客科技代理团队，享受高额回报，获得专业支持，开启您的创业之旅
+            </p>
+            <div class="flex gap-4">
+              <a href="https://work.weixin.qq.com/gm/2f7011219a43a467a4e178a259797647" 
+                 class="px-8 py-4 rounded-xl bg-gradient-to-r from-blue-600 to-purple-600 text-white font-medium hover:shadow-lg transform hover:-translate-y-0.5 transition-all duration-200">
+                立即加入
+              </a>
+              <a href="#benefits" 
+                 class="px-8 py-4 rounded-xl border-2 border-gray-200 text-gray-700 font-medium hover:border-blue-600 hover:text-blue-600 transition-colors duration-200">
+                了解更多
+              </a>
+            </div>
+          </div>
+          <div class="relative">
+            <div class="absolute inset-0 bg-gradient-to-tr from-blue-100 to-purple-100 rounded-3xl transform rotate-3"></div>
+            <img
+              src="https://img.freepik.com/free-vector/business-team-putting-together-jigsaw-puzzle-isolated-flat-vector-illustration-cartoon-partners-working-connection-teamwork-partnership-cooperation-concept_74855-9814.jpg"
+              alt="合作伙伴"
+              width="600"
+              height="400"
+              class="relative rounded-2xl shadow-2xl object-cover"
+            />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Benefits Section -->
+    <section id="benefits" class="py-20 bg-white">
+      <div class="container mx-auto px-4">
+        <div class="text-center mb-16">
+          <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
+            代理商权益
+          </h2>
+          <div class="w-24 h-1 bg-gradient-to-r from-blue-600 to-purple-600 mx-auto mb-8"></div>
+          <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+            我们为代理商提供全方位的支持和保障，助力您的业务快速发展
+          </p>
+        </div>
+
+        <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+          {benefits.map(benefit => (
+            <div class="group bg-white rounded-xl p-8 shadow-lg hover:shadow-xl transition-all duration-300">
+              <div class={`w-16 h-16 rounded-2xl bg-${benefit.color}-100 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300`}>
+                <div class={`w-8 h-8 rounded-lg bg-gradient-to-br from-${benefit.color}-500 to-${benefit.color}-600`}></div>
+              </div>
+              <h3 class="text-xl font-bold text-gray-900 mb-4">{benefit.title}</h3>
+              <p class="text-gray-600">{benefit.description}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="py-20 bg-gradient-to-b from-gray-50 to-white">
+      <div class="container mx-auto px-4">
+        <div class="text-center mb-16">
+          <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
+            合作优势
+          </h2>
+          <div class="w-24 h-1 bg-gradient-to-r from-blue-600 to-purple-600 mx-auto mb-8"></div>
+        </div>
+
+        <div class="grid md:grid-cols-3 gap-8">
+          {features.map(feature => (
+            <div class="bg-white rounded-xl p-8 shadow-lg hover:shadow-xl transition-all duration-300">
+              <h3 class="text-xl font-bold text-gray-900 mb-6">{feature.title}</h3>
+              <ul class="space-y-4">
+                {feature.items.map(item => (
+                  <li class="flex items-center text-gray-600">
+                    <svg class="w-5 h-5 text-blue-500 mr-3" viewBox="0 0 20 20" fill="currentColor">
+                      <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+                    </svg>
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Steps Section -->
+    <section class="py-20 bg-white">
+      <div class="container mx-auto px-4">
+        <div class="text-center mb-16">
+          <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
+            合作流程
+          </h2>
+          <div class="w-24 h-1 bg-gradient-to-r from-blue-600 to-purple-600 mx-auto mb-8"></div>
+        </div>
+
+        <div class="grid md:grid-cols-4 gap-8">
+          {steps.map(step => (
+            <div class="relative group">
+              <div class="absolute -inset-1 rounded-lg bg-gradient-to-r from-blue-600 to-purple-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300 blur"></div>
+              <div class="relative bg-white rounded-lg p-8 shadow-lg">
+                <div class="text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600 mb-4">
+                  {step.number}
                 </div>
-            </section>
-            ))
-        }
-    </div>
-</Layout>
+                <h3 class="text-xl font-bold text-gray-900 mb-3">{step.title}</h3>
+                <p class="text-gray-600">{step.description}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-20 bg-gradient-to-br from-blue-600 to-purple-600 text-white">
+      <div class="container mx-auto px-4 text-center">
+        <h2 class="text-3xl md:text-4xl font-bold mb-8">
+          准备好开始您的代理之旅了吗？
+        </h2>
+        <p class="text-xl text-blue-100 mb-12 max-w-3xl mx-auto">
+          加入我们，开启您的创业之路。我们期待与您携手共进，共创辉煌！
+        </p>
+        <a
+          href="https://work.weixin.qq.com/gm/2f7011219a43a467a4e178a259797647"
+          class="inline-block px-8 py-4 rounded-xl bg-white text-blue-600 font-medium hover:shadow-lg transform hover:-translate-y-0.5 transition-all duration-200"
+        >
+          立即申请代理
+        </a>
+      </div>
+    </section>
+  </main>
+</BaseLayout>
+
+<style>
+  .bg-grid-slate-100 {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32' width='32' height='32' fill='none' stroke='rgb(51 65 85 / 0.1)'%3E%3Cpath d='M0 .5H31.5V32'/%3E%3C/svg%3E");
+  }
+</style>
