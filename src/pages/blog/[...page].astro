@@ -5,16 +5,12 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import BlogList from '../../components/BlogList.astro';
 
 // 获取所有博客文章并按日期排序
-const allPosts: CollectionEntry<'blog'>[] = await getCollection('blog');
+const allPosts= await getCollection('news');
 const posts = allPosts.sort(
-  (a: CollectionEntry<'blog'>, b: CollectionEntry<'blog'>) => 
+  (a,b) => 
     new Date(b.data.pubDate).getTime() - new Date(a.data.pubDate).getTime()
 );
 
-// 面包屑配置
-const breadcrumbs = [
-  { text: "博客", url: "/blog" }
-];
 ---
 
 <BaseLayout 
