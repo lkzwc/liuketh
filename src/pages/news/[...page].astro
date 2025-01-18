@@ -30,7 +30,6 @@ export async function getStaticPaths({ paginate }: GetStaticPathsOptions) {
   return paginate(info.sort((a,b)=>(new Date(b.data?.pubDate).getTime() - new Date(a.data?.pubDate).getTime())), { pageSize: 12 });
  }
 
- const info = await getCollection("news");
  const { page } = Astro.props;
 ---
 <Layout pageTitle="流量卡资讯" desc="分享流量卡行业的各种资讯，提供流量卡的售后服务以及激活使用教程">
