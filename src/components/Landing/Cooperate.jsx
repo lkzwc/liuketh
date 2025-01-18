@@ -1,27 +1,17 @@
-import React from 'react';
+import React from "react";
 import { RoughNotation } from "react-rough-notation";
 import Marquee from "react-fast-marquee";
 import {
   Wechat,
-  Alipay,
   Facebook,
   Google,
   Tiktok,
   Twitter,
   Xigua,
   Faceu,
+  Topbuzz,
 } from "@icon-park/react";
 
-const partners = [
-  { id: 1, icon: Wechat, name: 'wechat', colors: ['#07C160', '#07C160', '#FFFFFF', '#07C160'] },
-  { id: 2, icon: Alipay, name: 'alipay', colors: ['#1677FF', '#1677FF', '#FFFFFF', '#1677FF'] },
-  { id: 3, icon: Facebook, name: 'facebook', colors: ['#1877F2', '#1877F2', '#FFFFFF', '#1877F2'] },
-  { id: 4, icon: Google, name: 'google', colors: ['#EA4335', '#4285F4', '#34A853', '#FBBC05'] },
-  { id: 5, icon: Tiktok, name: 'tiktok', colors: ['#000000', '#FF0050', '#00F2EA', '#000000'] },
-  { id: 6, icon: Twitter, name: 'twitter', colors: ['#1DA1F2', '#1DA1F2', '#FFFFFF', '#1DA1F2'] },
-  { id: 7, icon: Xigua, name: 'xigua', colors: ['#FF0000', '#FF0000', '#FFFFFF', '#FF0000'] },
-  { id: 8, icon: Faceu, name: 'faceu', colors: ['#FF71C6', '#FF71C6', '#FFFFFF', '#FF71C6'] }
-];
 
 const IconComponent = ({ IconElement, colors }) => {
   return (
@@ -46,20 +36,50 @@ export default function Cooperate() {
             color="#2563EB"
             className="p-2"
           >
-            <span className="text-lg md:text-2xl font-medium text-neutral-800">合作共赢</span>
+            <span className="text-lg md:text-2xl font-medium text-neutral-800">
+              合作共赢
+            </span>
           </RoughNotation>
         </div>
         <p className="mx-auto mt-4 max-w-lg text-sm text-neutral-600 md:text-base">
           目前与我们合作的企业
         </p>
       </div>
-      {/* <Marquee gradientWidth={50} speed={30} className="flex justify-evenly py-8">
-        {partners.map(({ id, icon, colors }) => (
-          <div key={id} className="mx-8">
-            <IconComponent IconElement={icon} colors={colors} />
-          </div>
-        ))}
-      </Marquee> */}
+      <div class="flex justify-center items-center space-x-12">
+      <Faceu theme="multi-color" size="47" fill={['#333' ,'#2F88FF' ,'#FFF' ,'#43CCF8']} strokeWidth={1}/>
+      <Topbuzz theme="multi-color" size="47" fill={['#333' ,'#2F88FF' ,'#FFF' ,'#43CCF8']} strokeWidth={1}/>  
+        <Wechat
+          theme="multi-color"
+          size="47"
+          fill={["#333", "#2F88FF", "#FFF", "#43CCF8"]}
+          strokeWidth={1}
+        />
+        <Facebook
+          theme="multi-color"
+          size="47"
+          fill={["#333", "#2F88FF", "#FFF", "#43CCF8"]}
+          strokeWidth={1}
+        />
+        <Xigua
+          theme="multi-color"
+          size="47"
+          fill={["#333", "#2F88FF", "#FFF", "#43CCF8"]}
+          strokeWidth={1}
+        />
+        <Twitter
+          theme="multi-color"
+          size="47"
+          fill={["#333", "#2F88FF", "#FFF", "#43CCF8"]}
+          strokeWidth={1}
+        />
+        <Tiktok
+          theme="multi-color"
+          size="47"
+          fill={["#333", "#2F88FF", "#FFF", "#43CCF8"]}
+          strokeWidth={1}
+        />
+        <Google theme="multi-color" size="47" fill={['#333' ,'#2F88FF' ,'#FFF' ,'#43CCF8']} strokeWidth={1}/>
+      </div>
     </section>
   );
 }

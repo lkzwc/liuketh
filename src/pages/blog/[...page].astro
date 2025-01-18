@@ -1,0 +1,30 @@
+---
+import { getCollection } from 'astro:content';
+import type { CollectionEntry } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import BlogList from '../../components/BlogList.astro';
+
+// 获取所有博客文章并按日期排序
+const allPosts: CollectionEntry<'blog'>[] = await getCollection('blog');
+const posts = allPosts.sort(
+  (a: CollectionEntry<'blog'>, b: CollectionEntry<'blog'>) => 
+    new Date(b.data.pubDate).getTime() - new Date(a.data.pubDate).getTime()
+);
+
+// 面包屑配置
+const breadcrumbs = [
+  { text: "博客", url: "/blog" }
+];
+---
+
+<BaseLayout 
+  pageTitle="博客文章"
+  desc="流客科技博客文章列表，分享通信技术、产品资讯和行业动态。"
+>
+  <div class="container mx-auto px-4 py-8">
+    <div class="max-w-4xl mx-auto">
+      <h1 class="text-3xl font-bold text-gray-900 mb-8">最新文章</h1>
+      <BlogList posts={posts} />
+    </div>
+  </div>
+</BaseLayout> 

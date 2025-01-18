@@ -2,91 +2,126 @@
 import { Image } from "astro:assets";
 import ai from "../../image/index/ai.svg";
 import use from "../../image/index/use.svg";
+
+// 预加载首屏关键图片
+const preloadImages = [ai];
 ---
 
-<section>
-    <!-- Hero top -->
-    <div class="bg-gradient-to-br from-primary-50 to-accent-50 section">
-        <div class="container grid lg:grid-cols-2 gap-12 items-center">
-            <!-- Content -->
-            <div class="space-y-8">
-                <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold text-neutral-800 leading-tight">
-                    万物互联<br/>
-                    <span class="text-primary-600">畅想未来</span>
-                </h1>
-                <p class="text-lg text-neutral-600 max-w-lg">
-                    打造智能互联新时代，为您提供全方位的通信解决方案
-                </p>
-                <div class="flex flex-wrap gap-4">
-                    <a href="http://tc.liuketh.cn" class="btn btn-primary">
-                        免费领卡
-                    </a>
-                    <a href="https://work.weixin.qq.com/gm/2f7011219a43a467a4e178a259797647" 
-                       class="btn btn-secondary">
-                        🗨️ 联系我们
-                    </a>
-                </div>
-            </div>
-            <!-- Image -->
-            <div class="relative">
-                <div class="absolute inset-0 bg-gradient-to-tr from-primary-200/30 to-accent-200/30 rounded-3xl transform rotate-6"></div>
-                <Image 
-                    src={ai} 
-                    alt="AI 图片" 
-                    class="relative transform hover:scale-105 transition-transform duration-300"
-                    width={500}
-                    height={375}
-                    loading="eager"
-                />
-            </div>
-        </div>
-    </div>
+{preloadImages.map((image) => (
+  <link rel="preload" href={image.src} as="image" fetchpriority="high" />
+))}
 
-    <!-- Features Section -->
-    <section class="section bg-white">
-        <div class="container">
-            <div class="grid lg:grid-cols-2 gap-12 items-center">
-                <article class="space-y-6">
-                    <h2 class="text-3xl font-bold text-neutral-800">
-                        全方位的通信服务
-                    </h2>
-                    <div class="w-20 h-1 bg-primary-500"></div>
-                    <p class="text-lg text-neutral-600">
-                        提供IOT全面服务，覆盖通信、物联网和流量卡领域。我们提供手机卡办理、靓号定制服务（如155555、1555522、1555533和1314520），全国手机话费九折充值，内部优惠套餐卡办理。此外，我们还提供随身WiFi、5G路由器云路由和智能监控等物联网服务。
-                    </p>
-                    <ul class="space-y-4">
-                        <li class="flex items-center gap-3">
-                            <span class="text-primary-500">✓</span>
-                            <span>全网通信服务</span>
-                        </li>
-                        <li class="flex items-center gap-3">
-                            <span class="text-primary-500">✓</span>
-                            <span>靓号定制</span>
-                        </li>
-                        <li class="flex items-center gap-3">
-                            <span class="text-primary-500">✓</span>
-                            <span>优惠套餐</span>
-                        </li>
-                    </ul>
-                </article>
-                <figure class="relative">
-                    <div class="absolute inset-0 bg-gradient-to-bl from-accent-100/50 to-primary-100/50 rounded-2xl transform -rotate-3"></div>
-                    <Image
-                        src={use}
-                        width={480}
-                        height={480}
-                        alt="流量卡"
-                        class="relative rounded-2xl shadow-xl hover:shadow-2xl transition-shadow duration-300"
-                        loading="lazy"
-                    />
-                </figure>
+<main>
+  {/* Hero Section */}
+  <section class="relative overflow-hidden bg-gradient-to-br from-blue-50 via-white to-blue-50">
+    <div class="absolute inset-0">
+      <div class="absolute inset-0 bg-grid-slate-900/[0.04] bg-[size:20px_20px]"></div>
+    </div>
+    <div class="relative">
+      <div class="mx-auto max-w-7xl px-6 py-24 sm:py-32 lg:px-8">
+        <div class="mx-auto max-w-2xl lg:max-w-none">
+          <div class="grid lg:grid-cols-2 gap-12 items-center">
+            {/* Content */}
+            <div class="space-y-8">
+              <h1 class="text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl">
+                智能通信
+                <span class="bg-gradient-to-r from-blue-600 to-cyan-500 bg-clip-text text-transparent">
+                  服务提供商
+                </span>
+              </h1>
+              <p class="text-lg leading-8 text-gray-600">
+                致力于为用户提供优质的通信服务，包括流量卡、随身WiFi等产品，让连接更简单，生活更智能。
+              </p>
+              <div class="flex flex-wrap gap-4">
+                <a href="/hotcard" class="inline-flex items-center px-6 py-3 rounded-full bg-blue-600 text-white font-semibold hover:bg-blue-700 transition-colors duration-300 shadow-lg hover:shadow-xl">
+                  立即体验
+                  <svg class="ml-2 w-5 h-5" viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd" d="M3 10a.75.75 0 01.75-.75h10.638L10.23 5.29a.75.75 0 111.04-1.08l5.5 5.25a.75.75 0 010 1.08l-5.5 5.25a.75.75 0 11-1.04-1.08l4.158-3.96H3.75A.75.75 0 013 10z" clip-rule="evenodd" />
+                  </svg>
+                </a>
+                <a href="/about" class="inline-flex items-center px-6 py-3 rounded-full bg-white text-blue-600 font-semibold hover:bg-gray-50 transition-colors duration-300 shadow-lg hover:shadow-xl">
+                  了解更多
+                </a>
+              </div>
             </div>
+            {/* Image */}
+            <div class="relative">
+              <div class="absolute inset-0 bg-gradient-to-tr from-blue-100/30 to-cyan-100/30 rounded-3xl transform rotate-10"></div>
+              <Image
+                src={ai}
+                alt="AI智能服务"
+                width={500}
+                height={400}
+                class="relative rounded-2xl shadow-2xl transform hover:scale-105 transition-transform duration-500"
+                loading="eager"
+                fetchpriority="high"
+              />
+            </div>
+          </div>
         </div>
-    </section>
-</section>
+      </div>
+    </div>
+  </section>
+
+  {/* Features Section */}
+  <section class="relative py-24 bg-white">
+    <div class="mx-auto max-w-7xl px-6 lg:px-8">
+      <div class="mx-auto max-w-2xl lg:max-w-none">
+        <div class="grid lg:grid-cols-2 gap-12 items-center">
+          <div class="space-y-6">
+            <h2 class="text-3xl font-bold text-gray-900">
+              便捷的移动上网体验
+            </h2>
+            <div class="w-20 h-1 bg-blue-600"></div>
+            <p class="text-lg text-gray-600">
+              随时随地，畅享高速网络，让您的生活更加便利。我们提供全方位的通信解决方案，满足您的各种需求。
+            </p>
+            <ul class="space-y-4">
+              <li class="flex items-center gap-3">
+                <span class="flex-shrink-0 w-6 h-6 rounded-full bg-blue-100 flex items-center justify-center">
+                  <svg class="w-4 h-4 text-blue-600" viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+                  </svg>
+                </span>
+                <span class="text-gray-700">全网通信服务</span>
+              </li>
+              <li class="flex items-center gap-3">
+                <span class="flex-shrink-0 w-6 h-6 rounded-full bg-blue-100 flex items-center justify-center">
+                  <svg class="w-4 h-4 text-blue-600" viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+                  </svg>
+                </span>
+                <span class="text-gray-700">优质客户服务</span>
+              </li>
+              <li class="flex items-center gap-3">
+                <span class="flex-shrink-0 w-6 h-6 rounded-full bg-blue-100 flex items-center justify-center">
+                  <svg class="w-4 h-4 text-blue-600" viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd" />
+                  </svg>
+                </span>
+                <span class="text-gray-700">智能网络管理</span>
+              </li>
+            </ul>
+          </div>
+          <div class="relative">
+            <div class="absolute inset-0 bg-gradient-to-bl from-cyan-100/50 to-blue-100/50 rounded-2xl transform -rotate-3"></div>
+            <Image
+              src={use}
+              alt="便捷的移动上网体验"
+              width={500}
+              height={400}
+              class="relative rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-500"
+              loading="lazy"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
 
 <style>
-    .gradient-mask {
-        mask-image: linear-gradient(to bottom, black 50%, transparent 100%);
-    }
+  .bg-grid-slate-900 {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32' width='32' height='32' fill='none' stroke='rgb(15 23 42 / 0.04)'%3E%3Cpath d='M0 .5H31.5V32'/%3E%3C/svg%3E");
+  }
 </style>

@@ -13,6 +13,7 @@ const products = [
     name: '内部套餐卡',
     description: '超值套餐，专享优惠价，月租低至19元',
     image: neibu,
+    imageAlt: '内部专属套餐卡-超值优惠套餐展示图',
     price: '¥99起',
     features: ['大流量', '低月租', '全国漫游'],
     link: 'http://tc.liuketh.cn'
@@ -22,6 +23,7 @@ const products = [
     name: '靓号专区',
     description: '精选靓号，彰显品味，支持在线选号',
     image: number,
+    imageAlt: '精选靓号专区-在线选号系统展示图',
     price: '询价',
     features: ['号码靓丽', '可选性强', '全国可用'],
     link: 'http://tc.liuketh.cn'
@@ -36,12 +38,23 @@ export async function getStaticPaths({ paginate }: GetStaticPathsOptions) {
 }
 
 const { page } = Astro.props;
+
+const metaDesc = "流客科技流量卡服务 - 提供内部专属套餐、精选靓号、企业专线等多种套餐选择。超大流量，低月租，全国漫游，让您畅享移动网络。";
+const metaKeywords = "流量卡,手机卡,内部套餐,靓号,企业专线,全国漫游,流客科技";
+
+// 面包屑配置
+const breadcrumbs = [
+  { text: "流量卡", url: "/hotcard" }
+];
+
 ---
 
 <Layout
   pageTitle="流量卡"
-  desc="流量卡官网，提供流量卡的申请、办理、充值、售后等功能"
+  desc={metaDesc}
+  breadcrumbs={breadcrumbs}
 >
+  <meta name="keywords" content={metaKeywords} slot="head" />
   <!-- 产品展示区域 -->
   <section class="bg-gradient-to-b from-gray-50 to-white">
     <div class="container mx-auto px-4 py-12">
@@ -55,7 +68,7 @@ const { page } = Astro.props;
             <div class="relative aspect-[16/9] overflow-hidden rounded-t-lg">
               <Image
                 src={product.image}
-                alt={product.name}
+                alt={product.imageAlt}
                 width={400}
                 height={225}
                 class="w-full h-full object-cover"

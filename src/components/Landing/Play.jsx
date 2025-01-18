@@ -1,149 +1,156 @@
-import React, { useState } from 'react';
-import wifi from '../../image/product/wifi.webp';
-import wifi2 from '../../image/product/cloudwifi2.webp';
-import neibu from '../../image/product/neibu.webp';
-import number from '../../image/product/number.webp';
+import React, { lazy, Suspense } from "react";
+import wifi from "../../image/product/wifi2.webp";
+import cloudwifi from "../../image/product/cloudwifi2.webp";
+import neibu from "../../image/product/neibu.webp";
+import number from "../../image/product/number.webp";
 
+// 产品数据
 const products = [
   {
     id: 1,
-    name: '随身WiFi',
-    description: '便携式WiFi，随时随地高速上网',
-    image: wifi.src,
-    price: '¥299',
-    features: ['4G/5G双模', '8小时续航', '支持多设备'],
-    link: 'https://work.weixin.qq.com/gm/2f7011219a43a467a4e178a259797647',
-    bgColor: 'from-blue-500 to-cyan-400',
-    tag: '热销'
+    name: "随身WiFi",
+    description: "便携式WiFi设备，随时随地高速上网",
+    image: wifi,
+    imageAlt: "随身WiFi设备展示图",
+    price: "¥9.9/天",
+    features: ["无限流量", "全国漫游", "即插即用"],
+    link: "/wifi",
+    priority: true,
+    color: "from-blue-500 to-cyan-400",
+    icon: "⚡️"
   },
   {
     id: 2,
-    name: '云路由',
-    description: '智能路由器，打造家庭网络中心',
-    image: wifi2.src,
-    price: '¥399',
-    features: ['双频WiFi6', '智能组网', 'AI防护'],
-    link: 'https://work.weixin.qq.com/gm/2f7011219a43a467a4e178a259797647',
-    bgColor: 'from-purple-500 to-indigo-500',
-    tag: '新品'
+    name: "云路由",
+    description: "智能路由设备，稳定高速的网络体验",
+    image: cloudwifi,
+    imageAlt: "云路由设备展示图",
+    price: "¥299/年",
+    features: ["5G网络", "智能管理", "远程控制"],
+    link: "/wifi",
+    priority: true,
+    color: "from-purple-500 to-blue-500",
+    icon: "🌐"
   },
   {
     id: 3,
-    name: '内部套餐卡',
-    description: '超值套餐，专享优惠价',
-    image: neibu.src,
-    price: '¥99起',
-    features: ['大流量', '低月租', '全国漫游'],
-    link: 'http://tc.liuketh.cn',
-    bgColor: 'from-pink-500 to-rose-500',
-    tag: '优惠'
+    name: "内部套餐卡",
+    description: "超值内部优惠套餐，专享特惠价格",
+    image: neibu,
+    imageAlt: "内部专属套餐卡展示图",
+    price: "¥19.9/月",
+    features: ["大流量", "低月租", "全国漫游"],
+    link: "/hotcard",
+    color: "from-pink-500 to-rose-500",
+    icon: "💎"
   },
   {
     id: 4,
-    name: '靓号专区',
-    description: '精选靓号，彰显品味',
-    image: number.src,
-    price: '询价',
-    features: ['号码靓丽', '可选性强', '全国可用'],
-    link: 'http://tc.liuketh.cn',
-    bgColor: 'from-amber-500 to-orange-500',
-    tag: '精选'
+    name: "靓号专区",
+    description: "精选靓号，彰显个性",
+    image: number,
+    imageAlt: "精选靓号展示图",
+    price: "¥99起",
+    features: ["号码靓丽", "自主选号", "即刻激活"],
+    link: "http://d.tianlulh.com/pc/shop/default.aspx?mid=1615",
+    color: "from-amber-500 to-orange-500",
+    icon: "✨"
   }
 ];
 
-const ProductCard = ({ product }) => {
-  const [isHovered, setIsHovered] = useState(false);
+// 加载占位符组件
+const LoadingPlaceholder = () => (
+  <div className="animate-pulse">
+    <div className="h-64 bg-gray-200 rounded-xl mb-4"></div>
+    <div className="h-4 bg-gray-200 rounded w-3/4 mb-2"></div>
+    <div className="h-4 bg-gray-200 rounded w-1/2"></div>
+  </div>
+);
 
-  return (
-    <div 
-      className="group relative overflow-hidden rounded-2xl bg-white shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1"
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
-    >
-      {/* 标签 */}
-      <div className="absolute top-4 right-4 z-10">
-        <span className="px-3 py-1 text-sm font-medium text-white rounded-full bg-gradient-to-r from-blue-600 to-blue-700 shadow-lg">
-          {product.tag}
-        </span>
-      </div>
-
-      {/* 图片容器 */}
+const ProductCard = ({ product }) => (
+  <div className="group relative overflow-hidden rounded-xl bg-white shadow-lg hover:shadow-xl transition-all duration-500 hover:-translate-y-1">
+    {/* 图片容器 - 可点击整个区域 */}
+    <a href={product.link} className="block">
       <div className="relative aspect-[4/3] overflow-hidden">
+        <div className={`absolute inset-0 bg-gradient-to-br ${product.color} opacity-10`}></div>
         <img
-          src={product.image}
-          alt={product.name}
-          width={400}
-          height={300}
-          className="h-full w-full object-cover transform transition-transform duration-700 scale-100 group-hover:scale-110"
+          src={product.image.src}
+          alt={product.imageAlt}
+          className="w-full h-full object-contain transform transition-transform duration-700 group-hover:scale-110"
+          loading={product.priority ? "eager" : "lazy"}
+          decoding={product.priority ? "sync" : "async"}
+          width="400"
+          height="300"
+          onError={(e) => {
+            e.target.onerror = null;
+            e.target.src = 'fallback-image.jpg';
+          }}
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/0 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-      </div>
-      
-      <div className="p-6">
-        <div className="flex justify-between items-start mb-4">
-          <h3 className="text-2xl font-bold text-gray-900 group-hover:text-blue-600 transition-colors duration-300">
-            {product.name}
-          </h3>
-          <span className="text-lg font-semibold text-blue-600 bg-blue-50 px-3 py-1 rounded-full">
+        {/* 价格标签 */}
+        <div className="absolute top-3 right-3">
+          <span className={`px-3 py-1.5 text-sm font-semibold text-white rounded-full bg-gradient-to-r ${product.color} shadow-lg`}>
             {product.price}
           </span>
         </div>
-        
-        <p className="text-gray-600 mb-6 line-clamp-2">{product.description}</p>
-        
-        <div className="space-y-2 mb-6">
-          {product.features.map((feature, index) => (
-            <div 
-              key={index} 
-              className="flex items-center text-sm text-gray-700 transform transition-transform duration-300"
-              style={{
-                transform: isHovered ? 'translateX(8px)' : 'translateX(0)',
-                transitionDelay: `${index * 100}ms`
-              }}
-            >
-              <svg className="w-4 h-4 text-blue-500 mr-2 flex-shrink-0" viewBox="0 0 20 20" fill="currentColor">
-                <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-              </svg>
-              <span>{feature}</span>
-            </div>
-          ))}
-        </div>
-        
-        <a
-          href={product.link}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="block w-full text-center py-3 px-4 rounded-xl bg-gradient-to-r from-blue-600 to-blue-700 text-white font-medium hover:from-blue-700 hover:to-blue-800 transition-all duration-300 transform hover:scale-[1.02] shadow-md hover:shadow-lg"
-        >
-          了解更多
-        </a>
       </div>
-    </div>
-  );
-};
+    </a>
 
-const Play = () => {
+    {/* 内容区域 */}
+    <div className="p-4">
+      <div className="mb-3">
+        <div className="flex items-center gap-2 mb-1">
+          <span className="text-xl">{product.icon}</span>
+          <h3 className="text-lg font-bold text-gray-900 group-hover:text-blue-600 transition-colors duration-300">
+            {product.name}
+          </h3>
+        </div>
+        <p className="text-sm text-gray-600 line-clamp-2">{product.description}</p>
+      </div>
+      
+      {/* 特性展示 - 单行 */}
+      <div className="flex items-center justify-between mb-3">
+        {product.features.map((feature) => (
+          <span 
+            key={feature} 
+            className={`inline-flex items-center text-xs font-medium bg-gradient-to-r ${product.color} bg-clip-text text-transparent`}
+          >
+            {feature}
+          </span>
+        ))}
+      </div>
+
+      <a
+        href={product.link}
+        className={`block w-full text-center py-2 px-3 rounded-lg bg-gradient-to-r ${product.color} text-white text-sm font-medium hover:shadow-lg transition-all duration-300 transform hover:scale-[1.02]`}
+      >
+        了解更多
+      </a>
+    </div>
+  </div>
+);
+
+export default function Play() {
   return (
-    <section className="py-20 bg-gradient-to-b from-gray-50 to-white">
+    <section className="py-16 bg-gradient-to-b from-white to-gray-50">
       <div className="container mx-auto px-4">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+        <div className="text-center mb-12">
+          <h2 className="text-3xl font-bold text-gray-900 mb-4">
             精选产品
           </h2>
-          <div className="w-24 h-1 bg-gradient-to-r from-blue-600 to-blue-700 mx-auto mb-8"></div>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+          <div className="w-20 h-1 bg-blue-600 mx-auto mb-6"></div>
+          <p className="text-lg text-gray-600 max-w-2xl mx-auto">
             为您提供优质的通信产品和服务，让连接更简单，生活更智能
           </p>
         </div>
         
-        <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-4">
-          {products.map(product => (
-            <ProductCard key={product.id} product={product} />
-          ))}
+        <div className="grid gap-6 grid-cols-1 md:grid-cols-4">
+          <Suspense fallback={<LoadingPlaceholder />}>
+            {products.map((product) => (
+              <ProductCard key={product.id} product={product} />
+            ))}
+          </Suspense>
         </div>
       </div>
     </section>
   );
-};
-
-export default Play;
+}

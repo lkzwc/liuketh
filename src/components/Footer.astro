@@ -6,9 +6,7 @@ import logo from "../image/index/logo_w.png";
 
 <footer>
   <section>
-    <div
-      class="w-full flex-col bg-black py-20 text-white lg:flex lg:px-10 xl:px-20"
-    >
+    <div class="w-full flex-col bg-black py-20 text-white lg:flex lg:px-10 xl:px-20">
       <!-- TOP CONTAINER -->
       <div class="grid md:flex md:flex-row justify-center">
         <!-- LOGO DIV -->
@@ -23,123 +21,95 @@ import logo from "../image/index/logo_w.png";
               class="inline-block max-h-10 rounded-2xl"
             />
           </a>
-          <p
-            class="font-sans mt-4 max-w-[350px] text-base font-normal text-gray-400"
-          >
+          <p class="font-sans mt-4 max-w-[350px] text-base font-normal text-gray-400">
             通讯行业数十年的深耕
           </p>
           <!-- SOCIAL MEDIA ICONS -->
           <div class="mb-8 mt-6 flex flex-row">
-            <Image src={officialAccount} alt="流量卡官网" width={150} height={150} />
-            <!-- <a href="" class="mx-4 transition hover:text-gray-400">
-              <Twitter theme="outline" size="24" fill="#333" />
-            </a> -->
+            <Image 
+              src={officialAccount} 
+              alt="流量卡官网" 
+              width={150} 
+              height={150}
+              class="rounded-lg shadow-lg hover:shadow-xl transition-all duration-300" 
+            />
           </div>
         </div>
+
         <!-- FOOTER LINKS -->
         <div class="pl-24 sm:flex sm:flex-row sm:flex-wrap sm:mx-10 sm:gap-20">
           <!-- LINK BLOCK -->
-          <div
-            class="mb-5 mr-6 flex w-[100px] grow basis-[100px] flex-col space-y-5"
-          >
+          <div class="mb-5 mr-6 flex w-[100px] grow basis-[100px] flex-col space-y-5">
             <h2 class="font-sans font-semibold">流量卡</h2>
-            <a href="http://hk.fs8888.top/index?k=U0xETnBKM3hjTW89" target="_blank" class="font-sans font-normal text-gray-400">流量卡靓号</a>
-            <a href="https://haokawx.lot-ml.com/Product/Index/108186" target="_blank" class="font-sans font-normal text-gray-400">内部套餐卡</a>
-            <a href="https://mall.xuankaba.com/xk/?p_id=0&keyWord=XFZET2" target="_blank" class="font-sans font-normal text-gray-400">互联网卡</a>
+            <a href="/hotcard" class="font-sans font-normal text-gray-400 hover:text-white transition-colors duration-300">流量卡靓号</a>
+            <a href="/hotcard" class="font-sans font-normal text-gray-400 hover:text-white transition-colors duration-300">内部套餐卡</a>
+            <a href="/hotcard" class="font-sans font-normal text-gray-400 hover:text-white transition-colors duration-300">互联网卡</a>
           </div>
+
           <!-- LINK BLOCK -->
-          <div
-            class="mb-5 mr-8 flex w-[100px] grow basis-[100px] flex-col space-y-5"
-          >
+          <div class="mb-5 mr-8 flex w-[100px] grow basis-[100px] flex-col space-y-5">
             <h2 class="font-sans font-semibold">其他产品</h2>
-            <a href="http://all.liuketh.cn" target="_blank" class="font-sans font-normal text-gray-400">京东优惠券群</a>
-            <a href="https://link3.cc/lkth" target="_blank" class="font-sans font-normal text-gray-400">云闪付开通</a>
+            <a href="/wifi" class="font-sans font-normal text-gray-400 hover:text-white transition-colors duration-300">随身WiFi</a>
+            <a href="/wifi" class="font-sans font-normal text-gray-400 hover:text-white transition-colors duration-300">云路由</a>
+            <a href="/wifi" class="font-sans font-normal text-gray-400 hover:text-white transition-colors duration-300">云闪付</a>
           </div>
+
           <!-- LINK BLOCK -->
           <div class="mb-5 flex w-[100px] grow basis-[80px] flex-col space-y-5">
             <h2 class="font-sans font-semibold">其他</h2>
-            <a href="/about" class="font-sans font-normal text-gray-400"
-              >关于我们</a
-            >
-            <a href="/news" class="font-sans font-normal text-gray-400"
-              >最新资讯</a
-            >
-            <a
-              href="https://work.weixin.qq.com/gm/a6484050538dc4716d3a98758f8e30ab"
-              target="_blank"
-              class="font-sans font-normal text-gray-400">粉丝群</a
-            >
+            <a href="/about" class="font-sans font-normal text-gray-400 hover:text-white transition-colors duration-300">关于我们</a>
+            <a href="/news" class="font-sans font-normal text-gray-400 hover:text-white transition-colors duration-300">最新资讯</a>
+            <a href="/agent" class="font-sans font-normal text-gray-400 hover:text-white transition-colors duration-300">代理合作</a>
           </div>
         </div>
+
         <!-- LOCATION & SUPPORT -->
-        <div class="flex flex-col mx-20">
+        <div class="flex flex-col mx-20 space-y-6">
           <!-- ITEM -->
-          <div class="mb-4 flex flex-row items-center">
-            <img
-              src="https://assets.website-files.com/6357722e2a5f19121d37f84d/635b62a7ee8efff72bc18bb3_MapPin-3.svg"
-              alt="地址图标"
-              class="mr-3 inline-block"
-              width="24"
-              height="24"
-            />
-            <p class="font-sans ml-4">China, Xian</p>
+          <div class="group flex items-center space-x-4 hover:bg-gray-800 p-3 rounded-lg transition-all duration-300">
+            <div class="w-10 h-10 bg-gray-800 rounded-lg flex items-center justify-center group-hover:bg-blue-600 transition-colors duration-300">
+              <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M12 21C15.5 17.4 19 14.1764 19 10.2C19 6.22355 15.866 3 12 3C8.13401 3 5 6.22355 5 10.2C5 14.1764 8.5 17.4 12 21Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M12 12C13.1046 12 14 11.1046 14 10C14 8.89543 13.1046 8 12 8C10.8954 8 10 8.89543 10 10C10 11.1046 10.8954 12 12 12Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <span class="text-gray-400 group-hover:text-white transition-colors duration-300">China, Xian</span>
           </div>
-          <div class="mb-4 flex flex-row items-center">
-            <!--?xml version="1.0" encoding="UTF-8"?-->
-            <svg
-              width="24"
-              height="24"
-              viewBox="0 0 48 48"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-              ><path
-                d="M8 30H40V42C40 43.1046 39.1046 44 38 44H10C8.89543 44 8 43.1046 8 42V30Z"
-                fill="none"
-                stroke="#ffffff"
-                stroke-width="4"
-                stroke-linejoin="round"></path><path
-                d="M40 30V6C40 4.89543 39.1046 4 38 4H10C8.89543 4 8 4.89543 8 6V30"
-                stroke="#ffffff"
-                stroke-width="4"
-                stroke-linejoin="round"></path><path
-                d="M22 37H26"
-                stroke="#ffffff"
-                stroke-width="4"
-                stroke-linecap="round"></path></svg
-            >
-            <p class="font-sans ml-4">&nbsp; 15556355573</p>
+
+          <div class="group flex items-center space-x-4 hover:bg-gray-800 p-3 rounded-lg transition-all duration-300">
+            <div class="w-10 h-10 bg-gray-800 rounded-lg flex items-center justify-center group-hover:bg-blue-600 transition-colors duration-300">
+              <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M3 8L10.89 13.26C11.2187 13.4793 11.6049 13.5963 12 13.5963C12.3951 13.5963 12.7813 13.4793 13.11 13.26L21 8M5 19H19C19.5304 19 20.0391 18.7893 20.4142 18.4142C20.7893 18.0391 21 17.5304 21 17V7C21 6.46957 20.7893 5.96086 20.4142 5.58579C20.0391 5.21071 19.5304 5 19 5H5C4.46957 5 3.96086 5.21071 3.58579 5.58579C3.21071 5.96086 3 6.46957 3 7V17C3 17.5304 3.21071 18.0391 3.58579 18.4142C3.96086 18.7893 4.46957 19 5 19Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <a href="mailto:liuketh@qq.com" class="text-gray-400 group-hover:text-white transition-colors duration-300">
+              liuketh@qq.com
+            </a>
           </div>
-          <!-- ITEM -->
-          <div class="mb-4 flex flex-row items-center">
-            <img
-              src="https://assets.website-files.com/6357722e2a5f19121d37f84d/635b62a9be59b845c7c5ab26_EnvelopeSimple-4.svg"
-              alt="邮件图标"
-              class="mr-3 inline-block"
-              width="24"
-              height="24"
-            />
-            <p class="font-sans ml-4">liuketh@qq.com</p>
+
+          <div class="group flex items-center space-x-4 hover:bg-gray-800 p-3 rounded-lg transition-all duration-300">
+            <div class="w-10 h-10 bg-gray-800 rounded-lg flex items-center justify-center group-hover:bg-blue-600 transition-colors duration-300">
+              <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M3 5.5C3 14.0604 9.93959 21 18.5 21C18.8862 21 19.2691 20.9859 19.6483 20.9581C20.0834 20.9262 20.4839 20.6999 20.6935 20.3288C20.9031 19.9577 20.8882 19.4999 20.654 19.1441L18.074 15.0816C17.8271 14.7039 17.3885 14.4926 16.9289 14.5235L13.9334 14.7484C12.6069 14.8705 11.3955 14.0479 11.0095 12.7683L9.86532 8.91731C9.60077 8.02829 9.912 7.06819 10.6525 6.47342L13.9334 3.87145C14.6897 3.2631 14.8903 2.1855 14.3656 1.34983L13.1456 -0.574292C12.8031 -1.14559 12.1272 -1.41172 11.5015 -1.24325C5.51052 0.632007 3 5.5 3 5.5Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </div>
+            <a href="tel:15556355573" class="text-gray-400 group-hover:text-white transition-colors duration-300">
+              15556355573
+            </a>
           </div>
         </div>
       </div>
+
       <!-- DIVIDER -->
-      <div class="mx-auto my-4 w-full border border-[#E4E4E7] lg:my-10"></div>
+      <div class="mx-auto my-10 w-full border-t border-gray-800"></div>
+
       <!-- COPYRIGHT TEXT -->
-      <div>
-        <p class="font-sans lg: text-center text-sm text-gray-400">
-          Copyright © {new Date().getFullYear()} All Rights By 流客科技 <a href="https://beian.miit.gov.cn" target="_blank">陕ICP备20008168号</a>
+      <div class="text-center">
+        <p class="text-sm text-gray-400">
+          Copyright © {new Date().getFullYear()} All Rights By 流客科技 
+          <a href="https://beian.miit.gov.cn" target="_blank" class="hover:text-white transition-colors duration-300">陕ICP备20008168号</a>
         </p>
       </div>
     </div>
   </section>
 </footer>
-
-<style>
-  footer {
-    gap: 1rem;
-    width: 100%; /* 宽度覆盖整个窗口宽度 */
-    background-color: #333; /* 添加背景颜色 */
-    color: #fff; /* 文本颜色 */
-    z-index: 999; /* 可能需要调整z-index确保其层级高于其他元素 */
-  }
-</style>

@@ -1,76 +1,68 @@
 ---
-import Title from "./Title";
 import { Star, User } from "@icon-park/react";
+
+const evaluations = [
+  {
+    avatar: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=150&h=150&fit=crop&auto=format&q=80",
+    name: "张女士",
+    role: "企业客户",
+    content: "流量卡资费便宜，网速快，客服服务态度很好，有问题都能及时解决。",
+    rating: 5
+  },
+  {
+    avatar: "https://images.unsplash.com/photo-1560250097-0b93528c311a?w=150&h=150&fit=crop&auto=format&q=80",
+    name: "王先生",
+    role: "个人用户",
+    content: "随身WiFi信号稳定，价格实惠，出差必备神器。",
+    rating: 5
+  },
+  {
+    avatar: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=150&h=150&fit=crop&auto=format&q=80",
+    name: "李女士",
+    role: "代理商",
+    content: "合作以来一直很愉快，产品质量好，售后服务到位。",
+    rating: 5
+  }
+];
+
+// 预加载第一个评价的头像
+const preloadImages = [evaluations[0].avatar];
 ---
 
-<section>
-  <Title
-    title="全网客户的真实声音"
-    desc="致力服务每一个客户，成交只是服务的开始，我们希望您可以一直使用我们的最新产品，当然不管是什么产品！"
-    client:only="react"
-  />
-  <!-- Container -->
-  <div class="mx-auto w-full max-w-7xl px-5 py-2 md:px-10 ">
-    <!-- Testimonial List -->
-    <ul class="mb-6 grid gap-5 sm:grid-cols-2 md:mb-16 md:grid-cols-3">
-      <li
-        class="grid gap-8 border border-solid border-[#dfdfdf] bg-white p-8 md:p-10"
-      >
-        <div class="flex">
-          {[1,2,3,4,5].map(() => (
-            <Star client:load theme="filled" size="24" fill="#FFD700" className="mr-1.5"/>
-          ))}
-        </div>
-        <p class="text-[#647084]">
-          我从上学的时候也就17年买的卡，之后一直在使用他们家的产品，经常给我身边的朋友推荐[流客科技]。
-          从上学到上班, 这便是最深情的告白"
-        </p>
-        <div class="flex items-center">
-          <User client:load theme="filled" size="48" fill="#666" className="mr-4"/>
-          <div class="flex flex-col">
-            <h6 class="font-bold">Laila Bahar</h6>
-            <p class="text-sm text-[#636262]">Designer</p>
+{/* 预加载首个头像 */}
+{preloadImages.map((image) => (
+  <link rel="preload" href={image} as="image" />
+))}
+
+<section class="py-16 bg-gray-50">
+  <div class="container mx-auto px-4">
+    <h2 class="text-3xl font-bold text-center mb-12">用户评价</h2>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      {evaluations.map((evaluation, index) => (
+        <div class="bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300">
+          <div class="flex items-center mb-4">
+            <img
+              src={evaluation.avatar}
+              alt={`${evaluation.name}的头像`}
+              class="w-12 h-12 rounded-full object-cover mr-4"
+              loading={index === 0 ? "eager" : "lazy"}
+              decoding={index === 0 ? "sync" : "async"}
+              width="150"
+              height="150"
+            />
+            <div>
+              <h3 class="font-semibold text-lg">{evaluation.name}</h3>
+              <p class="text-gray-600 text-sm">{evaluation.role}</p>
+            </div>
           </div>
-        </div>
-      </li>
-      <li
-        class="grid gap-8 border border-solid border-[#dfdfdf] bg-white p-8 md:p-10"
-      >
-        <div class="flex">
-          {[1,2,3,4,5].map(() => (
-            <Star client:load theme="filled" size="24" fill="#FFD700" className="mr-1.5"/>
-          ))}
-        </div>
-        <p class="text-[#647084]">
-          售后服务很好，有问题积极处理，而且卡的网速也是快的飞起，如果网速不行，可以找客户给你调换，使用起来完全无顾虑
-        </p>
-        <div class="flex items-center">
-          <User client:load theme="filled" size="48" fill="#666" className="mr-4"/>
-          <div class="flex flex-col">
-            <h6 class="font-bold">Laila Bahar</h6>
-            <p class="text-sm text-[#636262]">Designer</p>
+          <div class="flex mb-4">
+            {Array(evaluation.rating).fill(null).map(() => (
+              <Star theme="filled" size="20" fill="#FFB800" strokeWidth={3} />
+            ))}
           </div>
+          <p class="text-gray-700 leading-relaxed">{evaluation.content}</p>
         </div>
-      </li>
-      <li
-        class="grid gap-8 border border-solid border-[#dfdfdf] bg-white p-8 md:p-10"
-      >
-        <div class="flex">
-          {[1,2,3,4,5].map(() => (
-            <Star client:load theme="filled" size="24" fill="#FFD700" className="mr-1.5"/>
-          ))}
-        </div>
-        <p class="text-[#647084]">
-          不是宝藏，胜似宝藏，能找到一个长期更新各种卡，而且不跑路的老板太难了，我已经用户有4年了，希望老板越来越强，生意越来越好
-        </p>
-        <div class="flex items-center">
-          <User client:load theme="filled" size="48" fill="#666" className="mr-4"/>
-          <div class="flex flex-col">
-            <h6 class="text-base font-bold">张非</h6>
-            <p class="text-sm text-[#636262]">Designer</p>
-          </div>
-        </div>
-      </li>
-    </ul>
+      ))}
+    </div>
   </div>
 </section>

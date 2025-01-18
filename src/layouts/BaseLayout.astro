@@ -2,9 +2,17 @@
 import { Image } from "astro:assets";
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
+import Breadcrumb from "../components/Breadcrumb.astro";
 import "../styles/global.css";
 import me from "../image/index/me.webp";
 import Tags from "../pages/tags/index.astro";
+import { ViewTransitions } from 'astro:transitions';
+
+interface Props {
+  pageTitle: string;
+  desc?: string;
+  breadcrumbs?: Array<{ text: string; url: string }>;
+}
 
 const { pageTitle, desc } = Astro.props;
 
@@ -13,6 +21,7 @@ const makeTitle = pageTitle
   : "流量卡官网 | 流客科技";
 
 const url = new URL(Astro.url.pathname, Astro.site).toString();
+console.log("-----",Astro.url.pathname,Astro.props)
 ---
 
 <html lang="zh-cn">
@@ -30,62 +39,74 @@ const url = new URL(Astro.url.pathname, Astro.site).toString();
     <meta property="og:description" content={desc} />
     <meta property="og:site_name" content={makeTitle} />
     <meta property="og:image" content="https://astro.build/og/astro.jpg" />
+    <ViewTransitions />
   </head>
   <body>
-    <Header />
-    <div class="p-5">
-      <a href="/" class="underline text-blue-700" target="_parent">Home</a>{
-        ` ⯈  `
-      }
-      {
-        Astro.url.pathname.split("/").length > 2 && (
-          <a
-            href={`/${Astro.url.pathname.split("/")[1]}`}
-            class=" underline text-blue-700 "
-            target="_parent"
-          >
-            {Astro.url.pathname.split("/")[1]}⯈
-          </a>
-        )
-      }
-      {pageTitle}
-    </div>
-
-    <main class="flex flex-col xl:flex-row">
-      <div class="flex-1 xl:mx-20 my-5">
-        <slot />
-        <!-- 此处是页面主要内容 -->
+    <div class="min-h-screen flex flex-col">
+      <Header transition:persist />
+      <div class="pl-12">
+        {Astro.url.pathname !=='/' &&  <div class="p-5">
+          <a href="/" class=" underline text-blue-700 " target="_parent">Home</a> {` ⯈  `}
+          {Astro.url.pathname.slice(1).split('/').length > 1 && <a href={`/${Astro.url.pathname.slice(1).split('/')[0]}`} class=" underline text-blue-700 " target="_parent">{Astro.url.pathname.slice(1).split('/')[0]}{` ⯈  `}</a>}
+          {pageTitle}
+        </div>}
       </div>
-      <aside
-        class="hidden xl:block xl:flex-none xl:w-1/5 bg-slate-200 m-10 p-5 rounded-lg shadow-xl text-base"
-      >
-        <div class="space-y-4">
-          <slot name="shop" />
-          <section class="grid gap-5">
-            <span class="font-semibold float-left">🏘️ 招商服务</span>
-            <Image
-              src={me}
-              width={300}
-              height={300}
-              alt="粉丝福利微信群"
-              class="w-full object-cover"
-            />
-          </section>
+      <!-- <Breadcrumb breadcrumbs={breadcrumbs} /> -->
+      <div class="flex-grow flex max-w-8xl mx-auto w-full">
+        <main class="flex-1 max-w-6xl mx-auto px-4" transition:animate="slide">
+          <slot />
+        </main>
+        <!-- 右侧招商信息 -->
+        <aside class="hidden xl:block w-96 border-l border-gray-100 bg-gray-50">
+          <div class="sticky top-6 p-6 space-y-8">
+            <slot name="shop" />
+            <section class="bg-white rounded-xl p-6 shadow-md hover:shadow-lg transition-shadow duration-300">
+              <h3 class="text-lg font-semibold mb-4 text-gray-800 flex items-center gap-2">
+                <span class="text-2xl">🏘️</span> 
+                招商服务
+              </h3>
+              <div class="bg-gradient-to-br from-blue-50 to-purple-50 p-2 rounded-lg">
+                <Image
+                  src={me}
+                  width={300}
+                  height={300}
+                  alt="粉丝福利微信群"
+                  class="w-full rounded-lg shadow-sm"
+                />
+              </div>
+            </section>
 
-          <section class="grid text-left gap-5">
-            <span class="font-semibold">📱 联系方式（同微）</span>
-            <a href="tel:15556355573" class="hover:underline text-center font-medium"
-              >155563 55573</a
-            >
-          </section>
+            <section class="bg-white rounded-xl p-6 shadow-md hover:shadow-lg transition-shadow duration-300">
+              <h3 class="text-lg font-semibold mb-4 text-gray-800 flex items-center gap-2">
+                <span class="text-2xl">📱</span>
+                联系方式（同微）
+              </h3>
+              <a href="tel:15556355573" 
+                 class="block text-center py-3 px-4 bg-gradient-to-r from-blue-500 to-blue-600 text-white font-medium rounded-lg hover:from-blue-600 hover:to-blue-700 transition-all duration-300 shadow-sm">
+                155563 55573
+              </a>
+            </section>
 
-          <div class="border-teal-500 border-2 rounded-2xl p-3">
-            <Tags />
+            <section class="bg-white rounded-xl p-6 shadow-md hover:shadow-lg transition-shadow duration-300">
+              <Tags />
+            </section>
           </div>
-        </div>
-      </aside>
-    </main>
-
-    <Footer />
+        </aside>
+      </div>
+      <Footer transition:persist />
+    </div>
   </body>
 </html>
+
+<style>
+  /* 页面过渡动画 */
+  ::view-transition-old(root),
+  ::view-transition-new(root) {
+    animation-duration: 0.5s;
+  }
+  
+  /* 滚动平滑 */
+  html {
+    scroll-behavior: smooth;
+  }
+</style>

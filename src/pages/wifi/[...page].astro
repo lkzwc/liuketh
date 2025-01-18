@@ -35,12 +35,17 @@ export async function getStaticPaths({ paginate }: GetStaticPathsOptions) {
 
 const wifis = await getCollection("wifi");
 const { page } = Astro.props;
+
+const metaDesc = "流客科技随身WiFi服务 - 提供便携式WiFi设备租赁、高速上网服务、云路由解决方案。支持全国漫游，无限流量，稳定高速，随时随地畅享网络。";
+const metaKeywords = "随身WiFi,云路由,便携WiFi,无线上网,高速上网,WiFi租赁,流客科技";
+
 ---
 
 <Layout
-  pageTitle="随身wifi"
-  desc="随身wifi、云路由、智能设备，让你告别没网络、网速慢的问题"
+  pageTitle="随身WiFi"
+  desc={metaDesc}
 >
+  <meta name="keywords" content={metaKeywords} slot="head" />
   <!-- 产品展示区域 -->
   <section class="bg-gradient-to-b from-gray-50 to-white">
     <div class="container mx-auto px-4 py-12">
