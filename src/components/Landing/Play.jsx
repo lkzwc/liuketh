@@ -3,6 +3,7 @@ import wifi from "../../image/product/wifi2.webp";
 import cloudwifi from "../../image/product/cloudwifi2.webp";
 import neibu from "../../image/product/neibu.webp";
 import number from "../../image/product/number.webp";
+import Title from "./Title";
 
 // 产品数据
 const products = [
@@ -133,15 +134,7 @@ export default function Play() {
   return (
     <section className="py-16 bg-gradient-to-b from-white to-gray-50">
       <div className="container mx-auto px-4">
-        <div className="text-center mb-12">
-          <h2 className="text-3xl font-bold text-gray-900 mb-4">
-            精选产品
-          </h2>
-          <div className="w-20 h-1 bg-blue-600 mx-auto mb-6"></div>
-          <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-            为您提供优质的通信产品和服务，让连接更简单，生活更智能
-          </p>
-        </div>
+        <Title title="产品优势" desc="我们的产品优势" client:only="react"/>
         
         <div className="grid gap-6 grid-cols-1 md:grid-cols-4">
           <Suspense fallback={<LoadingPlaceholder />}>

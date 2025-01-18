@@ -2,7 +2,6 @@
 import { Image } from "astro:assets";
 import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
-import Breadcrumb from "../components/Breadcrumb.astro";
 import "../styles/global.css";
 import me from "../image/index/me.webp";
 import Tags from "../pages/tags/index.astro";
@@ -11,7 +10,6 @@ import { ViewTransitions } from 'astro:transitions';
 interface Props {
   pageTitle: string;
   desc?: string;
-  breadcrumbs?: Array<{ text: string; url: string }>;
 }
 
 const { pageTitle, desc } = Astro.props;
@@ -21,7 +19,6 @@ const makeTitle = pageTitle
   : "流量卡官网 | 流客科技";
 
 const url = new URL(Astro.url.pathname, Astro.site).toString();
-console.log("-----",Astro.url.pathname,Astro.props)
 ---
 
 <html lang="zh-cn">

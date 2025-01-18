@@ -3,13 +3,16 @@ import { getCollection } from 'astro:content';
 import type { CollectionEntry } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import BlogList from '../../components/BlogList.astro';
+import type { GetStaticPathsOptions } from "astro";
 
 // 获取所有博客文章并按日期排序
-const allPosts= await getCollection('news');
-const posts = allPosts.sort(
-  (a,b) => 
-    new Date(b.data.pubDate).getTime() - new Date(a.data.pubDate).getTime()
-);
+
+export async function getStaticPaths({ paginate }: GetStaticPathsOptions) {
+  const hotcard = await getCollection("hotcard");
+  return paginate(hotcard.sort((a, b) =>
+    new Date(b.data?.pubDate).getTime() - new Date(a.data?.pubDate).getTime()
+  ), { pageSize: 12 });
+}
 
 ---
 

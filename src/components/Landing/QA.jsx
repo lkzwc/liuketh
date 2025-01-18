@@ -2,6 +2,7 @@ import React from "react";
 import { Accordion, AccordionItem, Button } from "@nextui-org/react";
 import { RoughNotation } from "react-rough-notation";
 import { Plus } from "@icon-park/react";
+import Title from "./Title";
 
 const qas = [
   {
@@ -28,24 +29,14 @@ const qas = [
 
 export default function QA() {
   return (
-      <section class="md:w-8/12 mx-auto p-10">
-      <div class="text-xl text-center text-white md:text-4xl">
-        <div>
-          <RoughNotation
-            type="highlight"
-            show={true}
-            color="#2563EB"
-            class="p-2"
-          >
-            FAQS
-          </RoughNotation>
-        </div>
-        <p class="mx-auto mb-8 mt-4 max-w-lg items-center text-center text-sm text-[#636262] sm:text-base md:mb-12 lg:mb-16">
-          关于一些常见问题的解答
-        </p>
-      </div>
+    <section class="md:w-8/12 mx-auto p-10 bg-white">
+      <Title
+        title="常见问题"
+        desc="关于一些常见问题的解答"
+        client:only="react"
+      />
 
-      <div class=" w-full">
+      <div class="w-full">
         <Accordion class="my-2" variant="bordered">
           {qas.map((item, index) => (
             <AccordionItem

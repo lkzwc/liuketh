@@ -42,17 +42,11 @@ const { page } = Astro.props;
 const metaDesc = "流客科技流量卡服务 - 提供内部专属套餐、精选靓号、企业专线等多种套餐选择。超大流量，低月租，全国漫游，让您畅享移动网络。";
 const metaKeywords = "流量卡,手机卡,内部套餐,靓号,企业专线,全国漫游,流客科技";
 
-// 面包屑配置
-const breadcrumbs = [
-  { text: "流量卡", url: "/hotcard" }
-];
-
 ---
 
 <Layout
   pageTitle="流量卡"
   desc={metaDesc}
-  breadcrumbs={breadcrumbs}
 >
   <meta name="keywords" content={metaKeywords} slot="head" />
   <!-- 产品展示区域 -->

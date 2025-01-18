@@ -27,10 +27,10 @@ const { posts } = Astro.props;
 <BaseLayout pageTitle={tag} desc="文章标签，帮你快速找到相关文章">
   <div class="m-5 text-2xl">
     <h1>🔍找到了以下内容 【 {tag}】</h1>
-    <menu>
+    <div class="flex flex-col mx-40">
       {
         posts.map((item: any) => (
-          <li class="rounded my-2 p-2 hover:bg-blue-200 transition duration-300 ease-in-out shadow-sm hover:shadow-md underline text-blue-600 text-xl">
+          <li class="rounded my-1 p-2 list-none hover:bg-blue-200 transition duration-300 ease-in-out shadow-sm hover:shadow-md underline text-blue-600 text-xl">
             <a
               href={item.file.split("content")[1].slice(0, -4)}
             >
@@ -39,6 +39,6 @@ const { posts } = Astro.props;
           </li>
         ))
       }
-    </menu>
+    </div>
   </div>
 </BaseLayout>

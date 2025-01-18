@@ -11,6 +11,7 @@ import {
   Faceu,
   Topbuzz,
 } from "@icon-park/react";
+import Title from "./Title";
 
 
 const IconComponent = ({ IconElement, colors }) => {
@@ -29,21 +30,7 @@ export default function Cooperate() {
   return (
     <section className="md:w-8/12 mx-auto my-10">
       <div className="text-center">
-        <div className="mb-6">
-          <RoughNotation
-            type="highlight"
-            show={true}
-            color="#2563EB"
-            className="p-2"
-          >
-            <span className="text-lg md:text-2xl font-medium text-neutral-800">
-              合作共赢
-            </span>
-          </RoughNotation>
-        </div>
-        <p className="mx-auto mt-4 max-w-lg text-sm text-neutral-600 md:text-base">
-          目前与我们合作的企业
-        </p>
+        <Title title="合作共赢" desc="目前与我们合作的企业" client:only="react"/>
       </div>
       <div class="flex justify-center items-center space-x-12">
       <Faceu theme="multi-color" size="47" fill={['#333' ,'#2F88FF' ,'#FFF' ,'#43CCF8']} strokeWidth={1}/>

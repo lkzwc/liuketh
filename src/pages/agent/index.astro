@@ -1,231 +1,156 @@
 ---
-import BaseLayout from "../../layouts/BaseLayout.astro";
+import BaseLayout from "../../layouts/HomeLayout.astro";
+import { Image } from "astro:assets";
+import me from "../../image/index/me.webp";
 
 const benefits = [
   {
+    icon: "💰",
     title: "高额返佣",
-    description: "提供业内最具竞争力的返佣比例，让您的收益最大化",
-    color: "blue"
+    desc: "提供业内最具竞争力的返佣比例,让您的收益最大化"
   },
   {
+    icon: "🎯", 
     title: "专业支持",
-    description: "一对一专属服务，提供完整的运营指导和技术支持",
-    color: "green"
+    desc: "一对一专属服务,提供完整的运营指导和技术支持"
   },
   {
+    icon: "⚡️",
     title: "快速结算",
-    description: "佣金日结制度，资金结算快速安全",
-    color: "purple"
+    desc: "佣金日结制度,资金结算快速安全"
   },
   {
+    icon: "🎁",
     title: "品牌赋能",
-    description: "共享品牌资源，助力业务快速增长",
-    color: "orange"
+    desc: "共享品牌资源,助力业务快速增长"
   }
 ];
 
 const features = [
   {
-    title: "丰富的产品线",
-    items: [
-      "随身WiFi设备",
-      "高性能路由器",
-      "优质流量套餐",
-      "精选靓号资源"
-    ]
+    icon: "📱",
+    title: "流量卡业务",
+    desc: "内部资费套餐,超低月租,超大流量,支持全国漫游"
   },
   {
-    title: "完善的培训体系",
-    items: [
-      "产品知识培训",
-      "销售技巧指导",
-      "运营经验分享",
-      "市场分析支持"
-    ]
+    icon: "🌐",
+    title: "随身WiFi",
+    desc: "便携式WiFi设备,高速上网,全国漫游,即插即用"
   },
   {
-    title: "强大的系统支持",
-    items: [
-      "专业后台系统",
-      "订单实时跟踪",
-      "数据统计分析",
-      "客户管理工具"
-    ]
+    icon: "🔋",
+    title: "企业专线",
+    desc: "专业级网络服务,稳定可靠,技术支持"
   }
 ];
 
-const steps = [
-  {
-    number: "01",
-    title: "提交申请",
-    description: "填写基本信息，提交代理申请"
-  },
-  {
-    number: "02",
-    title: "资质审核",
-    description: "专业团队审核，确保合作质量"
-  },
-  {
-    number: "03",
-    title: "签订协议",
-    description: "确认合作细节，签署代理协议"
-  },
-  {
-    number: "04",
-    title: "开始合作",
-    description: "完成培训后，正式开展业务"
-  }
-];
+const metaDesc = "流客科技诚邀代理加盟 - 提供高额返佣、专业支持、快速结算、品牌赋能等核心权益。加入我们,共创辉煌!";
 ---
 
-<BaseLayout pageTitle="代理合作" desc="流客科技诚邀您加入我们的代理团队，共创辉煌！">
-  <main>
-    <!-- Hero Section -->
-    <section class="relative overflow-hidden bg-gradient-to-br from-blue-50 via-white to-purple-50 py-20">
-      <div class="absolute inset-0 bg-grid-slate-100 [mask-image:linear-gradient(0deg,white,rgba(255,255,255,0.6))]"></div>
-      <div class="container mx-auto px-4 relative">
-        <div class="grid lg:grid-cols-2 gap-12 items-center">
-          <div class="space-y-8">
-            <h1 class="text-4xl md:text-5xl font-bold text-gray-900 leading-tight">
-              成为我们的合作伙伴
-              <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600">
-                共创未来
+<BaseLayout pageTitle="代理合作" desc={metaDesc}>
+  <!-- Hero Section -->
+  <section class="relative overflow-hidden bg-gradient-to-br from-blue-50 via-white to-blue-50 py-20">
+    <div class="absolute inset-0">
+      <div class="absolute inset-0 bg-grid-slate-900/[0.04] bg-[size:20px_20px]"></div>
+    </div>
+    <div class="relative container mx-auto px-4">
+      <div class="max-w-3xl mx-auto text-center">
+        <h1 class="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+          代理商
+          <span class="bg-gradient-to-r from-blue-600 to-cyan-500 bg-clip-text text-transparent">
+            权益保障
+          </span>
+        </h1>
+        <p class="text-xl text-gray-600 mb-8">
+          我们为代理商提供全方位的支持和保障,助力您的业务快速发展
+        </p>
+        <div class="flex justify-center gap-4">
+          <a href="#contact" class="px-8 py-4 bg-blue-600 text-white font-semibold rounded-full hover:bg-blue-700 transition-colors duration-300 shadow-lg hover:shadow-xl">
+            立即加入
+          </a>
+          <a href="#benefits" class="px-8 py-4 bg-white text-blue-600 font-semibold rounded-full hover:bg-gray-50 transition-colors duration-300 shadow-lg hover:shadow-xl">
+            了解更多
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Benefits Section -->
+  <section id="benefits" class="py-20 bg-white">
+    <div class="container mx-auto px-4">
+      <div class="text-center mb-16">
+        <h2 class="text-3xl font-bold text-gray-900 mb-4">核心权益</h2>
+        <div class="w-20 h-1 bg-blue-600 mx-auto"></div>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-6xl mx-auto">
+        {benefits.map((item) => (
+          <div class="group bg-white rounded-xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
+            <div class="flex flex-col items-center text-center space-y-4">
+              <span class="text-5xl mb-4 transform group-hover:scale-110 transition-transform duration-300">
+                {item.icon}
               </span>
-            </h1>
-            <p class="text-xl text-gray-600 leading-relaxed">
-              加入流客科技代理团队，享受高额回报，获得专业支持，开启您的创业之旅
-            </p>
-            <div class="flex gap-4">
-              <a href="https://work.weixin.qq.com/gm/2f7011219a43a467a4e178a259797647" 
-                 class="px-8 py-4 rounded-xl bg-gradient-to-r from-blue-600 to-purple-600 text-white font-medium hover:shadow-lg transform hover:-translate-y-0.5 transition-all duration-200">
-                立即加入
-              </a>
-              <a href="#benefits" 
-                 class="px-8 py-4 rounded-xl border-2 border-gray-200 text-gray-700 font-medium hover:border-blue-600 hover:text-blue-600 transition-colors duration-200">
-                了解更多
-              </a>
+              <h3 class="text-xl font-bold text-gray-900 group-hover:text-blue-600 transition-colors duration-300">
+                {item.title}
+              </h3>
+              <p class="text-gray-600">
+                {item.desc}
+              </p>
             </div>
           </div>
-          <div class="relative">
-            <div class="absolute inset-0 bg-gradient-to-tr from-blue-100 to-purple-100 rounded-3xl transform rotate-3"></div>
-            <img
-              src="https://img.freepik.com/free-vector/business-team-putting-together-jigsaw-puzzle-isolated-flat-vector-illustration-cartoon-partners-working-connection-teamwork-partnership-cooperation-concept_74855-9814.jpg"
-              alt="合作伙伴"
-              width="600"
-              height="400"
-              class="relative rounded-2xl shadow-2xl object-cover"
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Products Section -->
+  <section class="py-20 bg-gray-50">
+    <div class="container mx-auto px-4">
+      <div class="text-center mb-16">
+        <h2 class="text-3xl font-bold text-gray-900 mb-4">产品优势</h2>
+        <div class="w-20 h-1 bg-blue-600 mx-auto"></div>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+        {features.map((item) => (
+          <div class="bg-white rounded-xl p-8 shadow-lg hover:shadow-xl transition-all duration-300">
+            <span class="text-4xl mb-4 block">{item.icon}</span>
+            <h3 class="text-xl font-bold text-gray-900 mb-4">{item.title}</h3>
+            <p class="text-gray-600">{item.desc}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact" class="py-20 bg-white">
+    <div class="container mx-auto px-4">
+      <div class="max-w-4xl mx-auto">
+        <div class="text-center mb-16">
+          <h2 class="text-3xl font-bold text-gray-900 mb-4">联系我们</h2>
+          <div class="w-20 h-1 bg-blue-600 mx-auto mb-8"></div>
+          <p class="text-xl text-gray-600">
+            扫描下方二维码,加入代理商群,获取更多详细信息
+          </p>
+        </div>
+        <div class="bg-gradient-to-br from-blue-50 to-cyan-50 p-8 rounded-2xl shadow-lg">
+          <div class="max-w-xs mx-auto">
+            <Image
+              src={me}
+              alt="代理商微信群"
+              width={300}
+              height={300}
+              class="w-full rounded-xl shadow-md"
             />
           </div>
         </div>
       </div>
-    </section>
-
-    <!-- Benefits Section -->
-    <section id="benefits" class="py-20 bg-white">
-      <div class="container mx-auto px-4">
-        <div class="text-center mb-16">
-          <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
-            代理商权益
-          </h2>
-          <div class="w-24 h-1 bg-gradient-to-r from-blue-600 to-purple-600 mx-auto mb-8"></div>
-          <p class="text-xl text-gray-600 max-w-3xl mx-auto">
-            我们为代理商提供全方位的支持和保障，助力您的业务快速发展
-          </p>
-        </div>
-
-        <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-          {benefits.map(benefit => (
-            <div class="group bg-white rounded-xl p-8 shadow-lg hover:shadow-xl transition-all duration-300">
-              <div class={`w-16 h-16 rounded-2xl bg-${benefit.color}-100 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300`}>
-                <div class={`w-8 h-8 rounded-lg bg-gradient-to-br from-${benefit.color}-500 to-${benefit.color}-600`}></div>
-              </div>
-              <h3 class="text-xl font-bold text-gray-900 mb-4">{benefit.title}</h3>
-              <p class="text-gray-600">{benefit.description}</p>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-
-    <!-- Features Section -->
-    <section class="py-20 bg-gradient-to-b from-gray-50 to-white">
-      <div class="container mx-auto px-4">
-        <div class="text-center mb-16">
-          <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
-            合作优势
-          </h2>
-          <div class="w-24 h-1 bg-gradient-to-r from-blue-600 to-purple-600 mx-auto mb-8"></div>
-        </div>
-
-        <div class="grid md:grid-cols-3 gap-8">
-          {features.map(feature => (
-            <div class="bg-white rounded-xl p-8 shadow-lg hover:shadow-xl transition-all duration-300">
-              <h3 class="text-xl font-bold text-gray-900 mb-6">{feature.title}</h3>
-              <ul class="space-y-4">
-                {feature.items.map(item => (
-                  <li class="flex items-center text-gray-600">
-                    <svg class="w-5 h-5 text-blue-500 mr-3" viewBox="0 0 20 20" fill="currentColor">
-                      <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
-                    </svg>
-                    {item}
-                  </li>
-                ))}
-              </ul>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-
-    <!-- Steps Section -->
-    <section class="py-20 bg-white">
-      <div class="container mx-auto px-4">
-        <div class="text-center mb-16">
-          <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
-            合作流程
-          </h2>
-          <div class="w-24 h-1 bg-gradient-to-r from-blue-600 to-purple-600 mx-auto mb-8"></div>
-        </div>
-
-        <div class="grid md:grid-cols-4 gap-8">
-          {steps.map(step => (
-            <div class="relative group">
-              <div class="absolute -inset-1 rounded-lg bg-gradient-to-r from-blue-600 to-purple-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300 blur"></div>
-              <div class="relative bg-white rounded-lg p-8 shadow-lg">
-                <div class="text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-600 mb-4">
-                  {step.number}
-                </div>
-                <h3 class="text-xl font-bold text-gray-900 mb-3">{step.title}</h3>
-                <p class="text-gray-600">{step.description}</p>
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-
-    <!-- CTA Section -->
-    <section class="py-20 bg-gradient-to-br from-blue-600 to-purple-600 text-white">
-      <div class="container mx-auto px-4 text-center">
-        <h2 class="text-3xl md:text-4xl font-bold mb-8">
-          准备好开始您的代理之旅了吗？
-        </h2>
-        <p class="text-xl text-blue-100 mb-12 max-w-3xl mx-auto">
-          加入我们，开启您的创业之路。我们期待与您携手共进，共创辉煌！
-        </p>
-        <a
-          href="https://work.weixin.qq.com/gm/2f7011219a43a467a4e178a259797647"
-          class="inline-block px-8 py-4 rounded-xl bg-white text-blue-600 font-medium hover:shadow-lg transform hover:-translate-y-0.5 transition-all duration-200"
-        >
-          立即申请代理
-        </a>
-      </div>
-    </section>
-  </main>
+    </div>
+  </section>
 </BaseLayout>
 
 <style>
-  .bg-grid-slate-100 {
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32' width='32' height='32' fill='none' stroke='rgb(51 65 85 / 0.1)'%3E%3Cpath d='M0 .5H31.5V32'/%3E%3C/svg%3E");
+  .bg-grid-slate-900 {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32' width='32' height='32' fill='none' stroke='rgb(15 23 42 / 0.04)'%3E%3Cpath d='M0 .5H31.5V32'/%3E%3C/svg%3E");
   }
 </style>

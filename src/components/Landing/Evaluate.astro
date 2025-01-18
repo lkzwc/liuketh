@@ -1,5 +1,6 @@
 ---
 import { Star, User } from "@icon-park/react";
+import Title from "./Title";
 
 const evaluations = [
   {
@@ -36,10 +37,10 @@ const preloadImages = [evaluations[0].avatar];
 
 <section class="py-16 bg-gray-50">
   <div class="container mx-auto px-4">
-    <h2 class="text-3xl font-bold text-center mb-12">用户评价</h2>
+    <Title title="用户评价" desc="多个客户的中肯评价" client:only="react"/>
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
       {evaluations.map((evaluation, index) => (
-        <div class="bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300">
+        <div class="p-6 rounded-xl shadow-lg hover:shadow-xl transition-shadow duration-300">
           <div class="flex items-center mb-4">
             <img
               src={evaluation.avatar}
