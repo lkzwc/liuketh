@@ -18,7 +18,9 @@ export default defineConfig({
     formats: ['webp', 'avif', 'png', 'jpg']
   },
   integrations: [
-    react(),
+    react({
+      include: ['**/*.tsx', '**/*.jsx']
+    }),
     sitemap(),
     mdx({
       optimize: {
@@ -31,6 +33,19 @@ export default defineConfig({
   ],
   devToolbar: {
     enabled: false
+  },
+  vite: {
+    ssr: {
+      noExternal: ['@astrojs/*']
+    },
+    server: {
+      fs: {
+        strict: true
+      }
+    },
+    build: {
+      charset: 'utf8'
+    }
   },
   redirects: {
     // '/hot/[...slug]': '/hotcard',
