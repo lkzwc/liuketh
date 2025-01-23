@@ -46,7 +46,7 @@ const url = new URL(Astro.url.pathname, Astro.site).toString();
 	</head>
 	<body>
 		<Header />
-		{Astro.url.pathname !=='/' &&  <div class="p-5 ml-12">
+		{Astro.url.pathname !=='/' &&  <div class="md:p-5 ml-12">
 			<a href="/" class=" underline text-blue-700 " target="_parent">Home</a>{` ⯈  `}{pageTitle}
 		</div>}
 		

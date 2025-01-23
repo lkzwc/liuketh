@@ -27,7 +27,7 @@ const allPosts = await getCollection("wifi");
 ---
 
 <Layout pageTitle={title} desc={description}>
-  <div class="m-5">
+  <div>
     <MDLayout frontmatter={entry.data}>
       <MDContent class="rounded-xl">
         <Content />
@@ -35,15 +35,15 @@ const allPosts = await getCollection("wifi");
     </MDLayout>
 
     <div class="bg-slate-200 shadow-xl p-5 mt-5 rounded-xl">
-      <h3 class="text-xl font-semibold my-4 md:mx-16">你可能也喜欢：</h3>
-      <ul class="list-none md:mx-16">
+      <h3 class="text-base md:text-xl font-semibold my-4 md:mx-16">你可能也喜欢：</h3>
+      <ul class="list-none text-base md:text-xl">
         {
           allPosts
             .filter((item) => item.slug !== `/${slug}`)
             .map((p) => (
               <li class="mb-3">
                 <a
-                class="rounded my-2 p-2 hover:bg-blue-200 transition duration-300 ease-in-out shadow-sm hover:shadow-md underline text-blue-600 text-xl"
+                class="rounded my-2 p-2 hover:bg-blue-200 transition duration-300 ease-in-out shadow-sm hover:shadow-md underline text-blue-600"
                   href={`/wifi/${p.slug}`}
                 >
                   {p.data.title}
