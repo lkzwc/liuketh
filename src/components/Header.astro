@@ -1,26 +1,39 @@
 ---
 import { Image } from "astro:assets";
 import logo from "../image/index/logo_w.png";
+
+// 导航链接数据
+const navLinks = [
+  { href: "/hotcard", text: "流量卡" },
+  { href: "/wifi", text: "随身Wifi" },
+  { href: "/product", text: "最新产品" },
+  { href: "/news", text: "最新资讯" },
+  { href: "/agent", text: "代理合作" },
+  { href: "/about", text: "关于我们" }
+];
 ---
 
-<header>
+<header class="relative z-50">
   <nav class="bg-gray-800 px-4 py-3">
     <div class="container mx-auto flex items-center justify-between">
       <!-- Logo -->
       <div class="flex items-start">
         <a href="/" class="flex-shrink-0">
-          <Image class="h-14 w-auto rounded-lg" width={231} height={64} src={logo} alt="Logo" />
+          <Image 
+            class="h-14 w-auto rounded-lg" 
+            width={231} 
+            height={64} 
+            src={logo} 
+            alt="Logo" 
+          />
         </a>
       </div>
 
       <!-- Desktop Menu -->
       <div class="hidden lg:flex items-center space-x-6">
-        <a href="/hotcard" class="nav-link">流量卡</a>
-        <a href="/wifi" class="nav-link">随身Wifi</a>
-        <a href="/product" class="nav-link">最新产品</a>
-        <a href="/news" class="nav-link">最新资讯</a>
-        <a href="/agent" class="nav-link">代理合作</a>
-        <a href="/about" class="nav-link">关于我们</a>
+        {navLinks.map(link => (
+          <a href={link.href} class="nav-link">{link.text}</a>
+        ))}
       </div>
 
       <!-- Mobile Menu Button -->
@@ -37,14 +50,11 @@ import logo from "../image/index/logo_w.png";
     </div>
 
     <!-- Mobile Menu -->
-    <div class="lg:hidden" id="mobile-menu">
+    <div class="lg:hidden hidden" id="mobile-menu">
       <div class="px-2 pt-2 pb-3 space-y-1">
-        <a href="/hotcard" class="mobile-nav-link">流量卡</a>
-        <a href="/wifi" class="mobile-nav-link">随身Wifi</a>
-        <a href="/product" class="mobile-nav-link">最新产品</a>
-        <a href="/news" class="mobile-nav-link">最新资讯</a>
-        <a href="/agent" class="mobile-nav-link">代理合作</a>
-        <a href="/about" class="mobile-nav-link">关于我们</a>
+        {navLinks.map(link => (
+          <a href={link.href} class="mobile-nav-link">{link.text}</a>
+        ))}
       </div>
     </div>
   </nav>
@@ -77,10 +87,38 @@ import logo from "../image/index/logo_w.png";
     @apply block text-[19px] tracking-wide font-medium text-gray-300 hover:text-white hover:bg-gray-700 px-4 py-3 rounded-lg transition-all duration-200;
     text-shadow: 0 1px 2px rgba(0,0,0,0.1);
   }
+
+  #mobile-menu {
+    transition: all 0.3s ease-in-out;
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+
+  #mobile-menu.show {
+    opacity: 1;
+    transform: translateY(0);
+  }
 </style>
 
 <script>
-  document.getElementById("togglemenu")?.addEventListener("click", () => {
-    document.getElementById("mobile-menu")?.classList.toggle("hidden");
+  const toggleMenu = document.getElementById("togglemenu");
+  const mobileMenu = document.getElementById("mobile-menu");
+  
+  if (toggleMenu && mobileMenu) {
+    toggleMenu.addEventListener("click", () => {
+      mobileMenu.classList.toggle("hidden");
+      // 添加一个短暂延迟以确保过渡效果正常显示
+      setTimeout(() => {
+        mobileMenu.classList.toggle("show");
+      }, 10);
+    });
+  }
+
+  // 处理页面切换时关闭菜单
+  document.addEventListener('astro:page-load', () => {
+    if (mobileMenu) {
+      mobileMenu.classList.remove("show");
+      mobileMenu.classList.add("hidden");
+    }
   });
 </script>

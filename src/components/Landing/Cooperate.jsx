@@ -32,7 +32,7 @@ export default function Cooperate() {
       <div className="text-center">
         <Title title="合作共赢" desc="目前与我们合作的企业" client:only="react"/>
       </div>
-      <div class="flex justify-center items-center space-x-12">
+      <div class="overflow-hidden flex justify-center items-center space-x-12">
       <Faceu theme="multi-color" size="47" fill={['#333' ,'#2F88FF' ,'#FFF' ,'#43CCF8']} strokeWidth={1}/>
       <Topbuzz theme="multi-color" size="47" fill={['#333' ,'#2F88FF' ,'#FFF' ,'#43CCF8']} strokeWidth={1}/>  
         <Wechat
