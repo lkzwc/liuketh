@@ -12,6 +12,7 @@ const products = [
     name: '随身WiFi',
     description: '便携式WiFi，随时随地高速上网，支持4G/5G双模，8小时续航，多设备同时连接，让您在旅途中也能享受高速网络。',
     image: wifi,
+    imageAlt: '流客科技随身WiFi-便携式高速上网设备展示图',
     price: '¥79',
     features: [
       '4G/5G双模网络',
@@ -30,6 +31,7 @@ const products = [
     name: '云路由',
     description: '智能路由器，打造家庭网络中心。支持WiFi6技术，智能组网，AI防护，让您的家庭网络更安全、更稳定、更快速。',
     image: wifi2,
+    imageAlt: '流客科技云路由-智能家庭网络路由器展示图',
     price: '¥399',
     features: [
       '双频WiFi6技术',
@@ -48,6 +50,7 @@ const products = [
     name: '内部套餐卡',
     description: '超值套餐，专享优惠价。大流量，低月租，全国漫游，为您提供最实惠的通信服务，让您畅享无限网络。',
     image: neibu,
+    imageAlt: '流客科技内部套餐卡-超值优惠套餐展示图',
     price: '免费包邮',
     features: [
       '超大流量套餐',
@@ -66,6 +69,7 @@ const products = [
     name: '靓号专区',
     description: '精选靓号，彰显品味。提供多样化的号码选择，让您的通讯更有个性，展现独特魅力。',
     image: number,
+    imageAlt: '流客科技靓号专区-精选手机号码展示图',
     price: '0元起',
     features: [
       '精选靓号资源',
@@ -80,16 +84,24 @@ const products = [
     tagColor: 'from-yellow-500 to-yellow-600'
   }
 ];
+
+const pageTitle = "最新产品";
+const pageDesc = "流客科技最新产品展示 - 包括随身WiFi、云路由、内部套餐卡、靓号专区等。提供便携上网设备、智能路由器、优质流量套餐和精选手机号码，满足您的多样化通信需求。";
+const pageKeywords = "随身WiFi,云路由器,流量套餐,靓号,便携上网,智能路由,物联网设备,5G网络";
 ---
 
-<BaseLayout pageTitle="最新产品" desc="流客科技最新产品，覆盖行业的发展和前行！">
+<BaseLayout 
+  pageTitle={pageTitle}
+  desc={pageDesc}
+  keywords={pageKeywords}
+>
   <main>
     <section class="py-4 bg-gradient-to-b from-gray-50 to-white">
       <div class="container mx-auto px-4">
         <div class="text-center mb-16">
-          <span class="text-xl md:text-3xl font-bold text-gray-900 mb-6">
-            最新产品
-          </span>
+          <h1 class="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
+            {pageTitle}
+          </h1>
           <div class="w-24 h-1 bg-gradient-to-r from-blue-600 to-blue-700 mx-auto mb-8"></div>
           <p class="text-xl text-gray-600 max-w-3xl mx-auto">
             为您提供优质的通信产品和服务，让连接更简单，生活更智能
@@ -98,59 +110,59 @@ const products = [
         
         <div class="grid gap-8 md:grid-cols-2">
           {products.map(product => (
-            <div class="group relative overflow-hidden rounded-2xl bg-white shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
+            <article class="group relative overflow-hidden rounded-2xl bg-white shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
               {/* 标签 */}
               <div class="absolute top-4 right-4 z-10">
-                <span class={`px-4 py-1.5 text-sm font-medium text-white rounded-full bg-gradient-to-r ${product.tagColor} shadow-lg`}>
+                <span class={`inline-flex items-center px-3 py-1 rounded-full text-sm font-medium text-white bg-gradient-to-r ${product.tagColor}`}>
                   {product.tag}
                 </span>
               </div>
-
-              {/* 图片容器 */}
+              
+              {/* 产品图片 */}
               <div class="relative aspect-[16/9] overflow-hidden">
                 <Image
                   src={product.image}
-                  alt={product.name}
-                  width={800}
-                  height={450}
-                  class="h-full w-full object-cover transform transition-transform duration-700 scale-100 group-hover:scale-110"
+                  alt={product.imageAlt || product.name}
+                  width={600}
+                  height={338}
+                  class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-300"
                 />
-                <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-black/0 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
               </div>
               
-              <div class="p-8">
-                <div class="flex justify-between items-start mb-4">
-                  <h2 class="text-3xl font-bold text-gray-900 group-hover:text-blue-600 transition-colors duration-300">
-                    {product.name}
-                  </h2>
-                  <span class="text-xl font-semibold text-blue-600 bg-blue-50 px-4 py-1.5 rounded-full">
-                    {product.price}
-                  </span>
-                </div>
+              {/* 产品信息 */}
+              <div class="p-6">
+                <header class="flex justify-between items-center mb-4">
+                  <h2 class="text-xl font-bold text-gray-900">{product.name}</h2>
+                  <span class="text-lg font-semibold text-blue-600">{product.price}</span>
+                </header>
                 
-                <p class="text-lg text-gray-600 mb-8">{product.description}</p>
+                <p class="text-gray-600 mb-6 line-clamp-3">{product.description}</p>
                 
-                <div class="grid grid-cols-2 gap-4 mb-8">
-                  {product.features.map((feature) => (
-                    <div class="flex items-center text-gray-700 group/item">
-                      <svg class="w-5 h-5 text-blue-500 mr-3 flex-shrink-0 transition-transform duration-300 group-hover/item:scale-110" viewBox="0 0 20 20" fill="currentColor">
-                        <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
-                      </svg>
-                      <span class="text-base group-hover/item:text-blue-600 transition-colors duration-300">{feature}</span>
-                    </div>
-                  ))}
+                {/* 产品特性 */}
+                <div class="bg-gray-50 rounded-xl p-4 mb-6">
+                  <h3 class="text-lg font-semibold text-gray-900 mb-4">产品特色</h3>
+                  <ul class="grid grid-cols-2 gap-3">
+                    {product.features.map(feature => (
+                      <li class="flex items-center text-gray-700">
+                        <svg class="w-5 h-5 text-blue-600 mr-2 flex-shrink-0" viewBox="0 0 20 20" fill="currentColor">
+                          <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                        </svg>
+                        <span class="text-sm">{feature}</span>
+                      </li>
+                    ))}
+                  </ul>
                 </div>
                 
                 <a
                   href={product.link}
                   target="_blank"
                   rel="noopener noreferrer"
-                  class="block w-full text-center py-4 px-6 rounded-xl bg-gradient-to-r from-blue-600 to-blue-700 text-white text-lg font-medium hover:from-blue-700 hover:to-blue-800 transition-all duration-300 transform hover:scale-[1.02] shadow-md hover:shadow-lg"
+                  class="block w-full text-center py-3 px-6 rounded-xl bg-gradient-to-r from-blue-600 to-blue-700 text-white font-medium hover:from-blue-700 hover:to-blue-800 transition-all duration-300 transform hover:-translate-y-0.5"
                 >
                   了解更多
                 </a>
               </div>
-            </div>
+            </article>
           ))}
         </div>
       </div>

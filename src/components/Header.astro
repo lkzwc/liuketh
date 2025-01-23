@@ -45,7 +45,7 @@ const navLinks = [
         type="button"
         class="lg:hidden text-gray-200 hover:text-white focus:text-white focus:outline-none"
         aria-label="toggle menu"
-        id="togglemenu"
+        id="mobile-menu-button"
       >
         <svg viewBox="0 0 24 24" class="h-6 w-6 fill-current">
           <path fill-rule="evenodd" d="M4 5h16v2H4V5zm0 6h16v2H4v-2zm0 6h16v2H4v-2z"></path>
@@ -54,12 +54,43 @@ const navLinks = [
     </div>
 
     <!-- Mobile Menu -->
-    <div class="lg:hidden hidden" id="mobile-menu">
-      <div class="px-2 pt-2 pb-3 space-y-1">
-        {navLinks.map(link => (
-          <a href={link.href} class="mobile-nav-link">{link.text}</a>
-        ))}
-      </div>
+    <div id="mobile-menu" class="fixed inset-0 z-50 hidden">
+      <!-- 背景遮罩 -->
+      <div class="absolute inset-0 bg-gradient-to-b from-indigo-900/95 via-purple-900/95 to-pink-800/95 backdrop-blur-sm"></div>
+      
+      <!-- 菜单内容 -->
+      <nav class="relative h-full flex flex-col p-6">
+        <div class="flex justify-between items-center mb-8">
+          <Image 
+            src={logo} 
+            alt="流客科技" 
+            width={120} 
+            height={35}
+            class="rounded-lg"
+          />
+          <button id="close-menu" class="text-white hover:text-pink-400 transition-colors duration-300">
+            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+            </svg>
+          </button>
+        </div>
+        
+        <ul class="space-y-6">
+          {navLinks.map(link => (
+            <li>
+              <a 
+                href={link.href} 
+                class="mobile-nav-link group flex items-center text-xl text-gray-100 hover:text-white"
+              >
+                <span class="relative">
+                  {link.text}
+                  <span class="absolute -bottom-1 left-0 w-full h-0.5 bg-gradient-to-r from-pink-500 to-purple-500 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></span>
+                </span>
+              </a>
+            </li>
+          ))}
+        </ul>
+      </nav>
     </div>
   </nav>
 </header>
@@ -95,66 +126,54 @@ const navLinks = [
   }
 
   .mobile-nav-link {
-    @apply block text-[19px] tracking-wide font-medium text-gray-100 hover:text-white px-4 py-3 rounded-lg transition-all duration-300 relative overflow-hidden;
-    text-shadow: 0 2px 4px rgba(0,0,0,0.2);
-    background: linear-gradient(90deg, transparent 50%, rgba(244, 114, 182, 0.2) 50%);
-    background-size: 200% 100%;
-    background-position: 0% 0%;
+    @apply relative py-2 transition-all duration-300;
   }
-
-  .mobile-nav-link:hover {
-    background-position: -100% 0%;
-  }
-
+  
   #mobile-menu {
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    opacity: 0;
-    transform: translateY(-10px);
-    background: rgba(17, 24, 39, 0.95);
-    backdrop-filter: blur(12px);
+    animation: slideIn 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   }
-
-  #mobile-menu.show {
-    opacity: 1;
-    transform: translateY(0);
+  
+  @keyframes slideIn {
+    from {
+      opacity: 0;
+      transform: translateY(-10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
   }
 </style>
 
 <script>
   function initMobileMenu() {
-    const toggleMenu = document.getElementById("togglemenu");
-    const mobileMenu = document.getElementById("mobile-menu");
+    const mobileMenuButton = document.getElementById('mobile-menu-button');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const closeMenuButton = document.getElementById('close-menu');
     
-    if (toggleMenu && mobileMenu) {
-      // 移除旧的事件监听器
-      toggleMenu.removeEventListener("click", toggleMobileMenu);
-      
-      // 添加新的事件监听器
-      toggleMenu.addEventListener("click", toggleMobileMenu);
-      
-      function toggleMobileMenu() {
-        mobileMenu?.classList.toggle("hidden");
-        setTimeout(() => {
-          mobileMenu?.classList.toggle("show");
-        }, 10);
-      }
-    }
+    if (!mobileMenuButton || !mobileMenu || !closeMenuButton) return;
+    
+    // 直接添加事件监听器
+    mobileMenuButton.addEventListener('click', () => {
+      mobileMenu.classList.remove('hidden');
+      document.body.style.overflow = 'hidden';
+    });
+    
+    closeMenuButton.addEventListener('click', () => {
+      mobileMenu.classList.add('hidden');
+      document.body.style.overflow = '';
+    });
   }
-
-  // 初始化
-  initMobileMenu();
-
-  // 在页面切换时重新初始化
-  document.addEventListener('astro:page-load', () => {
-    initMobileMenu();
-  });
-
-  // 在页面切换前关闭菜单
+  
+  // 页面加载完成后初始化
+  document.addEventListener('astro:page-load', initMobileMenu);
+  
+  // 页面切换前关闭菜单
   document.addEventListener('astro:before-swap', () => {
-    const mobileMenu = document.getElementById("mobile-menu");
+    const mobileMenu = document.getElementById('mobile-menu');
     if (mobileMenu) {
-      mobileMenu.classList.remove("show");
-      mobileMenu.classList.add("hidden");
+      mobileMenu.classList.add('hidden');
+      document.body.style.overflow = '';
     }
   });
 </script>

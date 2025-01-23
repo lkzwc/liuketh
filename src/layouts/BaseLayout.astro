@@ -10,13 +10,17 @@ import { ViewTransitions } from 'astro:transitions';
 interface Props {
   pageTitle: string;
   desc?: string;
+  keywords?: string;
+  image?: string;
 }
 
-const { pageTitle, desc } = Astro.props;
+const { pageTitle, desc, keywords, image } = Astro.props;
 
-const makeTitle = pageTitle
-  ? pageTitle + " | " + "流客科技"
-  : "流量卡官网 | 流客科技";
+const siteName = "流客科技";
+const makeTitle = pageTitle ? `${pageTitle} | ${siteName}` : "流客科技";
+const defaultDesc = "流客科技专注于提供优质的通信服务解决方案,包括流量卡、随身WiFi等产品。大流量低资费,全国漫游无限制,让您畅享移动互联。";
+const defaultKeywords = "流量卡,随身wifi,流量卡官网,通信服务,流客科技,物联网,5G套餐,手机卡,上网卡";
+const defaultImage = "https://www.liuketh.cn/og-image.jpg";
 
 const url = new URL(Astro.url.pathname, Astro.site).toString();
 ---
@@ -24,27 +28,79 @@ const url = new URL(Astro.url.pathname, Astro.site).toString();
 <html lang="zh-cn">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width" />
-    <meta name="theme-color" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#4F46E5" />
     <meta name="generator" content={Astro.generator} />
-    <meta name="description" content={desc} />
+    
+    <!-- Primary Meta Tags -->
     <title>{makeTitle}</title>
-
-    <meta property="og:title" content={makeTitle} />
+    <meta name="title" content={makeTitle} />
+    <meta name="description" content={desc || defaultDesc} />
+    <meta name="keywords" content={keywords || defaultKeywords} />
+    <meta name="author" content={siteName} />
+    
+    <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website" />
     <meta property="og:url" content={url} />
-    <meta property="og:description" content={desc} />
-    <meta property="og:site_name" content={makeTitle} />
-    <meta property="og:image" content="https://astro.build/og/astro.jpg" />
+    <meta property="og:title" content={makeTitle} />
+    <meta property="og:description" content={desc || defaultDesc} />
+    <meta property="og:image" content={image || defaultImage} />
+    <meta property="og:site_name" content={siteName} />
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content={url} />
+    <meta property="twitter:title" content={makeTitle} />
+    <meta property="twitter:description" content={desc || defaultDesc} />
+    <meta property="twitter:image" content={image || defaultImage} />
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href={url} />
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="/favicon.png" />
+    
+    <!-- Mobile Web App -->
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    
+    <!-- Alternate Languages -->
+    <link rel="alternate" href={url} hreflang="zh-CN" />
+    
     <ViewTransitions />
+    
+    <!-- 结构化数据 -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "${siteName}",
+        "url": "${Astro.site}",
+        "logo": "${defaultImage}",
+        "description": "${defaultDesc}",
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "西安",
+          "addressRegion": "陕西省",
+          "addressCountry": "CN"
+        },
+        "contactPoint": {
+          "@type": "ContactPoint",
+          "telephone": "+86-15556355573",
+          "contactType": "customer service"
+        }
+      }
+    </script>
+    
+    <slot name="head" />
   </head>
   <body>
     <div class="min-h-screen flex flex-col">
       <Header transition:persist />
       <div class="md:pl-12">
         {Astro.url.pathname !=='/' &&  <div class="m-2 md:p-5 md:ml-12">
-          <a href="/" class=" underline text-blue-700 " target="_parent">首页</a> {` ⯈  `}
-          {Astro.url.pathname.slice(1).split('/').length > 1 && <a href={`/${Astro.url.pathname.slice(1).split('/')[0]}`} class=" underline text-blue-700 " target="_parent">{Astro.url.pathname.slice(1).split('/')[0]}{` ⯈  `}</a>}
+          <a href="/" class="underline text-blue-700" target="_parent">首页</a> {` ⯈  `}
+          {Astro.url.pathname.slice(1).split('/').length > 1 && <a href={`/${Astro.url.pathname.slice(1).split('/')[0]}`} class="underline text-blue-700" target="_parent">{Astro.url.pathname.slice(1).split('/')[0]}{` ⯈  `}</a>}
           {pageTitle}
         </div>}
       </div>
