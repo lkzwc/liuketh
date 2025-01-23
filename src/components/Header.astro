@@ -14,13 +14,14 @@ const navLinks = [
 ---
 
 <header class="relative z-50">
-  <nav class="bg-gray-800 px-4 py-3">
-    <div class="container mx-auto flex items-center justify-between">
+  <nav class="bg-gradient-to-r from-indigo-900 via-purple-900 to-pink-800 px-4 py-3 shadow-xl">
+    <div class="absolute inset-0 bg-[url(/grid.svg)] bg-center [mask-image:linear-gradient(180deg,white,rgba(255,255,255,0))]"></div>
+    <div class="container mx-auto flex items-center justify-between relative">
       <!-- Logo -->
       <div class="flex items-start">
-        <a href="/" class="flex-shrink-0">
+        <a href="/" class="flex-shrink-0 transition-all duration-300 hover:scale-105 hover:rotate-2">
           <Image 
-            class="h-14 w-auto rounded-lg" 
+            class="h-14 w-auto rounded-lg shadow-lg" 
             width={231} 
             height={64} 
             src={logo} 
@@ -32,7 +33,10 @@ const navLinks = [
       <!-- Desktop Menu -->
       <div class="hidden lg:flex items-center space-x-6">
         {navLinks.map(link => (
-          <a href={link.href} class="nav-link">{link.text}</a>
+          <a href={link.href} class="nav-link group">
+            <span class="relative z-10">{link.text}</span>
+            <span class="absolute inset-0 bg-gradient-to-r from-pink-600 to-purple-600 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 -z-10"></span>
+          </a>
         ))}
       </div>
 
@@ -62,36 +66,52 @@ const navLinks = [
 
 <style>
   .nav-link {
-    @apply text-gray-300 text-[19px] tracking-wide font-medium hover:text-white px-4 py-2 rounded-lg transition-all duration-200;
-    text-shadow: 0 1px 2px rgba(0,0,0,0.1);
-    position: relative;
+    @apply text-gray-100 text-[19px] tracking-wide font-medium px-4 py-2 rounded-lg transition-all duration-300 relative overflow-hidden;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.2);
   }
   
-  .nav-link::after {
+  .nav-link:hover {
+    transform: translateY(-2px);
+    text-shadow: 0 4px 8px rgba(0,0,0,0.3);
+  }
+  
+  .nav-link::before {
     content: '';
     position: absolute;
     bottom: 0;
-    left: 50%;
-    width: 0;
+    left: 0;
+    width: 100%;
     height: 2px;
-    background: linear-gradient(90deg, #60A5FA, #3B82F6);
-    transition: all 0.3s ease;
-    transform: translateX(-50%);
+    background: linear-gradient(90deg, #F472B6, #C084FC);
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: transform 0.3s ease;
+    box-shadow: 0 0 10px rgba(244, 114, 182, 0.6);
   }
   
-  .nav-link:hover::after {
-    width: 80%;
+  .nav-link:hover::before {
+    transform: scaleX(1);
+    transform-origin: left;
   }
 
   .mobile-nav-link {
-    @apply block text-[19px] tracking-wide font-medium text-gray-300 hover:text-white hover:bg-gray-700 px-4 py-3 rounded-lg transition-all duration-200;
-    text-shadow: 0 1px 2px rgba(0,0,0,0.1);
+    @apply block text-[19px] tracking-wide font-medium text-gray-100 hover:text-white px-4 py-3 rounded-lg transition-all duration-300 relative overflow-hidden;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    background: linear-gradient(90deg, transparent 50%, rgba(244, 114, 182, 0.2) 50%);
+    background-size: 200% 100%;
+    background-position: 0% 0%;
+  }
+
+  .mobile-nav-link:hover {
+    background-position: -100% 0%;
   }
 
   #mobile-menu {
-    transition: all 0.3s ease-in-out;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     opacity: 0;
     transform: translateY(-10px);
+    background: rgba(17, 24, 39, 0.95);
+    backdrop-filter: blur(12px);
   }
 
   #mobile-menu.show {
