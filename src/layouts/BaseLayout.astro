@@ -25,12 +25,21 @@ const defaultImage = "https://www.liuketh.cn/og-image.jpg";
 const url = new URL(Astro.url.pathname, Astro.site).toString();
 ---
 
+<!DOCTYPE html>
 <html lang="zh-cn">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="theme-color" content="#4F46E5" />
     <meta name="generator" content={Astro.generator} />
+    
+    <!-- DNS预解析 -->
+    <link rel="dns-prefetch" href="//www.liuketh.cn" />
+    <link rel="preconnect" href="//www.liuketh.cn" />
+    
+    <!-- 预加载关键资源 -->
+    <link rel="preload" href="/fonts/custom-font.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href={defaultImage} as="image" />
     
     <!-- Primary Meta Tags -->
     <title>{makeTitle}</title>
@@ -69,6 +78,21 @@ const url = new URL(Astro.url.pathname, Astro.site).toString();
     
     <ViewTransitions />
     
+    <!-- 注册 Service Worker -->
+    <script>
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+          navigator.serviceWorker.register('/sw.js')
+            .then(registration => {
+              console.log('ServiceWorker registration successful');
+            })
+            .catch(err => {
+              console.log('ServiceWorker registration failed: ', err);
+            });
+        });
+      }
+    </script>
+    
     <!-- 结构化数据 -->
     <script type="application/ld+json">
       {
@@ -94,7 +118,7 @@ const url = new URL(Astro.url.pathname, Astro.site).toString();
     
     <slot name="head" />
   </head>
-  <body>
+  <body class="page-transition">
     <div class="min-h-screen flex flex-col">
       <Header transition:persist />
       <div class="md:pl-12">
@@ -125,6 +149,7 @@ const url = new URL(Astro.url.pathname, Astro.site).toString();
                   height={300}
                   alt="粉丝福利微信群"
                   class="w-full rounded-lg shadow-sm"
+                  loading="lazy"
                 />
               </div>
             </section>

@@ -1,0 +1,29 @@
+# 流客科技网站 robots.txt
+User-agent: *
+Allow: /
+Allow: /hotcard/
+Allow: /wifi/
+Allow: /product/
+Allow: /news/
+Allow: /agent/
+Allow: /about/
+
+# 禁止访问管理相关页面
+Disallow: /admin/
+Disallow: /login/
+Disallow: /private/
+Disallow: /*?*
+
+# 媒体文件
+Allow: /*.jpg$
+Allow: /*.jpeg$
+Allow: /*.gif$
+Allow: /*.png$
+Allow: /*.webp$
+Allow: /*.svg$
+
+# 站点地图
+Sitemap: https://www.liuketh.cn/sitemap-0.xml
+
+# 爬虫抓取频率
+Crawl-delay: 1 
