@@ -106,51 +106,112 @@ const url = new URL(Astro.url.pathname, Astro.site).toString();
   <body>
     <div class="min-h-screen flex flex-col">
       <Header transition:persist />
-      <div class="md:pl-12">
-        {Astro.url.pathname !=='/' &&  <div class="m-2 md:p-5 md:ml-12">
-          <a href="/" class="underline text-blue-700" target="_parent">首页</a> {` ⯈  `}
-          {Astro.url.pathname.slice(1).split('/').length > 1 && <a href={`/${Astro.url.pathname.slice(1).split('/')[0]}`} class="underline text-blue-700" target="_parent">{Astro.url.pathname.slice(1).split('/')[0]}{` ⯈  `}</a>}
-          {pageTitle}
-        </div>}
+      <!-- 优化面包屑导航 -->
+      <div class="max-w-8xl mx-auto w-full px-4">
+        {Astro.url.pathname !=='/' && 
+          <nav class="flex py-4 text-sm bg-gradient-to-r from-gray-50 to-white rounded-xl my-4 shadow-sm" aria-label="Breadcrumb">
+            <ol class="inline-flex items-center space-x-1 md:space-x-2 px-4">
+              <li class="inline-flex items-center">
+                <a href="/" class="inline-flex items-center text-gray-600 hover:text-blue-600 transition-colors group">
+                  <span class="flex items-center justify-center w-8 h-8 rounded-lg bg-white shadow-sm group-hover:shadow-md transition-all duration-300 mr-2">
+                    <svg class="w-4 h-4 text-blue-500" fill="currentColor" viewBox="0 0 20 20">
+                      <path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z"/>
+                    </svg>
+                  </span>
+                  <span class="text-sm font-medium">首页</span>
+                </a>
+              </li>
+              {Astro.url.pathname.slice(1).split('/').length > 1 && 
+                <li>
+                  <div class="flex items-center">
+                    <svg class="w-6 h-6 text-gray-400" fill="currentColor" viewBox="0 0 20 20">
+                      <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"/>
+                    </svg>
+                    <a href={`/${Astro.url.pathname.slice(1).split('/')[0]}`} 
+                       class="inline-flex items-center text-gray-600 hover:text-blue-600 transition-colors group">
+                      <span class="flex items-center justify-center w-8 h-8 rounded-lg bg-white shadow-sm group-hover:shadow-md transition-all duration-300 mx-2">
+                        <svg class="w-4 h-4 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9.5a2.5 2.5 0 00-2.5-2.5H15"></path>
+                        </svg>
+                      </span>
+                      <span class="text-sm font-medium">{Astro.url.pathname.slice(1).split('/')[0]}</span>
+                    </a>
+                  </div>
+                </li>
+              }
+              <li>
+                <div class="flex items-center">
+                  <svg class="w-6 h-6 text-gray-400" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"/>
+                  </svg>
+                  <span class="flex items-center ml-1">
+                    <span class="flex items-center justify-center w-8 h-8 rounded-lg bg-blue-50 shadow-sm mx-2">
+                      <svg class="w-4 h-4 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                      </svg>
+                    </span>
+                    <span class="text-sm font-medium text-gray-800">{pageTitle}</span>
+                  </span>
+                </div>
+              </li>
+            </ol>
+          </nav>
+        }
       </div>
-      <!-- <Breadcrumb breadcrumbs={breadcrumbs} /> -->
+
       <div class="flex-grow flex max-w-8xl mx-auto w-full">
-        <main class="flex-1 max-w-6xl mx-auto p-2 md:p-12" transition:animate="fade">
+        <main class="flex-1 max-w-6xl mx-auto p-4 md:p-12" transition:animate="fade">
           <slot />
         </main>
-        <!-- 右侧招商信息 -->
-        <aside class="hidden xl:block w-96 border-l border-gray-100 bg-gray-50">
-          <div class="sticky top-6 p-6 space-y-8">
+
+        <!-- 优化右侧招商信息 -->
+        <aside class="hidden xl:block w-[24%] border-l border-gray-100">
+          <div class="sticky top-6 p-6 space-y-6">
             <slot name="shop" />
-            <section class="bg-white rounded-xl p-6 shadow-md hover:shadow-lg transition-shadow duration-300">
+            
+            <!-- 招商服务卡片 -->
+            <section class="bg-white rounded-2xl p-6 shadow-sm hover:shadow-md transition-all duration-300">
               <h3 class="text-lg font-semibold mb-4 text-gray-800 flex items-center gap-2">
-                <span class="text-2xl">🏘️</span> 
+                <span class="flex items-center justify-center w-10 h-10 rounded-xl bg-gradient-to-br from-blue-50 to-blue-100">
+                  🏘️
+                </span>
                 招商服务
               </h3>
-              <div class="bg-gradient-to-br from-blue-50 to-purple-50 p-2 rounded-lg">
+              <div class="overflow-hidden rounded-xl bg-gradient-to-br from-blue-50 to-indigo-50 p-1">
                 <Image
                   src={me}
-                  width={300}
-                  height={300}
+                  width={400}
+                  height={400}
                   alt="粉丝福利微信群"
-                  class="w-full rounded-lg shadow-sm"
+                  class="w-full rounded-lg transform hover:scale-105 transition-transform duration-300"
                   loading="lazy"
                 />
               </div>
             </section>
 
-            <section class="bg-white rounded-xl p-6 shadow-md hover:shadow-lg transition-shadow duration-300">
+            <!-- 联系方式卡片 -->
+            <section class="bg-white rounded-2xl p-6 shadow-sm hover:shadow-md transition-all duration-300">
               <h3 class="text-lg font-semibold mb-4 text-gray-800 flex items-center gap-2">
-                <span class="text-2xl">📱</span>
+                <span class="flex items-center justify-center w-10 h-10 rounded-xl bg-gradient-to-br from-blue-50 to-blue-100">
+                  📱
+                </span>
                 联系方式（同微）
               </h3>
               <a href="tel:15556355573" 
-                 class="block text-center py-3 px-4 bg-gradient-to-r from-blue-500 to-blue-600 text-white font-medium rounded-lg hover:from-blue-600 hover:to-blue-700 transition-all duration-300 shadow-sm">
-                155563 55573
+                 class="group block text-center py-3 px-4 bg-gradient-to-r from-blue-500 to-blue-600 text-white font-medium rounded-xl hover:from-blue-600 hover:to-blue-700 transition-all duration-300 shadow-sm hover:shadow-md">
+                <span class="group-hover:hidden">155563 55573</span>
+                <span class="hidden group-hover:inline">点击拨打 ></span>
               </a>
             </section>
 
-            <section class="bg-white rounded-xl p-6 shadow-md hover:shadow-lg transition-shadow duration-300">
+            <!-- 标签云卡片 -->
+            <section class="bg-white rounded-2xl p-6 shadow-sm hover:shadow-md transition-all duration-300">
+              <h3 class="text-lg font-semibold mb-4 text-gray-800 flex items-center gap-2">
+                <span class="flex items-center justify-center w-10 h-10 rounded-xl bg-gradient-to-br from-blue-50 to-blue-100">
+                  🏷️
+                </span>
+                标签云
+              </h3>
               <Tags />
             </section>
           </div>
