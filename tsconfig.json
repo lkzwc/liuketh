@@ -4,11 +4,19 @@
     "strictNullChecks": true,
     "jsx": "react-jsx",
     "jsxImportSource": "react",
-    "types": ["astro/client"],
+    "types": [
+      "astro/client",
+      "astro/astro-jsx",
+      "@astrojs/react/client"  // 添加这行
+    ],
     "baseUrl": ".",
     "paths": {
       "@/*": ["src/*"]
-    }
+    },
+    "allowJs": true,           // 添加这行
+    "esModuleInterop": true,   // 添加这行
+    "skipLibCheck": true,      // 添加这行
+    "forceConsistentCasingInFileNames": true  // 添加这行
   },
   "include": ["src/**/*"],
   "exclude": ["node_modules"]

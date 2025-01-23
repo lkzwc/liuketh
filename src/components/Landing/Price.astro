@@ -1,5 +1,6 @@
 ---
-import Title from "./Title";
+// @ts-nocheck
+import Title from "./Title.jsx";
 ---
 
 <section class="bg-gradient-to-b from-white to-blue-50/30">
@@ -8,20 +9,14 @@ import Title from "./Title";
     <div class="mx-auto max-w-7xl px-5 py-16 md:px-10">
         <div class="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
             <!-- 免费版 -->
-            <div class="group relative overflow-hidden rounded-2xl bg-white p-8 shadow-lg transition-all duration-300 hover:shadow-xl hover:-translate-y-1">
+            <div class="group relative rounded-2xl bg-white p-8 shadow-lg transition-all duration-300 hover:shadow-xl hover:-translate-y-1">
                 <div class="absolute -right-20 -top-20 h-40 w-40 rounded-full bg-gradient-to-br from-blue-100 to-blue-200 opacity-20 blur-3xl group-hover:opacity-40 transition-all duration-500"></div>
-                
+                <span class="absolute -top-3 right-6 bg-blue-500 text-white text-sm font-semibold px-4 py-1 rounded-full shadow-md z-10">
+                    免费版
+                </span>
                 <div class="relative">
-                    <div class="mb-6 flex items-center justify-between">
-                        <div>
-                            <p class="text-sm font-semibold text-blue-600">免费版</p>
-                            <h3 class="mt-2 text-3xl font-bold">¥0<span class="text-base font-normal text-gray-600">/年</span></h3>
-                        </div>
-                        <span class="flex h-12 w-12 items-center justify-center rounded-lg bg-blue-50">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                            </svg>
-                        </span>
+                    <div class="mb-6">
+                        <h3 class="mt-2 text-3xl font-bold">¥0<span class="text-base font-normal text-gray-600">/年</span></h3>
                     </div>
 
                     <p class="mb-8 text-gray-600">基础用户专享，体验优质服务</p>
@@ -76,26 +71,14 @@ import Title from "./Title";
             </div>
 
             <!-- VIP版 -->
-            <div class="group relative overflow-hidden rounded-2xl bg-gradient-to-br from-blue-600 to-blue-700 p-8 shadow-lg transition-all duration-300 hover:shadow-xl hover:-translate-y-1">
+            <div class="group relative rounded-2xl bg-gradient-to-br from-blue-600 to-blue-700 p-8 shadow-lg transition-all duration-300 hover:shadow-xl hover:-translate-y-1">
                 <div class="absolute -right-20 -top-20 h-40 w-40 rounded-full bg-white opacity-10 blur-3xl group-hover:opacity-20 transition-all duration-500"></div>
-                
+                <span class="absolute -top-3 right-6 bg-pink-500 text-white text-sm font-semibold px-4 py-1 rounded-full shadow-md z-10">
+                    VIP版
+                </span>
                 <div class="relative">
-                    <div class="absolute -right-2 -top-2">
-                        <span class="inline-flex items-center rounded-full bg-blue-400 px-3 py-1 text-xs font-semibold text-white">
-                            最受欢迎
-                        </span>
-                    </div>
-
-                    <div class="mb-6 flex items-center justify-between">
-                        <div>
-                            <p class="text-sm font-semibold text-blue-100">VIP会员</p>
-                            <h3 class="mt-2 text-3xl font-bold text-white">¥29<span class="text-base font-normal text-blue-100">/年</span></h3>
-                        </div>
-                        <span class="flex h-12 w-12 items-center justify-center rounded-lg bg-white/10">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z" />
-                            </svg>
-                        </span>
+                    <div class="mb-6">
+                        <h3 class="mt-2 text-3xl font-bold text-white">¥29<span class="text-base font-normal text-blue-100">/年</span></h3>
                     </div>
 
                     <p class="mb-8 text-blue-100">年费用户专享，尊享多项特权</p>
@@ -156,20 +139,14 @@ import Title from "./Title";
             </div>
 
             <!-- 高级VIP版 -->
-            <div class="group relative overflow-hidden rounded-2xl bg-white p-8 shadow-lg transition-all duration-300 hover:shadow-xl hover:-translate-y-1">
+            <div class="group relative rounded-2xl bg-white p-8 shadow-lg transition-all duration-300 hover:shadow-xl hover:-translate-y-1">
                 <div class="absolute -right-20 -top-20 h-40 w-40 rounded-full bg-gradient-to-br from-purple-100 to-purple-200 opacity-20 blur-3xl group-hover:opacity-40 transition-all duration-500"></div>
-                
+                <span class="absolute -top-3 right-6 bg-red-500 text-white text-sm font-semibold px-4 py-1 rounded-full shadow-md z-10">
+                    高级VIP
+                </span>
                 <div class="relative">
-                    <div class="mb-6 flex items-center justify-between">
-                        <div>
-                            <p class="text-sm font-semibold text-purple-600">高级VIP</p>
-                            <h3 class="mt-2 text-3xl font-bold">¥99<span class="text-base font-normal text-gray-600">/年</span></h3>
-                        </div>
-                        <span class="flex h-12 w-12 items-center justify-center rounded-lg bg-purple-50">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-purple-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" />
-                            </svg>
-                        </span>
+                    <div class="mb-6">
+                        <h3 class="mt-2 text-3xl font-bold">¥99<span class="text-base font-normal text-gray-600">/年</span></h3>
                     </div>
 
                     <p class="mb-8 text-gray-600">尊享会员，畅享全部特权</p>

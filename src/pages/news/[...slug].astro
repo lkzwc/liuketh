@@ -4,6 +4,7 @@ import Layout from "../../layouts/BaseLayout.astro";
 import MDLayout from '../../layouts/MD.astro'
 import { Image } from "astro:assets";
 import MDContent from "../../components/MDContent.astro";
+import RelatedPosts from "../../components/RelatedPosts.astro";
 // 1. 为每个集合条目生成一个新路径
 export async function getStaticPaths() {
     const blogEntries = await getCollection("news");
@@ -32,23 +33,11 @@ const blogEntries = await getCollection("news");
                 <Content />
             </MDContent>
         </MDLayout>
- 
-        <div class="bg-slate-200 shadow-xl p-5 mt-5 rounded-xl">
-            <span class="text-base md:text-xl mx-2">你可能也喜欢：</span>
-            <div class="grid mx-2 text-base md:text-xl">
-                {
-                    allPosts
-                        .filter((item) => item.slug !== `/${slug}`)
-                        .map((p) => (
-                            <a
-                            class="rounded my-2 p-2 hover:bg-blue-200 transition duration-300 ease-in-out shadow-sm hover:shadow-md underline text-blue-600"
-                                href={`/news/${p.slug}`}
-                            >
-                                {p.data.title}
-                            </a>
-                        ))
-                }
-            </div>
-        </div>
+        
+        <RelatedPosts 
+            posts={allPosts}
+            currentSlug={slug}
+            basePath="news"
+        />
     </div>
 </Layout>
