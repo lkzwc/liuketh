@@ -28,17 +28,19 @@ const url = new URL(Astro.url.pathname, Astro.site).toString();
 <!DOCTYPE html>
 <html lang="zh-cn">
   <head>
-    <meta charset="utf-8" />
+    <meta charSet"utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="theme-color" content="#4F46E5" />
     <meta name="generator" content={Astro.generator} />
+    
+    <ViewTransitions />
     
     <!-- DNS预解析 -->
     <link rel="dns-prefetch" href="//www.liuketh.cn" />
     <link rel="preconnect" href="//www.liuketh.cn" />
     
     <!-- 预加载关键资源 -->
-    <link rel="preload" href="/fonts/custom-font.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="/fonts/custom-font.woff2" as="font" type="font/woff2" crossorigin"anonymous" />
     <link rel="preload" href={defaultImage} as="image" />
     
     <!-- Primary Meta Tags -->
@@ -74,24 +76,7 @@ const url = new URL(Astro.url.pathname, Astro.site).toString();
     <meta name="apple-mobile-web-app-status-bar-style" content="black" />
     
     <!-- Alternate Languages -->
-    <link rel="alternate" href={url} hreflang="zh-CN" />
-    
-    <ViewTransitions />
-    
-    <!-- 注册 Service Worker -->
-    <script>
-      if ('serviceWorker' in navigator) {
-        window.addEventListener('load', () => {
-          navigator.serviceWorker.register('/sw.js')
-            .then(registration => {
-              console.log('ServiceWorker registration successful');
-            })
-            .catch(err => {
-              console.log('ServiceWorker registration failed: ', err);
-            });
-        });
-      }
-    </script>
+    <link rel="alternate" href={url} />
     
     <!-- 结构化数据 -->
     <script type="application/ld+json">
@@ -118,7 +103,7 @@ const url = new URL(Astro.url.pathname, Astro.site).toString();
     
     <slot name="head" />
   </head>
-  <body class="page-transition">
+  <body>
     <div class="min-h-screen flex flex-col">
       <Header transition:persist />
       <div class="md:pl-12">
@@ -130,7 +115,7 @@ const url = new URL(Astro.url.pathname, Astro.site).toString();
       </div>
       <!-- <Breadcrumb breadcrumbs={breadcrumbs} /> -->
       <div class="flex-grow flex max-w-8xl mx-auto w-full">
-        <main class="flex-1 max-w-6xl mx-auto p-2 md:p-12" transition:animate="slide">
+        <main class="flex-1 max-w-6xl mx-auto p-2 md:p-12" transition:animate="fade">
           <slot />
         </main>
         <!-- 右侧招商信息 -->
@@ -178,9 +163,8 @@ const url = new URL(Astro.url.pathname, Astro.site).toString();
 
 <style>
   /* 页面过渡动画 */
-  ::view-transition-old(root),
-  ::view-transition-new(root) {
-    animation-duration: 0.5s;
+  :root {
+    --view-transition-duration: 0.5s;
   }
   
   /* 滚动平滑 */

@@ -1,17 +1,24 @@
 ---
 import BaseLayout from "../../layouts/HomeLayout.astro";
+import { getCollection } from 'astro:content';
+import { Image } from 'astro:assets';
 
 export async function getStaticPaths() {
-  const allPosts: any = await Astro.glob("../../content/*/*.*");
-  const uniqueTags = [
-    ...new Set(allPosts.map((post: any) => post.frontmatter.tags).flat()),
-  ];
+  // 获取所有集合的内容
+  const hotcardPosts = await getCollection('hotcard');
+  const wifiPosts = await getCollection('wifi');
+  const newsPosts = await getCollection('news');
 
-  return uniqueTags.map((tag: any) => {
-    const filteredPosts = allPosts.filter(
-      (post: { frontmatter: { tags: string | any[] } }) =>
-        post.frontmatter.tags.includes(tag)
-    );
+  // 合并所有文章
+  const allPosts = [...hotcardPosts, ...wifiPosts, ...newsPosts];
+
+  // 获取所有唯一标签
+  const uniqueTags = [...new Set(allPosts.map(post => post.data.tags).flat())];
+
+  // 为每个标签创建页面
+  return uniqueTags.map(tag => {
+    // 过滤出包含当前标签的文章
+    const filteredPosts = allPosts.filter(post => post.data.tags.includes(tag));
     return {
       params: { tag },
       props: { posts: filteredPosts },
@@ -21,24 +28,83 @@ export async function getStaticPaths() {
 
 const { tag } = Astro.params;
 const { posts } = Astro.props;
-
 ---
 
-<BaseLayout pageTitle={tag} desc="文章标签，帮你快速找到相关文章">
-  <div class="m-5 text-2xl">
-    <h1>🔍找到了以下内容 【 {tag}】</h1>
-    <div class="flex flex-col mx-40">
-      {
-        posts.map((item: any) => (
-          <li class="rounded my-1 p-2 list-none hover:bg-blue-200 transition duration-300 ease-in-out shadow-sm hover:shadow-md underline text-blue-600 text-xl">
-            <a
-              href={item.file.split("content")[1].slice(0, -4)}
-            >
-              {item.frontmatter.title}
-            </a>
-          </li>
-        ))
-      }
+<BaseLayout pageTitle={`标签: ${tag}`}>
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <div class="text-center mb-8">
+      <h1 class="text-3xl font-bold text-gray-900 mb-2">
+        <span class="inline-block bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-lg">
+          #{tag}
+        </span>
+      </h1>
+      <p class="text-gray-600 text-sm">
+        找到 {posts.length} 篇相关文章
+      </p>
     </div>
+
+    <div class="grid gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+      {posts.map(post => (
+        <article class="bg-white rounded-lg shadow-sm hover:shadow-md transition-all duration-300 overflow-hidden group">
+          <a href={`/${post.collection}/${post.slug}`} class="block">
+            <div class="relative aspect-[4/3] overflow-hidden">
+              <Image
+                src={post.data.cover}
+                alt={post.data.coverAlt || post.data.title}
+                width={400}
+                height={300}
+                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+              />
+              <div class="absolute bottom-0 left-0 right-0 p-2 bg-gradient-to-t from-black/60 to-transparent">
+                <span class="text-xs text-white bg-blue-600/80 px-2 py-1 rounded">
+                  {post.collection}
+                </span>
+              </div>
+            </div>
+            <div class="p-4">
+              <h2 class="text-base font-semibold text-gray-900 mb-2 line-clamp-2 group-hover:text-blue-600 transition-colors duration-300">
+                {post.data.title}
+              </h2>
+              <p class="text-sm text-gray-600 mb-3 line-clamp-2">
+                {post.data.description}
+              </p>
+              <div class="flex items-center justify-between text-xs">
+                <div class="flex items-center space-x-2">
+                  <span class="text-gray-500">
+                    {new Date(post.data.pubDate).toLocaleDateString('zh-CN', {
+                      month: 'numeric',
+                      day: 'numeric'
+                    })}
+                  </span>
+                </div>
+                <span class="text-blue-600 group-hover:translate-x-1 transition-transform duration-300">
+                  阅读更多 →
+                </span>
+              </div>
+            </div>
+          </a>
+        </article>
+      ))}
+    </div>
+
+    {posts.length === 0 && (
+      <div class="text-center py-8">
+        <div class="text-gray-500 mb-2">
+          暂无相关文章
+        </div>
+        <a href="/" class="text-blue-600 hover:text-blue-800 transition-colors duration-300">
+          返回首页
+        </a>
+      </div>
+    )}
   </div>
 </BaseLayout>
+
+<style>
+  .line-clamp-2 {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+</style>

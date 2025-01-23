@@ -1,18 +1,31 @@
 ---
 import Layout from "../../layouts/HomeLayout.astro";
-const allPosts: any = await Astro.glob("../../content/*/*.*");
-const tags = [
-    ...new Set(allPosts.map((post: any) => post.frontmatter.tags).flat()),
-];
+import { getCollection } from 'astro:content';
+
+// 获取所有集合的内容
+const hotcardPosts = await getCollection('hotcard');
+const wifiPosts = await getCollection('wifi');
+const newsPosts = await getCollection('news');
+
+// 合并所有文章的标签并去重
+const allTags = [...hotcardPosts, ...wifiPosts, ...newsPosts]
+  .map(post => post.data.tags)
+  .flat()
+  .filter((tag, index, self) => self.indexOf(tag) === index);
+
 const pageTitle = "Tag Index";
 ---
 
-<div class="flex flex-wrap gap-3 rounded-3xl text-sm" >
-    {
-        tags.map((tag) => (
-            <p class="bg-sky-300 p-1 rounded-xl">
-                <a href={`/tags/${tag}`} target="_blank">{tag}</a>
-            </p>
-        ))
-    }
+<div class="space-y-4">
+  <h2 class="text-lg font-semibold text-gray-800">标签云</h2>
+  <div class="flex flex-wrap gap-2">
+    {allTags.map(tag => (
+      <a
+        href={`/tags/${tag}`}
+        class="px-3 py-1 text-sm bg-blue-50 text-blue-600 rounded-full hover:bg-blue-100 transition-colors duration-200"
+      >
+        {tag}
+      </a>
+    ))}
+  </div>
 </div>

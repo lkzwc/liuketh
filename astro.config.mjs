@@ -1,4 +1,4 @@
-import { defineConfig, squooshImageService } from 'astro/config';
+import { defineConfig } from 'astro/config';
 import tailwind from '@astrojs/tailwind';
 import mdx from '@astrojs/mdx';
 import sitemap from "@astrojs/sitemap";
@@ -13,10 +13,9 @@ export default defineConfig({
   markdown: {
     gfm: false
   },
-  image: {
-    service: squooshImageService(),
+  assets: {
     domains: ['assets.website-files.com'],
-    format: ['webp', 'avif', 'png', 'jpg'],
+    formats: ['webp', 'avif', 'png', 'jpg']
   },
   integrations: [
     react(),
