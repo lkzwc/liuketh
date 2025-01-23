@@ -41,16 +41,16 @@ const url = new URL(Astro.url.pathname, Astro.site).toString();
   <body>
     <div class="min-h-screen flex flex-col">
       <Header transition:persist />
-      <div class="pl-12">
-        {Astro.url.pathname !=='/' &&  <div class="my-2 md:m-5 ">
-          <a href="/" class=" underline text-blue-700 " target="_parent">Home</a> {` ⯈  `}
+      <div class="md:pl-12">
+        {Astro.url.pathname !=='/' &&  <div class="m-2 md:p-5 md:ml-12">
+          <a href="/" class=" underline text-blue-700 " target="_parent">首页</a> {` ⯈  `}
           {Astro.url.pathname.slice(1).split('/').length > 1 && <a href={`/${Astro.url.pathname.slice(1).split('/')[0]}`} class=" underline text-blue-700 " target="_parent">{Astro.url.pathname.slice(1).split('/')[0]}{` ⯈  `}</a>}
           {pageTitle}
         </div>}
       </div>
       <!-- <Breadcrumb breadcrumbs={breadcrumbs} /> -->
       <div class="flex-grow flex max-w-8xl mx-auto w-full">
-        <main class="flex-1 max-w-6xl mx-auto px-4" transition:animate="slide">
+        <main class="flex-1 max-w-6xl mx-auto p-2 md:p-12" transition:animate="slide">
           <slot />
         </main>
         <!-- 右侧招商信息 -->

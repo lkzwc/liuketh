@@ -46,11 +46,11 @@ const url = new URL(Astro.url.pathname, Astro.site).toString();
 	</head>
 	<body>
 		<Header />
-		{Astro.url.pathname !=='/' &&  <div class="md:p-5 ml-12">
-			<a href="/" class=" underline text-blue-700 " target="_parent">Home</a>{` ⯈  `}{pageTitle}
+		{Astro.url.pathname !=='/' &&  <div class="m-2 md:p-5 md:ml-24">
+			<a href="/" class=" underline text-blue-700 " target="_parent">首页</a>{` ⯈  `}{pageTitle}
 		</div>}
 		
-		<main>
+		<main class="p-2 md:p-12">
 			<slot />
 		</main>
 		<Footer />

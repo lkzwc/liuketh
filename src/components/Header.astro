@@ -101,21 +101,37 @@ const navLinks = [
 </style>
 
 <script>
-  const toggleMenu = document.getElementById("togglemenu");
-  const mobileMenu = document.getElementById("mobile-menu");
-  
-  if (toggleMenu && mobileMenu) {
-    toggleMenu.addEventListener("click", () => {
-      mobileMenu.classList.toggle("hidden");
-      // 添加一个短暂延迟以确保过渡效果正常显示
-      setTimeout(() => {
-        mobileMenu.classList.toggle("show");
-      }, 10);
-    });
+  function initMobileMenu() {
+    const toggleMenu = document.getElementById("togglemenu");
+    const mobileMenu = document.getElementById("mobile-menu");
+    
+    if (toggleMenu && mobileMenu) {
+      // 移除旧的事件监听器
+      toggleMenu.removeEventListener("click", toggleMobileMenu);
+      
+      // 添加新的事件监听器
+      toggleMenu.addEventListener("click", toggleMobileMenu);
+      
+      function toggleMobileMenu() {
+        mobileMenu?.classList.toggle("hidden");
+        setTimeout(() => {
+          mobileMenu?.classList.toggle("show");
+        }, 10);
+      }
+    }
   }
 
-  // 处理页面切换时关闭菜单
+  // 初始化
+  initMobileMenu();
+
+  // 在页面切换时重新初始化
   document.addEventListener('astro:page-load', () => {
+    initMobileMenu();
+  });
+
+  // 在页面切换前关闭菜单
+  document.addEventListener('astro:before-swap', () => {
+    const mobileMenu = document.getElementById("mobile-menu");
     if (mobileMenu) {
       mobileMenu.classList.remove("show");
       mobileMenu.classList.add("hidden");
