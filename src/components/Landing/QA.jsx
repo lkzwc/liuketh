@@ -29,7 +29,7 @@ const qas = [
 
 export default function QA() {
   return (
-    <section class="md:w-8/12 mx-auto p-10 bg-white">
+    <section class="md:w-8/12 mx-auto bg-white min-h-[60vh] ">
       <Title
         title="常见问题"
         desc="关于一些常见问题的解答"
@@ -37,7 +37,7 @@ export default function QA() {
       />
 
       <div class="w-full">
-        <Accordion class="my-2" variant="bordered">
+        <Accordion class="my-2" variant="bordered"  className="overflow-y-auto" >
           {qas.map((item, index) => (
             <AccordionItem
               key={index}

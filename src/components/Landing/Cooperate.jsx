@@ -28,7 +28,7 @@ const IconComponent = ({ IconElement, colors }) => {
 
 export default function Cooperate() {
   return (
-    <section className="md:w-8/12 mx-auto my-10">
+    <section className="md:w-8/12 mx-auto py-20">
       <div className="text-center">
         <Title title="合作共赢" desc="目前与我们合作的企业" client:only="react"/>
       </div>
