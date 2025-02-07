@@ -5,7 +5,6 @@ import Footer from "../components/Footer.astro";
 import "../styles/global.css";
 import me from "../image/index/me.webp";
 import Tags from "../pages/tags/index.astro";
-import { ViewTransitions } from 'astro:transitions';
 
 interface Props {
   pageTitle: string;
@@ -32,8 +31,6 @@ const url = new URL(Astro.url.pathname, Astro.site).toString();
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="theme-color" content="#4F46E5" />
     <meta name="generator" content={Astro.generator} />
-    
-    <ViewTransitions />
     
     <!-- DNS预解析 -->
     <link rel="dns-prefetch" href="//www.liuketh.cn" />
@@ -107,7 +104,7 @@ const url = new URL(Astro.url.pathname, Astro.site).toString();
     <div class="min-h-screen flex flex-col">
       <Header transition:persist />
       <!-- 优化面包屑导航 -->
-      <div class="max-w-8xl mx-auto w-full px-4 overflow-hidden">
+      <div class="hidden sm:block max-w-8xl mx-auto w-full px-4 ">
         {Astro.url.pathname !=='/' && 
           <nav class="flex py-4 text-sm bg-gradient-to-r from-gray-50 to-white rounded-xl my-4 shadow-sm" aria-label="Breadcrumb">
             <ol class="inline-flex items-center space-x-1 md:space-x-2 px-4">

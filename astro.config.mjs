@@ -13,9 +13,6 @@ export default defineConfig({
   markdown: {
     gfm: false
   },
-  experimental: {
-    viewTransitions: true
-  },
   assets: {
     domains: ['assets.website-files.com'],
     formats: ['webp', 'avif', 'png', 'jpg']
