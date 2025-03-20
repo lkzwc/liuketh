@@ -4,6 +4,7 @@ import Header from "../components/Header.astro";
 import Footer from "../components/Footer.astro";
 import "../styles/global.css";
 import me from "../image/index/me.webp";
+import shop from '../image/index/shop.webp';
 import Tags from "../pages/tags/index.astro";
 import { ViewTransitions } from "astro:transitions";
 
@@ -23,6 +24,7 @@ const defaultKeywords = "流量卡,随身wifi,流量卡官网,通信服务,流�
 const defaultImage = "https://www.liuketh.cn/og-image.jpg";
 
 const url = new URL(Astro.url.pathname, Astro.site).toString();
+const ishotCard = !!url.match(/hotcard/)
 ---
 
 <!DOCTYPE html>
@@ -175,17 +177,32 @@ const url = new URL(Astro.url.pathname, Astro.site).toString();
                 <span class="flex items-center justify-center w-10 h-10 rounded-xl bg-gradient-to-br from-blue-50 to-blue-100">
                   🏘️
                 </span>
-                招商服务
+                {ishotCard ? "扫码免费领取流量卡" : "招商服务"}
               </h3>
               <div class="overflow-hidden rounded-xl bg-gradient-to-br from-blue-50 to-indigo-50 p-1">
                 <Image
-                  src={me}
+                  src={ishotCard ?  shop : me}
                   width={400}
                   height={400}
                   alt="粉丝福利微信群"
                   class="w-full rounded-lg transform hover:scale-105 transition-transform duration-300"
                   loading="lazy"
                 />
+              </div>
+              
+              <div class="group relative bg-gradient-to-r py-3 overflow-hidden transform perspective-1000 hover:shadow-2xl transition-all duration-300">
+                <!-- 流动背景光效 -->
+                <div class="absolute inset-0 bg-[linear-gradient(90deg,transparent_0%,rgba(255,255,255,0.1)_50%,transparent_100%)] opacity-30 animate-marquee" />
+                
+                <!-- 3D滚动容器 -->
+                <div class="relative animate-marquee whitespace-nowrap flex [transform-style:preserve-3d]">
+                  <!-- 重复项带动态光效 -->
+                  {[1, 2].map(() => (
+                    <span class="mx-8 text-xl font-bold animate-glow hover:animate-none hover:scale-110 transition-transform">
+                      🚀 已有 <span class="counter">{Math.floor((new Date() - new Date('2024-03-01')) / (1000*60*60*24)) + 2000}</span> 人领取了免费的流量卡！🔥
+                    </span>
+                  ))}
+                </div>
               </div>
             </section>
 
