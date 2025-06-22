@@ -29,7 +29,9 @@ export default defineConfig({
         customComponentNames: ['table'],
       },
     }),
-    tailwind()
+    tailwind({
+      applyBaseStyles: false,
+    }),
   ],
   devToolbar: {
     enabled: false
