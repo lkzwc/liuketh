@@ -10,8 +10,16 @@ export default defineConfig({
   build: {
     inlineStylesheets: 'never'
   },
+  // 开启压缩
+  compressHTML: true,
   markdown: {
     gfm: false
+  },
+  // 图片优化
+  image: {
+    service: {
+      entrypoint: 'astro/assets/services/sharp'
+    }
   },
   assets: {
     domains: ['assets.website-files.com'],
@@ -21,7 +29,17 @@ export default defineConfig({
     react({
       include: ['**/*.tsx', '**/*.jsx']
     }),
-    sitemap(),
+    sitemap({
+      changefreq: 'weekly',
+      priority: 0.8,
+      lastmod: new Date(),
+      serialize: (item) => {
+        return {
+          ...item,
+          img: undefined // 减少sitemap体积
+        }
+      }
+    }),
     mdx({
       optimize: {
         // 防止优化器处理 `h1` 元素

@@ -73,9 +73,18 @@ const ishotCard = !!url.match(/hotcard/)
     <!-- Favicon -->
     <link rel="icon" type="image/png" href="/favicon.png" />
     
-    <!-- Mobile Web App -->
+    <!-- 预连接第三方域名 -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    
+    <!-- 移动 Web App -->
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    
+    <!-- 站点验证 -->
+    <meta name="baidu-site-verification" content="codeva-XXXXXXXXXX" />
+    <meta name="360-site-verification" content="XXXXXXXXXX" />
+    <meta name="sogou_site_verification" content="XXXXXXXXXX" />
     
     <!-- Alternate Languages -->
     <link rel="alternate" href={url} />
@@ -171,55 +180,65 @@ const ishotCard = !!url.match(/hotcard/)
           <div class="sticky top-6 p-6 space-y-6">
             <slot name="shop" />
             
-            <!-- 招商服务卡片 -->
-            <section class="bg-white rounded-2xl p-6 shadow-sm hover:shadow-md transition-all duration-300">
-              <h3 class="text-lg font-semibold mb-4 text-gray-800 flex items-center gap-2">
-                <span class="flex items-center justify-center w-10 h-10 rounded-xl bg-gradient-to-br from-blue-50 to-blue-100">
-                  🏘️
-                </span>
-                {ishotCard ? "扫码免费领取流量卡" : "招商服务"}
-              </h3>
-              <div class="overflow-hidden rounded-xl bg-gradient-to-br from-blue-50 to-indigo-50 p-1">
-                <Image
-                  src={ishotCard ?  shop : me}
-                  width={400}
-                  height={400}
-                  alt="粉丝福利微信群"
-                  class="w-full rounded-lg transform hover:scale-105 transition-transform duration-300"
-                  loading="lazy"
-                />
-              </div>
-              
-              <div class="group relative bg-gradient-to-r py-3 overflow-hidden transform perspective-1000 hover:shadow-2xl transition-all duration-300">
-                <!-- 流动背景光效 -->
-                <div class="absolute inset-0 bg-[linear-gradient(90deg,transparent_0%,rgba(255,255,255,0.1)_50%,transparent_100%)] opacity-30 animate-marquee" />
-                
-                <!-- 3D滚动容器 -->
-                <div class="relative animate-marquee whitespace-nowrap flex [transform-style:preserve-3d]">
-                  <!-- 重复项带动态光效 -->
-                  {[1, 2].map(() => (
-                    <span class="mx-8 text-xl font-bold animate-glow hover:animate-none hover:scale-110 transition-transform">
-                      🚀 已有 <span class="counter">{Math.floor((new Date().getTime() - new Date('2024-03-01').getTime() ) / (1000*60*60*24)) + 2000}</span> 人领取了免费的流量卡！🔥
+            <!-- 私域引流卡片 - 强化版 -->
+                <section class="bg-white rounded-2xl p-6 shadow-sm hover:shadow-md transition-all duration-300 border-2 border-blue-100">
+                  <h3 class="text-lg font-semibold mb-4 text-gray-800 flex items-center gap-2">
+                    <span class="flex items-center justify-center w-10 h-10 rounded-xl bg-gradient-to-br from-green-50 to-green-100">
+                      💚
                     </span>
-                  ))}
-                </div>
-              </div>
-            </section>
+                    {ishotCard ? "扫码免费领取流量卡" : "添加微信领优惠"}
+                  </h3>
+                  <div class="overflow-hidden rounded-xl bg-gradient-to-br from-green-50 to-emerald-50 p-1">
+                    <Image
+                      src={ishotCard ?  shop : me}
+                      width={400}
+                      height={400}
+                      alt="粉丝福利微信群"
+                      class="w-full rounded-lg transform hover:scale-105 transition-transform duration-300"
+                      loading="lazy"
+                    />
+                  </div>
+                  
+                  <div class="mt-4 space-y-2">
+                    <p class="text-sm text-gray-600 text-center">
+                      📱 扫码添加微信
+                    </p>
+                    <p class="text-xs text-gray-500 text-center">
+                      享专属客服 · 领优惠活动
+                    </p>
+                  </div>
+                  
+                  <div class="group relative bg-gradient-to-r py-3 overflow-hidden transform perspective-1000 hover:shadow-2xl transition-all duration-300">
+                    <!-- 流动背景光效 -->
+                    <div class="absolute inset-0 bg-[linear-gradient(90deg,transparent_0%,rgba(255,255,255,0.1)_50%,transparent_100%)] opacity-30 animate-marquee" />
+                    
+                    <!-- 3D滚动容器 -->
+                    <div class="relative animate-marquee whitespace-nowrap flex [transform-style:preserve-3d]">
+                      <!-- 重复项带动态光效 -->
+                      {[1, 2].map(() => (
+                        <span class="mx-8 text-xl font-bold animate-glow hover:animate-none hover:scale-110 transition-transform">
+                          🚀 已有 <span class="counter">{Math.floor((new Date().getTime() - new Date('2024-03-01').getTime() ) / (1000*60*60*24)) + 2000}</span> 人领取了免费的流量卡！🔥
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                </section>
 
-            <!-- 联系方式卡片 -->
-            <section class="bg-white rounded-2xl p-6 shadow-sm hover:shadow-md transition-all duration-300">
-              <h3 class="text-lg font-semibold mb-4 text-gray-800 flex items-center gap-2">
-                <span class="flex items-center justify-center w-10 h-10 rounded-xl bg-gradient-to-br from-blue-50 to-blue-100">
-                  📱
-                </span>
-                联系方式（同微）
-              </h3>
-              <a href="tel:15556355573" 
-                 class="group block text-center py-3 px-4 bg-gradient-to-r from-blue-500 to-blue-600 text-white font-medium rounded-xl hover:from-blue-600 hover:to-blue-700 transition-all duration-300 shadow-sm hover:shadow-md">
-                <span class="group-hover:hidden">155563 55573</span>
-                <span class="hidden group-hover:inline">点击拨打 ></span>
-              </a>
-            </section>
+                <!-- 联系方式卡片 -->
+                <section class="bg-white rounded-2xl p-6 shadow-sm hover:shadow-md transition-all duration-300">
+                  <h3 class="text-lg font-semibold mb-4 text-gray-800 flex items-center gap-2">
+                    <span class="flex items-center justify-center w-10 h-10 rounded-xl bg-gradient-to-br from-blue-50 to-blue-100">
+                      📱
+                    </span>
+                    联系方式
+                  </h3>
+                  <a href="tel:15556355573" 
+                     class="group block text-center py-3 px-4 bg-gradient-to-r from-blue-500 to-blue-600 text-white font-medium rounded-xl hover:from-blue-600 hover:to-blue-700 transition-all duration-300 shadow-sm hover:shadow-md">
+                    <span class="group-hover:hidden">155563 55573</span>
+                    <span class="hidden group-hover:inline">点击拨打 ></span>
+                  </a>
+                  <p class="text-xs text-gray-500 text-center mt-2">同微信</p>
+                </section>
 
             <!-- 标签云卡片 -->
             <section class="bg-white rounded-2xl p-6 shadow-sm hover:shadow-md transition-all duration-300">
@@ -242,11 +261,20 @@ const ishotCard = !!url.match(/hotcard/)
 <style>
   /* 页面过渡动画 */
   :root {
-    --view-transition-duration: 0.5s;
+    --view-transition-duration: 0.3s;
   }
   
   /* 滚动平滑 */
   html {
     scroll-behavior: smooth;
+  }
+  
+  /* 减少动画提升性能 */
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
   }
 </style>

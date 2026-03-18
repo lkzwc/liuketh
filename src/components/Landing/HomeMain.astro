@@ -5,11 +5,45 @@ import use from "../../image/index/use.svg";
 
 // 预加载首屏关键图片
 const preloadImages = [ai];
+
+// 结构化数据 - Organization
+const orgSchema = JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "流客科技",
+  "url": "https://www.liuketh.cn",
+  "logo": "https://www.liuketh.cn/og-image.jpg",
+  "description": "流客科技专注于提供优质的通信服务解决方案，包括流量卡、随身WiFi等产品",
+  "telephone": "+86-15556355573",
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "西安",
+    "addressRegion": "陕西省",
+    "addressCountry": "CN"
+  }
+});
+
+// 结构化数据 - WebSite
+const webSiteSchema = JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "流客科技",
+  "url": "https://www.liuketh.cn",
+  "potentialAction": {
+    "@type": "SearchAction",
+    "target": "https://www.liuketh.cn/search?q={search_term_string}",
+    "query-input": "required name=search_term_string"
+  }
+});
 ---
 
 {preloadImages.map((image) => (
   <link rel="preload" href={image.src} as="image" fetchpriority="high" />
 ))}
+
+<!-- 结构化数据 -->
+<script type="application/ld+json" set:html={orgSchema} />
+<script type="application/ld+json" set:html={webSiteSchema} />
 
 <main>
   {/* Hero Section */}
@@ -33,15 +67,30 @@ const preloadImages = [ai];
                 致力于为用户提供优质的通信服务，包括流量卡、随身WiFi等产品，让连接更简单，生活更智能。
               </p>
               <div class="flex flex-wrap gap-4">
-                <a href="/hotcard" class="inline-flex items-center px-6 py-3 rounded-full bg-blue-600 text-white font-semibold hover:bg-blue-700 transition-colors duration-300 shadow-lg hover:shadow-xl">
-                  立即体验
+                <a href="/hotcard" class="inline-flex items-center px-6 py-3 rounded-full bg-blue-600 text-white font-semibold hover:bg-blue-700 transition-colors duration-300 shadow-lg hover:shadow-xl" rel="noopener noreferrer">
+                  <span>立即体验</span>
                   <svg class="ml-2 w-5 h-5" viewBox="0 0 20 20" fill="currentColor">
                     <path fill-rule="evenodd" d="M3 10a.75.75 0 01.75-.75h10.638L10.23 5.29a.75.75 0 111.04-1.08l5.5 5.25a.75.75 0 010 1.08l-5.5 5.25a.75.75 0 11-1.04-1.08l4.158-3.96H3.75A.75.75 0 013 10z" clip-rule="evenodd" />
                   </svg>
                 </a>
-                <a href="/about" class="inline-flex items-center px-6 py-3 rounded-full bg-white text-blue-600 font-semibold hover:bg-gray-50 transition-colors duration-300 shadow-lg hover:shadow-xl">
-                  了解更多
+                <a href="/about" class="inline-flex items-center px-6 py-3 rounded-full bg-white text-blue-600 font-semibold hover:bg-gray-50 transition-colors duration-300 shadow-lg hover:shadow-xl" rel="noopener noreferrer">
+                  <span>了解更多</span>
                 </a>
+              </div>
+              <!-- 信任标志 -->
+              <div class="flex flex-wrap items-center gap-6 pt-4 text-sm text-gray-500">
+                <span class="flex items-center gap-1">
+                  <svg class="w-5 h-5 text-green-500" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
+                  正规资质
+                </span>
+                <span class="flex items-center gap-1">
+                  <svg class="w-5 h-5 text-green-500" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
+                  7×24服务
+                </span>
+                <span class="flex items-center gap-1">
+                  <svg class="w-5 h-5 text-green-500" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
+                  全国联保
+                </span>
               </div>
             </div>
             {/* Image */}
