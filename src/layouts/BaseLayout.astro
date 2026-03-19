@@ -81,36 +81,53 @@ const ishotCard = !!url.match(/hotcard/)
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black" />
     
-    <!-- 站点验证 -->
+    <!-- 站点验证 - 请替换为真实的验证代码 -->
     <meta name="baidu-site-verification" content="codeva-XXXXXXXXXX" />
     <meta name="360-site-verification" content="XXXXXXXXXX" />
     <meta name="sogou_site_verification" content="XXXXXXXXXX" />
+    <meta name="google-site-verification" content="XXXXXXXXXX" />
+    <meta name="bingbot" content="index,follow" />
     
-    <!-- Alternate Languages -->
-    <link rel="alternate" href={url} />
+    <!-- 结构化数据 - Organization -->
+    <script type="application/ld+json" set:html={JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "流客科技",
+      "url": "https://www.liuketh.cn",
+      "logo": "https://www.liuketh.cn/og-image.jpg",
+      "description": "流客科技专注于提供优质的通信服务解决方案,包括流量卡、随身WiFi等产品。大流量低资费,全国漫游无限制,让您畅享移动互联。",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "西安",
+        "addressRegion": "陕西省",
+        "addressCountry": "CN"
+      },
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "telephone": "+86-15556355573",
+        "contactType": "customer service",
+        "availableLanguage": "Chinese"
+      },
+      "sameAs": [
+        "https://www.liuketh.cn"
+      ]
+    })} />
     
-    <!-- 结构化数据 -->
-    <script type="application/ld+json">
-      {
-        "@context": "https://schema.org",
-        "@type": "Organization",
-        "name": "${siteName}",
-        "url": "${Astro.site}",
-        "logo": "${defaultImage}",
-        "description": "${defaultDesc}",
-        "address": {
-          "@type": "PostalAddress",
-          "addressLocality": "西安",
-          "addressRegion": "陕西省",
-          "addressCountry": "CN"
+    <!-- 结构化数据 - WebSite + SearchAction -->
+    <script type="application/ld+json" set:html={JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "流客科技",
+      "url": "https://www.liuketh.cn",
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": {
+          "@type": "EntryPoint",
+          "urlTemplate": "https://www.liuketh.cn/search?q={search_term_string}"
         },
-        "contactPoint": {
-          "@type": "ContactPoint",
-          "telephone": "+86-15556355573",
-          "contactType": "customer service"
-        }
+        "query-input": "required name=search_term_string"
       }
-    </script>
+    })} />
     
     <slot name="head" />
   </head>
@@ -181,45 +198,64 @@ const ishotCard = !!url.match(/hotcard/)
             <slot name="shop" />
             
             <!-- 私域引流卡片 - 强化版 -->
-                <section class="bg-white rounded-2xl p-6 shadow-sm hover:shadow-md transition-all duration-300 border-2 border-blue-100">
-                  <h3 class="text-lg font-semibold mb-4 text-gray-800 flex items-center gap-2">
-                    <span class="flex items-center justify-center w-10 h-10 rounded-xl bg-gradient-to-br from-green-50 to-green-100">
-                      💚
-                    </span>
-                    {ishotCard ? "扫码免费领取流量卡" : "添加微信领优惠"}
-                  </h3>
-                  <div class="overflow-hidden rounded-xl bg-gradient-to-br from-green-50 to-emerald-50 p-1">
-                    <Image
-                      src={ishotCard ?  shop : me}
-                      width={400}
-                      height={400}
-                      alt="粉丝福利微信群"
-                      class="w-full rounded-lg transform hover:scale-105 transition-transform duration-300"
-                      loading="lazy"
-                    />
-                  </div>
+                <section class="bg-white rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 border-2 border-gradient-to-r from-green-300 to-emerald-400 relative overflow-hidden">
+                  <!-- 动态背景光效 -->
+                  <div class="absolute inset-0 bg-gradient-to-br from-green-50 via-emerald-50 to-teal-50 opacity-80"></div>
+                  <div class="absolute top-0 right-0 w-24 h-24 bg-green-200 rounded-full blur-3xl opacity-40"></div>
+                  <div class="absolute bottom-0 left-0 w-20 h-20 bg-emerald-200 rounded-full blur-3xl opacity-40"></div>
                   
-                  <div class="mt-4 space-y-2">
-                    <p class="text-sm text-gray-600 text-center">
-                      📱 扫码添加微信
-                    </p>
-                    <p class="text-xs text-gray-500 text-center">
-                      享专属客服 · 领优惠活动
-                    </p>
-                  </div>
-                  
-                  <div class="group relative bg-gradient-to-r py-3 overflow-hidden transform perspective-1000 hover:shadow-2xl transition-all duration-300">
-                    <!-- 流动背景光效 -->
-                    <div class="absolute inset-0 bg-[linear-gradient(90deg,transparent_0%,rgba(255,255,255,0.1)_50%,transparent_100%)] opacity-30 animate-marquee" />
+                  <div class="relative z-10">
+                    <h3 class="text-lg font-bold mb-4 text-gray-800 flex items-center gap-2">
+                      <span class="flex items-center justify-center w-10 h-10 rounded-xl bg-gradient-to-br from-green-500 to-emerald-600 text-white shadow-lg">
+                        💚
+                      </span>
+                      {ishotCard ? "🎁 扫码免费领取流量卡" : "✨ 添加微信领优惠"}
+                    </h3>
                     
-                    <!-- 3D滚动容器 -->
-                    <div class="relative animate-marquee whitespace-nowrap flex [transform-style:preserve-3d]">
-                      <!-- 重复项带动态光效 -->
-                      {[1, 2].map(() => (
-                        <span class="mx-8 text-xl font-bold animate-glow hover:animate-none hover:scale-110 transition-transform">
-                          🚀 已有 <span class="counter">{Math.floor((new Date().getTime() - new Date('2024-03-01').getTime() ) / (1000*60*60*24)) + 2000}</span> 人领取了免费的流量卡！🔥
-                        </span>
-                      ))}
+                    <!-- 微信二维码展示 - 更大更清晰 -->
+                    <div class="relative overflow-hidden rounded-2xl bg-white p-3 shadow-inner">
+                      <div class="absolute inset-0 bg-gradient-to-br from-green-100 to-emerald-100"></div>
+                      <Image
+                        src={ishotCard ? shop : me}
+                        width={400}
+                        height={400}
+                        alt="扫码添加微信领取福利"
+                        class="w-full rounded-xl relative z-10 transform hover:scale-105 transition-transform duration-300"
+                        loading="eager"
+                      />
+                      <!-- 扫描提示动画 -->
+                      <div class="absolute inset-0 flex items-center justify-center pointer-events-none">
+                        <div class="w-full h-1 bg-gradient-to-r from-transparent via-green-500 to-transparent opacity-70 animate-pulse"></div>
+                      </div>
+                    </div>
+                    
+                    <!-- 强化CTA按钮 -->
+                    <div class="mt-4 space-y-3">
+                      <p class="text-sm text-gray-700 text-center font-medium">
+                        📱 扫码添加微信
+                      </p>
+                      <p class="text-xs text-gray-500 text-center">
+                        享专属客服 · 领优惠活动 · 免费领卡
+                      </p>
+                      
+                      <!-- 快捷复制按钮 -->
+                      <button 
+                        onclick="copyWechat()"
+                        class="w-full py-3 px-4 bg-gradient-to-r from-green-500 to-emerald-600 text-white font-bold rounded-xl hover:from-green-600 hover:to-emerald-700 transition-all duration-300 shadow-md hover:shadow-lg flex items-center justify-center gap-2"
+                      >
+                        <span>📋</span>
+                        <span>复制微信号: liuketh</span>
+                      </button>
+                    </div>
+                    
+                    <!-- 滚动公告 -->
+                    <div class="mt-4 bg-gradient-to-r from-green-100 to-emerald-100 rounded-xl p-3">
+                      <div class="flex items-center gap-2 text-sm text-green-700">
+                        <span class="animate-pulse">🔔</span>
+                        <marquee scrollamount="4" class="flex-1">
+                          🚀 已有 <span class="font-bold">{Math.floor((new Date().getTime() - new Date('2024-03-01').getTime() ) / (1000*60*60*24)) + 2000}</span> 人领取了免费的流量卡！🔥 立即扫码抢占名额！
+                        </marquee>
+                      </div>
                     </div>
                   </div>
                 </section>
@@ -278,3 +314,26 @@ const ishotCard = !!url.match(/hotcard/)
     }
   }
 </style>
+
+<script>
+  // 复制微信号功能
+  function copyWechat() {
+    navigator.clipboard.writeText('liuketh').then(() => {
+      alert('微信号 liuketh 已复制到剪贴板，打开微信添加好友即可！');
+    }).catch(() => {
+      // 兼容旧浏览器
+      const textarea = document.createElement('textarea');
+      textarea.value = 'liuketh';
+      document.body.appendChild(textarea);
+      textarea.select();
+      // @ts-ignore
+      document.execCommand('copy');
+      document.body.removeChild(textarea);
+      alert('微信号 liuketh 已复制到剪贴板，打开微信添加好友即可！');
+    });
+  }
+  
+  // 将函数挂载到window上供onclick调用
+  // @ts-ignore
+  window.copyWechat = copyWechat;
+</script>

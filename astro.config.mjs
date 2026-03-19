@@ -8,14 +8,19 @@ import react from "@astrojs/react";
 export default defineConfig({
   site: 'https://www.liuketh.cn',
   build: {
-    inlineStylesheets: 'never'
+    inlineStylesheets: 'never',
+    charset: 'utf8',
+    // 开启CSS代码分割优化
+    cssCodeSplit: true,
+    // 开启资源内联优化
+    assetsInlineLimit: 4096
   },
-  // 开启压缩
+  // 开启HTML压缩
   compressHTML: true,
   markdown: {
     gfm: false
   },
-  // 图片优化
+  // 图片优化 - 使用sharp
   image: {
     service: {
       entrypoint: 'astro/assets/services/sharp'
@@ -30,13 +35,24 @@ export default defineConfig({
       include: ['**/*.tsx', '**/*.jsx']
     }),
     sitemap({
-      changefreq: 'weekly',
-      priority: 0.8,
+      changefreq: 'daily',
+      priority: 1.0,
       lastmod: new Date(),
+      alternates: {
+        languages: {
+          'zh-cn': '/',
+        }
+      },
+      // 自定义sitemap生成
+      filter: (page) => {
+        // 排除后台页面
+        return !page.includes('/admin') && !page.includes('/login');
+      },
       serialize: (item) => {
         return {
           ...item,
-          img: undefined // 减少sitemap体积
+          // 移除图片减少体积
+          img: undefined
         }
       }
     }),
@@ -63,8 +79,9 @@ export default defineConfig({
         strict: true
       }
     },
+    // 开启HTML压缩 (使用esbuild)
     build: {
-      charset: 'utf8'
+      minify: 'esbuild'
     }
   },
   redirects: {
