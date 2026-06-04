@@ -37,14 +37,6 @@ const ishotCard = !!url.match(/hotcard/)
 
     <ViewTransitions />
     
-    <!-- DNS预解析 -->
-    <link rel="dns-prefetch" href="//www.liuketh.cn" />
-    <link rel="preconnect" href="//www.liuketh.cn" />
-    
-    <!-- 预加载关键资源 -->
-    <link rel="preload" href="/fonts/custom-font.woff2" as="font" type="font/woff2" crossorigin="anonymous" />
-    <link rel="preload" href={defaultImage} as="image" />
-    
     <!-- Primary Meta Tags -->
     <title>{makeTitle}</title>
     <meta name="title" content={makeTitle} />
@@ -71,11 +63,7 @@ const ishotCard = !!url.match(/hotcard/)
     <link rel="canonical" href={url} />
     
     <!-- Favicon -->
-    <link rel="icon" type="image/png" href="/favicon.png" />
-    
-    <!-- 预连接第三方域名 -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     
     <!-- 移动 Web App -->
     <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -244,7 +232,7 @@ const ishotCard = !!url.match(/hotcard/)
                         class="w-full py-3 px-4 bg-gradient-to-r from-green-500 to-emerald-600 text-white font-bold rounded-xl hover:from-green-600 hover:to-emerald-700 transition-all duration-300 shadow-md hover:shadow-lg flex items-center justify-center gap-2"
                       >
                         <span>📋</span>
-                        <span>复制微信号: liuketh</span>
+                        <span>复制微信号: liuketh000</span>
                       </button>
                     </div>
                     
@@ -318,18 +306,18 @@ const ishotCard = !!url.match(/hotcard/)
 <script>
   // 复制微信号功能
   function copyWechat() {
-    navigator.clipboard.writeText('liuketh').then(() => {
-      alert('微信号 liuketh 已复制到剪贴板，打开微信添加好友即可！');
+    navigator.clipboard.writeText('liuketh000').then(() => {
+      alert('微信号 liuketh000 已复制到剪贴板，打开微信添加好友即可！');
     }).catch(() => {
       // 兼容旧浏览器
       const textarea = document.createElement('textarea');
-      textarea.value = 'liuketh';
+      textarea.value = 'liuketh000';
       document.body.appendChild(textarea);
       textarea.select();
       // @ts-ignore
       document.execCommand('copy');
       document.body.removeChild(textarea);
-      alert('微信号 liuketh 已复制到剪贴板，打开微信添加好友即可！');
+      alert('微信号 liuketh000 已复制到剪贴板，打开微信添加好友即可！');
     });
   }
   

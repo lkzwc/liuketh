@@ -1,5 +1,5 @@
 # Astro Starter Kit: Basics
-
+企业网站
 ```sh
 npm create astro@latest -- --template basics
 ```

@@ -37,12 +37,6 @@ export default defineConfig({
     sitemap({
       changefreq: 'daily',
       priority: 1.0,
-      lastmod: new Date(),
-      alternates: {
-        languages: {
-          'zh-cn': '/',
-        }
-      },
       // 自定义sitemap生成
       filter: (page) => {
         // 排除后台页面

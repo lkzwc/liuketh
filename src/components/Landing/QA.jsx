@@ -1,6 +1,4 @@
 import React from "react";
-import { Accordion, AccordionItem, Button } from "@nextui-org/react";
-import { RoughNotation } from "react-rough-notation";
 import { Plus } from "@icon-park/react";
 import Title from "./Title";
 
@@ -29,26 +27,30 @@ const qas = [
 
 export default function QA() {
   return (
-    <section class="md:w-8/12 mx-auto bg-white min-h-[60vh] ">
+    <section className="md:w-8/12 mx-auto bg-white min-h-[60vh]">
       <Title
         title="常见问题"
         desc="关于一些常见问题的解答"
         client:only="react"
       />
 
-      <div class="w-full">
-        <Accordion class="my-2" variant="bordered"  className="overflow-y-auto" >
-          {qas.map((item, index) => (
-            <AccordionItem
-              key={index}
-              aria-label="Moon"
-              indicator={<Plus theme="outline" size="24" fill="#333" />}
-              title={item.q}
-            >
+      <div className="w-full space-y-3">
+        {qas.map((item, index) => (
+          <details
+            key={index}
+            className="group rounded-xl border border-gray-200 bg-white overflow-hidden transition-shadow hover:shadow-sm"
+          >
+            <summary className="flex items-center justify-between py-4 px-5 cursor-pointer list-none select-none text-base font-medium text-gray-800 hover:bg-gray-50 transition-colors">
+              <span>{item.q}</span>
+              <span className="ml-4 shrink-0 transition-transform duration-200 group-open:rotate-45">
+                <Plus theme="outline" size="20" fill="#666" />
+              </span>
+            </summary>
+            <div className="px-5 pb-4 text-sm text-gray-600 leading-relaxed border-t border-gray-100 pt-3">
               {item.a}
-            </AccordionItem>
-          ))}
-        </Accordion>
+            </div>
+          </details>
+        ))}
       </div>
     </section>
   );

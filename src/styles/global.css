@@ -148,6 +148,11 @@ a {
   animation: fadeIn 0.3s ease-in-out;
 }
 
+/* 隐藏 Safari 默认展开箭头 */
+details summary::-webkit-details-marker {
+  display: none;
+}
+
 @keyframes fadeIn {
   from {
     opacity: 0;

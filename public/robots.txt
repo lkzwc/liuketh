@@ -23,7 +23,7 @@ Allow: /*.webp$
 Allow: /*.svg$
 
 # 站点地图
-Sitemap: https://www.liuketh.cn/sitemap-0.xml
+Sitemap: https://www.liuketh.cn/sitemap-index.xml
 
 # 爬虫抓取频率
 Crawl-delay: 1 
