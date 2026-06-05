@@ -1,23 +1,30 @@
 {
-  "extends": "astro/tsconfigs/strict",
-  "compilerOptions": {
-    "strictNullChecks": true,
-    "jsx": "react-jsx",
-    "jsxImportSource": "react",
-    "types": [
-      "astro/client",
-      "astro/astro-jsx",
-      "@astrojs/react/client"  // 添加这行
-    ],
-    "baseUrl": ".",
-    "paths": {
-      "@/*": ["src/*"]
-    },
-    "allowJs": true,           // 添加这行
-    "esModuleInterop": true,   // 添加这行
-    "skipLibCheck": true,      // 添加这行
-    "forceConsistentCasingInFileNames": true  // 添加这行
-  },
-  "include": ["src/**/*"],
-  "exclude": ["node_modules"]
+	"extends": "astro/tsconfigs/strict",
+	"compilerOptions": {
+		"strictNullChecks": true,
+		"jsx": "react-jsx",
+		"jsxImportSource": "react",
+		"types": [
+			"astro/client",
+			"astro/astro-jsx",
+			"@astrojs/react/client"
+		],
+		"baseUrl": ".",
+		"paths": {
+			"@/*": [
+				"src/*"
+			]
+		},
+		"allowJs": true,
+		"esModuleInterop": true,
+		"skipLibCheck": true,
+		"forceConsistentCasingInFileNames": true
+	},
+	"include": [
+		"src/**/*",
+		"./worker-configuration.d.ts"
+	],
+	"exclude": [
+		"node_modules"
+	]
 }

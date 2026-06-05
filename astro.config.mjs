@@ -4,9 +4,12 @@ import mdx from '@astrojs/mdx';
 import sitemap from "@astrojs/sitemap";
 import react from "@astrojs/react";
 
+import cloudflare from "@astrojs/cloudflare";
+
 // https://astro.build/config
 export default defineConfig({
   site: 'https://www.liuketh.cn',
+
   build: {
     inlineStylesheets: 'never',
     charset: 'utf8',
@@ -15,24 +18,29 @@ export default defineConfig({
     // 开启资源内联优化
     assetsInlineLimit: 4096
   },
+
   // 开启HTML压缩
   compressHTML: true,
+
   markdown: {
     gfm: true,
     shikiConfig: {
       theme: 'github-dark',
     }
   },
+
   // 图片优化 - 使用sharp
   image: {
     service: {
       entrypoint: 'astro/assets/services/sharp'
     }
   },
+
   assets: {
     domains: ['assets.website-files.com'],
     formats: ['webp', 'avif', 'png', 'jpg']
   },
+
   integrations: [
     react({
       include: ['**/*.tsx', '**/*.jsx']
@@ -58,9 +66,11 @@ export default defineConfig({
       applyBaseStyles: false,
     }),
   ],
+
   devToolbar: {
     enabled: false
   },
+
   vite: {
     ssr: {
       noExternal: ['@astrojs/*']
@@ -75,7 +85,10 @@ export default defineConfig({
       minify: 'esbuild'
     }
   },
+
   redirects: {
     // '/hot/[...slug]': '/hotcard',
-  }
+  },
+
+  adapter: cloudflare()
 });
