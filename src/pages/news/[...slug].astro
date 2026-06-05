@@ -24,9 +24,10 @@ const { Content } = await entry.render();
 const allPosts = await getCollection("news");
 
 const blogEntries = await getCollection("news");
+const pageKeywords = entry.data.tags.join(",");
 ---
 
-<Layout pageTitle={entry.data.title} desc={entry.data.description}>
+<Layout pageTitle={entry.data.title} desc={entry.data.description} keywords={pageKeywords}>
     <div>
         <MDLayout frontmatter={entry.data}>
             <MDContent class="rounded-xl">

@@ -35,6 +35,23 @@ const hotCard = defineCollection({
   })
 });
 
+const ukCard = defineCollection({
+  type: 'content',
+  schema: ({ image }) => z.object({
+    title: z.string(),
+    pubDate: z.string(),
+    description: z.string(),
+    cover: image(),
+    coverAlt: z.string(),
+    author: z.string(),
+    image: z.object({
+      url: image().or(z.string()).optional(),
+      alt: z.string()
+    }),
+    tags: z.array(z.string())
+  })
+});
+
 const wifi = defineCollection({
   type: 'content',
   schema: ({ image }) => z.object({
@@ -56,5 +73,6 @@ const wifi = defineCollection({
 export const collections = {
   'news': blogCollection,
   'hotcard': hotCard,
+  'ukcard': ukCard,
   'wifi': wifi
 };

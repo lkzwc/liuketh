@@ -1,0 +1,120 @@
+---
+import { getCollection } from "astro:content";
+import Layout from "../../layouts/BaseLayout.astro";
+import BlogList from "../../components/BlogList.astro";
+import type { GetStaticPathsOptions } from "astro";
+
+export async function getStaticPaths({ paginate }: GetStaticPathsOptions) {
+  const ukcard = await getCollection("ukcard");
+  return paginate(ukcard.sort((a, b) =>
+    new Date(b.data?.pubDate).getTime() - new Date(a.data?.pubDate).getTime()
+  ), { pageSize: 12 });
+}
+
+const { page } = Astro.props;
+
+const metaDesc = "流客科技英国卡 - 专业提供英国本地SIM卡、英国流量卡、英国电话卡，覆盖1.5GB到20GB多种套餐。适合留学、出差、旅行使用，即插即用，英国本地号码，4G/5G高速网络，全英99%覆盖。支持eSIM，中文客服，国内包邮配送。";
+const metaKeywords = "英国卡,英国SIM卡,英国流量卡,英国电话卡,英国上网卡,英国留学电话卡,英国旅游流量卡,英国留学生SIM卡,英国本地号码,英国eSIM,出国上网卡,赴英出差上网,英国卡推荐,英国卡怎么买,流客科技";
+
+---
+
+<Layout
+  pageTitle="英国卡"
+  desc={metaDesc}
+>
+  <meta name="keywords" content={metaKeywords} slot="head" />
+
+  <!-- 顶部Banner -->
+  <section class="bg-gradient-to-r from-blue-600 to-purple-600 text-white py-16">
+    <div class="container mx-auto px-4 text-center">
+      <h1 class="text-4xl md:text-5xl font-bold mb-4">🇬🇧 英国本地SIM卡</h1>
+      <p class="text-xl md:text-2xl mb-3 opacity-90">留学 · 出差 · 旅行 — 即插即用，英国本地号码</p>
+      <p class="text-base md:text-lg mb-8 opacity-75">英国流量卡 | 英国电话卡 | 英国上网卡 | 英国eSIM | 4G/5G高速网络</p>
+      <div class="flex flex-wrap justify-center gap-4 text-sm md:text-base">
+        <span class="bg-white/20 px-4 py-2 rounded-full">📶 全英99%覆盖</span>
+        <span class="bg-white/20 px-4 py-2 rounded-full">📱 支持eSIM</span>
+        <span class="bg-white/20 px-4 py-2 rounded-full">🔋 30天有效期</span>
+        <span class="bg-white/20 px-4 py-2 rounded-full">💬 中文客服</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- 套餐对比表 -->
+  <section class="bg-white py-12">
+    <div class="container mx-auto px-4">
+      <h2 class="text-2xl md:text-3xl font-bold text-center mb-8">套餐对比</h2>
+      <div class="overflow-x-auto">
+        <table class="w-full max-w-4xl mx-auto border-collapse">
+          <thead>
+            <tr class="bg-gradient-to-r from-blue-50 to-purple-50">
+              <th class="border border-gray-200 px-4 py-3 text-left">套餐</th>
+              <th class="border border-gray-200 px-4 py-3 text-center">流量</th>
+              <th class="border border-gray-200 px-4 py-3 text-center">通话</th>
+              <th class="border border-gray-200 px-4 py-3 text-center">短信</th>
+              <th class="border border-gray-200 px-4 py-3 text-center">价格</th>
+              <th class="border border-gray-200 px-4 py-3 text-center">适合</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="border border-gray-200 px-4 py-3 font-medium">Lite版</td>
+              <td class="border border-gray-200 px-4 py-3 text-center">1.5GB</td>
+              <td class="border border-gray-200 px-4 py-3 text-center">100分钟</td>
+              <td class="border border-gray-200 px-4 py-3 text-center">100条</td>
+              <td class="border border-gray-200 px-4 py-3 text-center font-bold text-blue-600">£9.99</td>
+              <td class="border border-gray-200 px-4 py-3 text-center text-sm">短期旅行</td>
+            </tr>
+            <tr class="bg-gray-50">
+              <td class="border border-gray-200 px-4 py-3 font-medium">标准版</td>
+              <td class="border border-gray-200 px-4 py-3 text-center">3GB</td>
+              <td class="border border-gray-200 px-4 py-3 text-center">200分钟</td>
+              <td class="border border-gray-200 px-4 py-3 text-center">200条</td>
+              <td class="border border-gray-200 px-4 py-3 text-center font-bold text-blue-600">£14.99</td>
+              <td class="border border-gray-200 px-4 py-3 text-center text-sm">留学/商务</td>
+            </tr>
+            <tr>
+              <td class="border border-gray-200 px-4 py-3 font-medium">畅享版</td>
+              <td class="border border-gray-200 px-4 py-3 text-center">6GB</td>
+              <td class="border border-gray-200 px-4 py-3 text-center">300分钟</td>
+              <td class="border border-gray-200 px-4 py-3 text-center">无限</td>
+              <td class="border border-gray-200 px-4 py-3 text-center font-bold text-blue-600">£19.99</td>
+              <td class="border border-gray-200 px-4 py-3 text-center text-sm">重度上网</td>
+            </tr>
+            <tr class="bg-gray-50">
+              <td class="border border-gray-200 px-4 py-3 font-medium">尊享版</td>
+              <td class="border border-gray-200 px-4 py-3 text-center">12GB</td>
+              <td class="border border-gray-200 px-4 py-3 text-center">500分钟</td>
+              <td class="border border-gray-200 px-4 py-3 text-center">无限</td>
+              <td class="border border-gray-200 px-4 py-3 text-center font-bold text-blue-600">£29.99</td>
+              <td class="border border-gray-200 px-4 py-3 text-center text-sm">长期驻英</td>
+            </tr>
+            <tr>
+              <td class="border border-gray-200 px-4 py-3 font-medium">旗舰版</td>
+              <td class="border border-gray-200 px-4 py-3 text-center">20GB</td>
+              <td class="border border-gray-200 px-4 py-3 text-center">无限</td>
+              <td class="border border-gray-200 px-4 py-3 text-center">无限</td>
+              <td class="border border-gray-200 px-4 py-3 text-center font-bold text-blue-600">£39.99</td>
+              <td class="border border-gray-200 px-4 py-3 text-center text-sm">旗舰体验</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="text-center mt-8">
+        <p class="text-gray-600">添加微信 <strong>liuketh000</strong> 咨询办理，享专属优惠</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 产品详情文章列表 -->
+  <section class="bg-gray-50 py-12">
+    <div class="container mx-auto px-4">
+      <div class="text-center mb-10">
+        <h2 class="text-2xl md:text-3xl font-bold text-gray-900 mb-2">产品详情</h2>
+        <div class="w-20 h-1 bg-blue-600 mx-auto"></div>
+      </div>
+      <div class="max-w-5xl mx-auto">
+        <BlogList path="/ukcard" page={page} />
+      </div>
+    </div>
+  </section>
+</Layout>

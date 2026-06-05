@@ -20,16 +20,17 @@ export async function getStaticPaths() {
 const { entry } = Astro.props;
 const {
   entry: {
-    data: { title, description },
+    data: { title, description, tags },
   },
 } = Astro.props;
 const { slug } = Astro.params;
 
 const { Content } = await entry.render();
 const allPosts = await getCollection("wifi");
+const pageKeywords = tags.join(",");
 ---
 
-<Layout pageTitle={title} desc={description}>
+<Layout pageTitle={title} desc={description} keywords={pageKeywords}>
   <div>
     <MDLayout frontmatter={entry.data}>
       <MDContent class="rounded-xl">

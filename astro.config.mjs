@@ -18,7 +18,10 @@ export default defineConfig({
   // 开启HTML压缩
   compressHTML: true,
   markdown: {
-    gfm: false
+    gfm: true,
+    shikiConfig: {
+      theme: 'github-dark',
+    }
   },
   // 图片优化 - 使用sharp
   image: {
@@ -50,13 +53,7 @@ export default defineConfig({
         }
       }
     }),
-    mdx({
-      optimize: {
-        // 防止优化器处理 `h1` 元素
-        // 这些元素将被视为自定义组件
-        customComponentNames: ['table'],
-      },
-    }),
+    mdx({}),
     tailwind({
       applyBaseStyles: false,
     }),

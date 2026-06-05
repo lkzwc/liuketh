@@ -4,9 +4,9 @@ import Layout from "../../layouts/BaseLayout.astro";
 import MDContent from "../../components/MDContent.astro";
 import MDLayout from "../../layouts/MD.astro";
 import RelatedPosts from "../../components/RelatedPosts.astro";
-// 1. 为每个集合条目生成一个新路径
+
 export async function getStaticPaths() {
-  const blogEntries = await getCollection("hotcard");
+  const blogEntries = await getCollection("ukcard");
   return blogEntries.map((entry) => ({
     params: {
       slug: entry.slug,
@@ -14,7 +14,7 @@ export async function getStaticPaths() {
     props: { entry },
   }));
 }
-// 2. 当渲染的时候，你可以直接从属性中得到条目
+
 const { entry } = Astro.props;
 const {
   entry: {
@@ -23,7 +23,7 @@ const {
 } = Astro.props;
 const { slug } = Astro.params;
 const { Content } = await entry.render();
-const allPosts = await getCollection("hotcard");
+const allPosts = await getCollection("ukcard");
 const pageKeywords = tags.join(",");
 ---
 
@@ -34,11 +34,11 @@ const pageKeywords = tags.join(",");
         <Content />
       </MDContent>
     </MDLayout>
-    
-    <RelatedPosts 
+
+    <RelatedPosts
       posts={allPosts}
       currentSlug={slug}
-      basePath="hotcard"
+      basePath="ukcard"
     />
   </div>
 </Layout>
