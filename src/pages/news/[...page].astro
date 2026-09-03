@@ -1,50 +1,21 @@
 ---
 import { getCollection } from "astro:content";
 import Layout from "../../layouts/BaseLayout.astro";
-import { Image } from "astro:assets";
-import yd from "../../image/product/dragon.jpg";
-import lt from "../../image/product/flowcard.jpg";
-import dx from "../../image/product/dragon.jpg";
-import gd from "../../image/product/gd.jpg";
 import BlogList from "../../components/BlogList.astro";
 import type { GetStaticPathsOptions } from "astro";
 
-const type = [
-  {
-    url: lt,
-    alt: "中国联通流量卡",
-  },
-  {
-    url: dx,
-    alt: "中国电信流量卡",
-  },
-  {
-    url: gd,
-    alt: "中国广电流量卡",
-  },
-];
-
-
-export async function getStaticPaths({ paginate }: GetStaticPathsOptions) { 
+export async function getStaticPaths({ paginate }: GetStaticPathsOptions) {
   const info = await getCollection("news");
   return paginate(info.sort((a,b)=>(new Date(b.data?.pubDate).getTime() - new Date(a.data?.pubDate).getTime())), { pageSize: 12 });
- }
+}
 
  const { page } = Astro.props;
 ---
 <Layout pageTitle="流量卡资讯" desc="分享流量卡行业的各种资讯，提供流量卡的售后服务以及激活使用教程">
-  <div class="hidden md:flex gap-5 mx-5 m-10">
-    {
-      type.map((item) => (
-        <Image
-          src={item.url}
-          alt={item.alt}
-          width="300"
-          height="150"
-          class="rounded-xl"
-        />
-      ))
-    }
+  <div class="text-center mb-10">
+    <h1 class="text-3xl md:text-4xl font-bold text-gray-900 mb-3">最新资讯</h1>
+    <div class="w-24 h-1 bg-gradient-to-r from-blue-600 to-blue-700 mx-auto"></div>
+    <p class="mt-4 text-lg text-gray-600">流量卡行业资讯、套餐攻略与激活使用教程</p>
   </div>
   <!-- //client:load  -->
   <div>

@@ -1,34 +1,8 @@
 ---
 import { getCollection } from "astro:content";
 import Layout from "../../layouts/BaseLayout.astro";
-import { Image } from "astro:assets";
-import neibu from "../../image/product/neibu.webp";
-import number from "../../image/product/number.webp";
 import BlogList from "../../components/BlogList.astro";
 import type { GetStaticPathsOptions } from "astro";
-
-const products = [
-  {
-    id: 1,
-    name: '内部套餐卡',
-    description: '超值套餐，专享优惠价，月租低至19元',
-    image: neibu,
-    imageAlt: '内部专属套餐卡-超值优惠套餐展示图',
-    price: '¥99起',
-    features: ['大流量', '低月租', '全国漫游'],
-    link: 'https://172.lot-ml.com/ProductEn/Index/2fae511eb8ac8c99'
-  },
-  {
-    id: 2,
-    name: '靓号专区',
-    description: '精选靓号，彰显品味，支持在线选号',
-    image: number,
-    imageAlt: '精选靓号专区-在线选号系统展示图',
-    price: '询价',
-    features: ['号码靓丽', '可选性强', '全国可用'],
-    link: 'https://172.lot-ml.com/ProductEn/Index/2fae511eb8ac8c99'
-  }
-];
 
 export async function getStaticPaths({ paginate }: GetStaticPathsOptions) {
   const hotcard = await getCollection("hotcard");
@@ -54,8 +28,9 @@ const metaKeywords = "流量卡,手机卡,内部套餐,靓号,企业专线,全�
   <section class="bg-gray-50">
     <div class="container mx-auto px-4">
       <div class="text-center mb-10">
-        <h2 class="text-2xl md:text-3xl font-bold text-gray-900 mb-2">相关文章</h2>
-        <div class="w-20 h-1 bg-blue-600 mx-auto"></div>
+        <h1 class="text-3xl md:text-4xl font-bold text-gray-900 mb-3">流量卡</h1>
+        <div class="w-24 h-1 bg-gradient-to-r from-blue-600 to-blue-700 mx-auto"></div>
+        <p class="mt-4 text-lg text-gray-600">大流量低月租，全国漫游无限制，在线免费申请</p>
       </div>
       <div class="max-w-5xl mx-auto">
         <BlogList path="/hotcard" page={page} />
